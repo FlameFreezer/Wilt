@@ -6,7 +6,7 @@ public struct GridQueryConfig {
 }
 
 public class Grid {
-    private List<Plant> _plants;
+    private List<Plant> _plants = new();
 	private Queue<UInt32>[] _harvestQueues = new Queue<UInt32>[Enum.GetNames(typeof(PlantTypes.Type)).Length];
 
 	private UInt32 _width;
@@ -19,6 +19,16 @@ public class Grid {
 			}
 		}
 	}
+
+	public void SetWidth(UInt32 width)
+	{
+		_width = width;
+	}
+	public void SetHeight(UInt32 height)
+	{
+		_height = height;
+	}
+
 
 	public bool GetPlantAtGridPosition(UInt32 x, UInt32 y, out Plant result) {
 		result = null;
