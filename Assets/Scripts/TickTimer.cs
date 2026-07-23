@@ -6,12 +6,12 @@ public class TickTimer : MonoBehaviour
     public double _ticksPerSecond;
     private double _timeSinceLastTick = 0.0;
     private bool _isPaused = false;
-    public Action _tickUpdate;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _timeSinceLastTick = 0.0;
-        _tickUpdate += OnTick;
+
+        Game.Instance()._tickTimer = this;
     }
 
     // Update is called once per frame
@@ -23,13 +23,9 @@ public class TickTimer : MonoBehaviour
             double secondsPerTick = 1.0 / _ticksPerSecond;
             if (_timeSinceLastTick >= secondsPerTick)
             {
-                _tickUpdate?.Invoke();
+                Game.Instance().EventBus()._onTick?.Invoke();
                 _timeSinceLastTick -= secondsPerTick;
             }
         }
-    }
-    private void OnTick()
-    {
-        Debug.Log("Tick Timer: Tick update!");
     }
 }
