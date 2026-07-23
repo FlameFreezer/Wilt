@@ -9,8 +9,8 @@ public class Grid {
     private List<Plant> _plants;
 	private Queue<UInt32>[] _harvestQueues = new Queue<UInt32>[Enum.GetNames(typeof(PlantTypes.Type)).Length];
 
-	public UInt32 width;
-	public UInt32 height;
+	private UInt32 _width;
+	private UInt32 _height;
 
 	public void InvokeTick(PlantTypes.Type type) {
 		foreach(Plant plant in _plants) {
@@ -23,9 +23,9 @@ public class Grid {
 	public bool GetPlantAtGridPosition(UInt32 x, UInt32 y, out Plant result) {
 		result = null;
 
-		if(_plants.Count < y * width + x) { return false; }
+		if(_plants.Count < y * _width + x) { return false; }
 
-		result = _plants[(int)(y * width + x)];
+		result = _plants[(int)(y * _width + x)];
 		return true;
 	}
 
@@ -33,7 +33,7 @@ public class Grid {
 	// TODO -- should we handle checking validity at the
 	// input level?
 	public void SpawnPlantAtGridPosition(UInt32 x, UInt32 y, PlantTypes.Type type) {
-		UInt32 plantId = y * width + x;
+		UInt32 plantId = y * _width + x;
 
 		Plant newPlant = null;
 
@@ -59,20 +59,20 @@ public class Grid {
 	public UInt32 QueryAdjacentTiles(UInt32 sourceId, GridQueryConfig config, Func<Plant, bool> criteria) {
 		UInt32 matches = 0;
 
-		int sourceX = (int)(sourceId % width);
-		int sourceY = (int)(sourceId / width);
+		int sourceX = (int)(sourceId % _width);
+		int sourceY = (int)(sourceId / _width);
 
 		for(int yOffset = -1; yOffset < 2; yOffset++) {
 			for(int xOffset = -1; xOffset < 2; xOffset++) {
 				if(yOffset == 0 && xOffset == 0) { continue; }
 
 				int adjacentX = sourceX + xOffset;
-				if(adjacentX < 0 || (int)width - 1 < adjacentX) { continue; }
+				if(adjacentX < 0 || (int)_width - 1 < adjacentX) { continue; }
 
 				int adjacentY = sourceY + yOffset;
-				if(adjacentY < 0 || (int)height - 1 < adjacentY) { continue; }
+				if(adjacentY < 0 || (int)_height - 1 < adjacentY) { continue; }
 				
-				int adjacentId = (int)width * adjacentY + adjacentX;
+				int adjacentId = (int)_width * adjacentY + adjacentX;
 				if(criteria.Invoke(_plants[adjacentId])) {
 					if(config.matchesRequired - 1 < matches++) { return matches; }
 				}
