@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TickTimer : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class TickTimer : MonoBehaviour
         _timeSinceLastTick = 0.0;
 
         Game.Instance()._tickTimer = this;
+
+        InputSystem.actions.FindAction("Pause").performed += PauseTimer;
+        InputSystem.actions["Pause"].performed += PauseTimer;
     }
 
     // Update is called once per frame
@@ -26,6 +30,20 @@ public class TickTimer : MonoBehaviour
                 Game.Instance().EventBus()._onTick?.Invoke();
                 _timeSinceLastTick -= secondsPerTick;
             }
+        }
+    }
+
+    void PauseTimer(InputAction.CallbackContext context)
+    {
+        _isPaused = !_isPaused;
+        _timeSinceLastTick = 0.0;
+        if(_isPaused)
+        {
+            Debug.Log("Tick Timer: Paused!");
+        }
+        else
+        {
+            Debug.Log("Tick Timer: Unpaused!");
         }
     }
 }
