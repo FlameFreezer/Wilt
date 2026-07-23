@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
 
+public struct GridQueryConfig {
+	public UInt32 matchesRequired;
+}
+
 public class Grid {
     private List<Plant> _plants;
 	private Queue<UInt32>[] _harvestQueues = new Queue<UInt32>[Enum.GetNames(typeof(PlantTypes.Type)).Length];
@@ -50,5 +54,31 @@ public class Grid {
 		Plant plant = _plants[(int)id];
 
 		_harvestQueues[(int)plant.type].Enqueue(id);
+	}
+
+	public UInt32 QueryAdjacentTiles(UInt32 sourceId, GridQueryConfig config, Func<Plant, bool> criteria) {
+		UInt32 matches = 0;
+
+		int sourceX = (int)(sourceId % width);
+		int sourceY = (int)(sourceId / width);
+
+		for(int yOffset = -1; yOffset < 2; yOffset++) {
+			for(int xOffset = -1; xOffset < 2; xOffset++) {
+				if(yOffset == 0 && xOffset == 0) { continue; }
+
+				int adjacentX = sourceX + xOffset;
+				if(adjacentX < 0 || (int)width - 1 < adjacentX) { continue; }
+
+				int adjacentY = sourceY + yOffset;
+				if(adjacentY < 0 || (int)height - 1 < adjacentY) { continue; }
+				
+				int adjacentId = (int)width * adjacentY + adjacentX;
+				if(criteria.Invoke(_plants[adjacentId])) {
+					if(config.matchesRequired - 1 < matches++) { return matches; }
+				}
+			}
+		}
+
+		return matches;
 	}
 }
