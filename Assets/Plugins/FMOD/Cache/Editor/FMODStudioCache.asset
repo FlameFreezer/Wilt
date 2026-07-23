@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639203226840575649
+  lastModified: 639203356655404197
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -33,15 +33,18 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 6099674121338278224}
   - {fileID: -157335304713887053}
-  EditorEvents: []
+  EditorEvents:
+  - {fileID: 8633470071882410220}
   EditorParameters: []
   MasterBanks:
   - {fileID: -157335304713887053}
   StringsBanks:
   - {fileID: 6099674121338278224}
   cacheVersion: 131860
-  cacheTime: 639203226840590656
-  SerializableEventsDict: []
+  cacheTime: 639203356655419707
+  SerializableEventsDict:
+  - key: event:/CoinRattleNoise
+    index: 0
 --- !u!114 &6099674121338278224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,8 +60,35 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639203226840590656
+  lastModified: 639203356655419707
   FileSizes:
   - Name: 
-    Value: 724
+    Value: 776
   Exists: 1
+--- !u!114 &8633470071882410220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CoinRattleNoise
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/CoinRattleNoise
+  Guid:
+    Data1: -638752960
+    Data2: 1313429683
+    Data3: 1776156041
+    Data4: 2081028271
+  Banks:
+  - {fileID: -157335304713887053}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 564
