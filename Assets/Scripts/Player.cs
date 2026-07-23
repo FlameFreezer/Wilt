@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Game.Instance()._player = this;
+        Game.Instance()._player = gameObject;
         Game.Instance().EventBus()._onTick += OnTick;
     }
 

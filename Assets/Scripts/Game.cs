@@ -1,9 +1,11 @@
+using UnityEngine;
+
 public class Game
 {
     private static Game _instance;
     private Game() { }
 
-    public Player _player;
+    public GameObject _player;
     private EventBus _eventBus = new();
     public TickTimer _tickTimer;
 
