@@ -16,14 +16,17 @@ public class Plot : MonoBehaviour, IClickable
         
     }
 
-    public void SetPosition(int xIndex, int yIndex)
-    {
+    public void GetPosition(out int xIndex, out int yIndex) {
+        xIndex = _xIndex;
+        yIndex = _yIndex;
+    }
+
+    public void SetPosition(int xIndex, int yIndex) {
         _xIndex = xIndex;
         _yIndex = yIndex;
     }
 
-    public void OnClick()
-    {
+    public void OnClick() {
         Debug.Log("Plot clicked!");
     }
 }
