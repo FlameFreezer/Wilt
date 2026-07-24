@@ -25,7 +25,7 @@ public abstract class Plant {
 }
 
 public class EyeWeed : Plant {
-	private UInt32 _payout = 3;
+	private UInt32 _payout = 5;
 
 	public EyeWeed()
 	{
@@ -47,7 +47,7 @@ public class EyeWeed : Plant {
 
 	public override void Harvest(Func<UInt32, GridQueryConfig, Func<Plant, bool>, UInt32> adjacentQueryCallback) {
 		if(adjacentQueryCallback.Invoke(_id, new() { matchesRequired = 1 }, _Criteria) > 0) {
-			_payout *= 3;
+			_payout = (UInt32)(_payout * 1.5);
 		}
 
 		return;

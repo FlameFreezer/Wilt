@@ -1051,7 +1051,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781be8402a0c64a49aa8ea69530440db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  _money: 0
+  _money: 2
+  selectedPlant: 1
 --- !u!4 &527535341
 Transform:
   m_ObjectHideFlags: 0

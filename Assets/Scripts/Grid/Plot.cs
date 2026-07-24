@@ -39,7 +39,19 @@ public class Plot : MonoBehaviour, IClickable
 
     public void OnClick()
     {
-        _parentGrid.SpawnPlantAtGridPosition(_xIndex, _yIndex, PlantTypes.Type.EYE_WEED);
+        Player player = Game.Instance()._player.GetComponent<Player>();
+        if (player.selectedPlant == PlantTypes.Type.NULL_PLANT)
+        {
+            return;
+        }
+        uint plantCost = PlantTypes.costs[player.selectedPlant];
+        if(plantCost > player._money)
+        {
+            Debug.Log($"Selected plant costs ${plantCost} but you only have {player._money}");
+            return;
+        }
+        _parentGrid.SpawnPlantAtGridPosition(_xIndex, _yIndex, player.selectedPlant);
+        player._money -= plantCost;
         plantSprite.GetComponent<SpriteRenderer>().enabled = true;
     }
 
