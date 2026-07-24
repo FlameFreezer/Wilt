@@ -68,7 +68,7 @@ public class Plot : MonoBehaviour, IClickable
         plant?.Harvest(adjacentQueryCallback);
     }
 
-    public void Remove() {
+    public void RemovePlant() {
         plant?.Payout();
         plant = null;
         plantSprite.GetComponent<SpriteRenderer>().enabled = false;

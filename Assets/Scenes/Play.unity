@@ -1971,8 +1971,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781be8402a0c64a49aa8ea69530440db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  selectedPlant: 1
-  startingMoney: 2
+  selectedPlant: 0
+  startingMoney: 1
 --- !u!4 &527535341
 Transform:
   m_ObjectHideFlags: 0

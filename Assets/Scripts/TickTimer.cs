@@ -26,6 +26,7 @@ public class TickTimer : MonoBehaviour
             double secondsPerTick = 1.0 / _ticksPerSecond;
             if (_timeSinceLastTick >= secondsPerTick)
             {
+                Debug.Log("Tick");
                 Game.Instance().EventBus().OnTick();
                 _timeSinceLastTick -= secondsPerTick;
             }
