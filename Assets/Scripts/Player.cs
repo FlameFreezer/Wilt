@@ -9,13 +9,15 @@ public class Player : MonoBehaviour
     void Start() {
         Game.Instance()._player = gameObject;
         Game.Instance().EventBus().onTick += OnTick;
-
-        InputSystem.actions.FindAction("Interact").performed += OnClick;
     }
 
     void Update() { }
 
 	public void OnClick(InputAction.CallbackContext context) {
+        if(!context.started)
+        {
+            return;
+        }
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         RaycastHit hit;
