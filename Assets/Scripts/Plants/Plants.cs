@@ -13,7 +13,14 @@ public abstract class Plant {
 		_id = id;
 	}
 
-	public abstract void Tick();
+	public void Tick()
+	{
+		ticksUntilHarvest--;
+		if(ticksUntilHarvest < 1)
+		{
+			InvokeOnHarvestRequested();
+		}
+	}
 
 	public abstract void Harvest(Func<UInt32, GridQueryConfig, Func<Plant, bool>, UInt32> adjacentQueryCallback);
 
@@ -25,7 +32,7 @@ public abstract class Plant {
 }
 
 public class EyeWeed : Plant {
-	private UInt32 _payout = 3;
+	private UInt32 _payout = 5;
 
 	public EyeWeed()
 	{
@@ -35,25 +42,39 @@ public class EyeWeed : Plant {
 
 	public override void Payout()
 	{
-		Game.Instance()._player.GetComponent<Player>()._money += _payout;
-	}
-
-	public override void Tick() {
-		if(ticksUntilHarvest < 1) {
-			InvokeOnHarvestRequested();
-		}
-		ticksUntilHarvest--;
+		Game.Instance()._player.GetComponent<Player>().money += _payout;
 	}
 
 	public override void Harvest(Func<UInt32, GridQueryConfig, Func<Plant, bool>, UInt32> adjacentQueryCallback) {
 		if(adjacentQueryCallback.Invoke(_id, new() { matchesRequired = 1 }, _Criteria) > 0) {
-			_payout *= 3;
+			_payout = (UInt32)(_payout * 1.5);
 		}
 
 		return;
 
 		bool _Criteria(Plant subject) {
-			return subject.type == PlantTypes.Type.EYE_WEED && subject.ticksUntilHarvest < 1;
+			return subject != null && subject.type == PlantTypes.Type.EYE_WEED && subject.ticksUntilHarvest < 1;
 		}
 	}
+}
+
+public class Lambflower : Plant
+{
+	private UInt32 _payout = 9;
+
+	public Lambflower()
+	{
+		ticksUntilHarvest = 8;
+		type = PlantTypes.Type.LAMBFLOWER;
+	}
+
+	public override void Payout()
+	{
+		Game.Instance()._player.GetComponent<Player>().money += _payout;
+	}
+
+    public override void Harvest(Func<uint, GridQueryConfig, Func<Plant, bool>, uint> adjacentQueryCallback)
+    {
+		return;
+    }
 }

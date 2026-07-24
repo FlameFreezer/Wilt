@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,12 +6,14 @@ public class Plot : MonoBehaviour, IClickable
 {
     private uint _xIndex;
     private uint _yIndex;
-    private Grid _parentGrid;
+    private GridController _parentGrid;
     private readonly HashSet<Plot> _adjacentPlots = new();
+    public GameObject plantSprite;
+    public Plant plant = null;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        plantSprite.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -38,11 +41,40 @@ public class Plot : MonoBehaviour, IClickable
 
     public void OnClick()
     {
-        _parentGrid.SpawnPlantAtGridPosition(_xIndex, _yIndex, PlantTypes.Type.EYE_WEED);
-        Debug.Log("Planted Eyeweed");
+        if (plant != null) return;
+        Player player = Game.Instance()._player.GetComponent<Player>();
+        if (player.selectedPlant == PlantTypes.Type.NULL_PLANT)
+        {
+            return;
+        }
+        uint plantCost = PlantTypes.costs[player.selectedPlant];
+        if(plantCost > player.money)
+        {
+            Debug.Log($"Selected plant costs ${plantCost} but you only have {player.money}");
+            return;
+        }
+        player.money -= plantCost;
+        PlacePlant(player.selectedPlant);
     }
 
-    public void SetParentGrid(Grid parentGrid)
+    void PlacePlant(PlantTypes.Type type)
+    {
+        _parentGrid.SpawnPlantAtGridPosition(_xIndex, _yIndex, type);
+        plantSprite.GetComponent<SpriteRenderer>().enabled = true;
+        plantSprite.GetComponent<SpriteRenderer>().sprite = Game.Instance().plantSprites.GetSprite(type);
+    }
+
+    public void Harvest(Func<UInt32, GridQueryConfig, Func<Plant, bool>, UInt32> adjacentQueryCallback) {
+        plant?.Harvest(adjacentQueryCallback);
+    }
+
+    public void Remove() {
+        plant?.Payout();
+        plant = null;
+        plantSprite.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    public void SetParentGrid(GridController parentGrid)
     {
         _parentGrid = parentGrid;
     }

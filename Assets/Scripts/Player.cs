@@ -4,11 +4,22 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    public UInt32 _money;
+    public PlantTypes.Type selectedPlant = PlantTypes.Type.EYE_WEED;
+    public UInt32 startingMoney;
+    private UInt32 _money;
+	public UInt32 money {
+		get { return _money; }
+		set {
+			if(_money == value) { return; }
+
+			_money = value;
+			Game.Instance().EventBus().OnPlayerMoneyChanged(_money);
+		}
+	}
 
     void Start() {
         Game.Instance()._player = gameObject;
-        Game.Instance().EventBus().onTick += OnTick;
+        money = startingMoney;
     }
 
     void Update() { }
@@ -30,7 +41,9 @@ public class Player : MonoBehaviour
 		}
     }
 
-    private void OnTick() {
-        Debug.Log($"Player: {_money} Time Shekels");
-    }    
+    public void SelectPlant(PlantTypes.Type type)
+    {
+        Debug.Log($"Selected {PlantTypes.TypeToString(type)}");
+        selectedPlant = type;
+    }
 }
