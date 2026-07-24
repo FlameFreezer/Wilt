@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 378837625}
   - component: {fileID: 378837624}
   m_Layer: 5
-  m_Name: Face
+  m_Name: Profile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,8 +230,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 7, y: 7}
-  m_SizeDelta: {x: 256, y: 256}
+  m_AnchoredPosition: {x: 10, y: 7}
+  m_SizeDelta: {x: 172, y: 256}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &378837624
 MonoBehaviour:
