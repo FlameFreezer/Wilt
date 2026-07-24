@@ -35,7 +35,7 @@ public class EyeWeed : Plant {
 
 	public override void Payout()
 	{
-		Game.Instance()._player.GetComponent<Player>()._money += _payout;
+		Game.Instance()._player.GetComponent<Player>().money += _payout;
 	}
 
 	public override void Tick() {
