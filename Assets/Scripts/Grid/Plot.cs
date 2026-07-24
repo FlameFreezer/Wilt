@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Plot : MonoBehaviour, IClickable
 {
-    private int _xIndex;
-    private int _yIndex;
+    private uint _xIndex;
+    private uint _yIndex;
+    private Grid _parentGrid;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,8 +16,7 @@ public class Plot : MonoBehaviour, IClickable
     {
         
     }
-
-    public void SetPosition(int xIndex, int yIndex)
+    public void SetPosition(uint xIndex, uint yIndex)
     {
         _xIndex = xIndex;
         _yIndex = yIndex;
@@ -24,6 +24,12 @@ public class Plot : MonoBehaviour, IClickable
 
     public void OnClick()
     {
-        Debug.Log("Plot clicked!");
+        _parentGrid.SpawnPlantAtGridPosition(_xIndex, _yIndex, PlantTypes.Type.EYE_WEED);
+        Debug.Log("Planted Eyeweed");
+    }
+
+    public void SetParentGrid(Grid parentGrid)
+    {
+        _parentGrid = parentGrid;
     }
 }

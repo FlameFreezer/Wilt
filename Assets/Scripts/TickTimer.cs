@@ -26,7 +26,7 @@ public class TickTimer : MonoBehaviour
             double secondsPerTick = 1.0 / _ticksPerSecond;
             if (_timeSinceLastTick >= secondsPerTick)
             {
-                Game.Instance().EventBus().onTick?.Invoke();
+                Game.Instance().EventBus().OnTick();
                 _timeSinceLastTick -= secondsPerTick;
             }
         }
@@ -36,7 +36,7 @@ public class TickTimer : MonoBehaviour
     {
         _isPaused = !_isPaused;
         _timeSinceLastTick = 0.0;
-        Game.Instance().EventBus().onPause?.Invoke(_isPaused);
+        Game.Instance().EventBus().OnPause(_isPaused);
         if(_isPaused)
         {
             Debug.Log("Tick Timer: Paused!");

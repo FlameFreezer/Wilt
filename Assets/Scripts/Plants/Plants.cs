@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 public abstract class Plant {
 	public PlantTypes.Type type;
@@ -19,20 +20,34 @@ public abstract class Plant {
 	protected void InvokeOnHarvestRequested() {
 		OnHarvestRequested?.Invoke(_id);
 	}
+
+	public abstract void Payout();
 }
 
 public class EyeWeed : Plant {
 	private UInt32 _payout = 3;
 
+	public EyeWeed()
+	{
+		ticksUntilHarvest = 3;
+		type = PlantTypes.Type.EYE_WEED;
+	}
+
+	public override void Payout()
+	{
+		Game.Instance()._player.GetComponent<Player>()._money += _payout;
+	}
+
 	public override void Tick() {
 		if(ticksUntilHarvest < 1) {
 			InvokeOnHarvestRequested();
 		}
+		ticksUntilHarvest--;
 	}
 
 	public override void Harvest(Func<UInt32, GridQueryConfig, Func<Plant, bool>, UInt32> adjacentQueryCallback) {
 		if(adjacentQueryCallback.Invoke(_id, new() { matchesRequired = 1 }, _Criteria) > 0) {
-			_payout = 9;
+			_payout *= 3;
 		}
 
 		return;

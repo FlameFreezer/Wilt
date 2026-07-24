@@ -2,6 +2,16 @@ using System;
 
 public class EventBus
 {
-    public Action onTick;
-    public Action<bool> onPause;
+    public event Action onTick;
+    public event Action<bool> onPause;
+
+    public void OnTick()
+    {
+        onTick?.Invoke();
+    }
+
+    public void OnPause(bool isPaused)
+    {
+        onPause?.Invoke(isPaused);
+    }
 }

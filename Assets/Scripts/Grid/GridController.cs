@@ -12,8 +12,7 @@ public class GridController : MonoBehaviour {
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start() {
-        _grid.SetWidth(width);
-        _grid.SetHeight(height);
+        _grid.SetSize(width, height);
         Game.Instance().EventBus().onTick += OnTick;
     }
 
@@ -30,13 +29,14 @@ public class GridController : MonoBehaviour {
         float xOrigin = (width - 1) / 2.0f * spacing;
         float yOrigin = (height - 1) / 2.0f * spacing;
 
-        for (int yIdx = 0; yIdx < height; yIdx++) {
+        for (uint yIdx = 0; yIdx < height; yIdx++) {
             float yOffset = yIdx * spacing - yOrigin;
-            for (int xIdx = 0; xIdx < width; xIdx++) {
+            for (uint xIdx = 0; xIdx < width; xIdx++) {
                 float xOffset = xIdx * spacing - xOrigin;
                 
                 GameObject newPlot = Instantiate(plotPrefab, transform.position + new Vector3(xOffset, 0, yOffset), Quaternion.identity, transform);
                 newPlot.GetComponent<Plot>().SetPosition(xIdx, yIdx);
+                newPlot.GetComponent<Plot>().SetParentGrid(_grid);
             }
         }
 
@@ -63,5 +63,6 @@ public class GridController : MonoBehaviour {
     private void OnTick() {
         // The plant resolution order is defined here for now
         _grid.InvokeTick(PlantTypes.Type.EYE_WEED);
+        Harvest();
     }
 }

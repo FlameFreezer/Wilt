@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Unity.VisualScripting;
 
 public struct GridQueryConfig {
 	public UInt32 matchesRequired;
@@ -14,6 +16,7 @@ public class Grid {
 
 	public void InvokeTick(PlantTypes.Type type) {
 		foreach(Plant plant in _plants) {
+			if (plant == null) continue;
 			if(plant.type == type) {
 				plant.Tick();
 			}
@@ -29,6 +32,19 @@ public class Grid {
 		_height = height;
 	}
 
+	public void SetSize(UInt32 width, UInt32 height)
+	{
+		_width = width;
+		_height = height;
+		for(int i = 0; i < width * height; i++)
+		{
+			_plants.Add(null);
+		}
+		for(int i = 0; i < Enum.GetNames(typeof(PlantTypes.Type)).Length; i++)
+		{
+			_harvestQueues[i] = new Queue<UInt32>();
+		}
+	}
 
 	public bool GetPlantAtGridPosition(UInt32 x, UInt32 y, out Plant result) {
 		result = null;
@@ -83,6 +99,8 @@ public class Grid {
 				if(adjacentY < 0 || (int)_height - 1 < adjacentY) { continue; }
 				
 				int adjacentId = (int)_width * adjacentY + adjacentX;
+
+				if (_plants[adjacentId] == null) continue;
 				if(criteria.Invoke(_plants[adjacentId])) {
 					if(config.matchesRequired - 1 < matches++) { return matches; }
 				}
@@ -110,6 +128,7 @@ public class Grid {
 				Plant plant = _plants[(int)toHarvest];
 
 				plant.OnHarvestRequested -= AddPlantToHarvestQueue;
+				plant.Payout();
 				_plants[(int)toHarvest] = null;
 			}
 		}
