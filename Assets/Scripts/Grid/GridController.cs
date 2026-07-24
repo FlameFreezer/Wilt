@@ -11,6 +11,9 @@ public class GridController : MonoBehaviour {
     [SerializeField] private GameObject plotPrefab;
 
     private Queue<UInt32>[] _harvestQueues = new Queue<UInt32>[Enum.GetNames(typeof(PlantTypes.Type)).Length];
+
+    private Plot[] _plots;
+
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start() {
@@ -57,7 +60,7 @@ public class GridController : MonoBehaviour {
         float xOrigin = (width - 1) / 2.0f * spacing.x;
         float yOrigin = (height - 1) / 2.0f * spacing.y;
         
-        Plot[] plots = new Plot[width * height];
+        _plots = new Plot[width * height];
 
         for (uint yIdx = 0; yIdx < height; yIdx++) {
             float yOffset = yIdx * spacing.y - yOrigin;
@@ -68,15 +71,15 @@ public class GridController : MonoBehaviour {
                 var plotComponent = newPlot.GetComponent<Plot>();
                 plotComponent.SetPosition(xIdx, yIdx);
                 plotComponent.SetParentGrid(this);
-                plotComponent.Remove(); // Remove sprite
+                plotComponent.RemovePlant(); // Remove sprite
                 
                 GetFlatIndexFromCoord(xIdx, yIdx, out uint index);
-                plots[index] = plotComponent;
+                _plots[index] = plotComponent;
             }
         }
 
         // Pre-compute adjacency lookups into the grid plots, for skipping coordinate logic in lookup
-        foreach (Plot plot in plots) {
+        foreach (Plot plot in _plots) {
             plot.GetPosition(out uint xIndex, out uint yIndex);
         
             for (int yOffset = -1; yOffset <= 1; yOffset++) {
@@ -91,7 +94,7 @@ public class GridController : MonoBehaviour {
                 
                     GetFlatIndexFromCoord((uint) adjacentX, (uint) adjacentY, out uint index);
 
-                    plot.AddAdjacentPlot(plots[index]);
+                    plot.AddAdjacentPlot(_plots[index]);
                 }
             }
         }
@@ -150,28 +153,6 @@ public class GridController : MonoBehaviour {
         return matches;
     }
 
-    public void Harvest() {
-        foreach(Queue<UInt32> queue in _harvestQueues) {
-            if (queue == null) continue;
-
-            foreach(UInt32 toHarvest in queue) {
-                if (GetPlot1D(toHarvest, out Plot plot)) {
-                    plot.Harvest(QueryAdjacentTiles);
-                }
-            }
-        }
-
-        foreach(Queue<UInt32> queue in _harvestQueues) {
-            if (queue == null) continue;
-
-            while(queue.TryDequeue(out UInt32 toHarvest)) {
-                if (GetPlot1D(toHarvest, out Plot plot)) {
-                    plot.Remove();
-                }
-            }
-        }
-    }
-
     // assumes there's not already a plant at this position.
     // TODO -- should we handle checking validity at the
     // input level?
@@ -203,20 +184,56 @@ public class GridController : MonoBehaviour {
     }
 
     private void OnTick() {
-        // The plant resolution order is defined here for now
-        InvokeTick(PlantTypes.Type.EYE_WEED);
-        InvokeTick(PlantTypes.Type.LAMBFLOWER);
-        Harvest();
+        foreach(Plot plot in _plots)
+        {
+            if(plot.plant != null)
+            {
+                plot.plant.Tick();
+            }
+        }
+        HarvestPlots();
     }
 
-    private void InvokeTick(PlantTypes.Type type) {
-        foreach(Plant plant in GetPlots().Select(p => p.plant)) {
-            if (plant == null) continue;
-            if(plant.type == type) {
-                plant.Tick();
+    private void HarvestPlots()
+    {
+        Queue<Plot> harvestQueue = new();
+        // Scan over every plot in the grid
+        foreach(Plot plot in _plots)
+        {
+            //Don't do harvest checks on plot if it doesn't have a plant or the plant shouldn't be checked
+            bool DontCheckPlot(Plot plot)
+            {
+                return plot.plant == null || !plot.plant.CheckHarvest();
+            }
+            // If the plot is not to be harvested, continue
+            if (plot.plant == null) continue;
+            if (plot.plant.ticksUntilHarvest >= 1) continue;
+            // Otherwise, add it to the harvest queue
+            harvestQueue.Enqueue(plot);
+            // While the harvest queue is not empty
+            while (harvestQueue.Count > 0)
+            {
+                Plot currentPlot = harvestQueue.Dequeue();
+                if (DontCheckPlot(currentPlot)) continue;
+                // Enqueue all adjacent plots to the current one
+                foreach(Plot adjacentPlot in currentPlot.GetAdjacentPlots())
+                {
+                    harvestQueue.Enqueue(adjacentPlot);
+                }
+                // Apply current plot's harvest bonus
+                currentPlot.plant.Harvest(QueryAdjacentTiles);
+            }
+        }
+        // Get the payouts and clear out the harvested plants
+        foreach(Plot plot in _plots)
+        {
+            if (plot.plant != null && plot.plant.Complete)
+            {
+                plot.RemovePlant();
             }
         }
     }
+
 }
 
 public struct GridQueryConfig {
