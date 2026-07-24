@@ -46,6 +46,18 @@ public class Grid {
 		}
 	}
 
+	private bool GetCoord(uint index, out uint x, out uint y) {
+		if (index >= _width * _height) {
+			x = 0;
+			y = 0;
+			return false;
+		}
+		
+		x = index % _width;
+		y = index / _width;
+		return true;
+	}
+
 	public bool GetPlantAtGridPosition(UInt32 x, UInt32 y, out Plant result) {
 		result = null;
 
@@ -110,7 +122,7 @@ public class Grid {
 		return matches;
 	}
 
-	public void ResolveHarvesting() {
+	public void ResolveHarvesting(Action<uint, uint> callback) {
 		foreach(Queue<UInt32> queue in _harvestQueues) {
 			if (queue == null) continue;
 
@@ -130,6 +142,10 @@ public class Grid {
 				plant.OnHarvestRequested -= AddPlantToHarvestQueue;
 				plant.Payout();
 				_plants[(int)toHarvest] = null;
+
+				if (GetCoord(toHarvest, out uint x, out uint y)) {
+					callback(x, y);
+				}
 			}
 		}
 	}

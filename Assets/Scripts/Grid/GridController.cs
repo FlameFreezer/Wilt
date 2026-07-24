@@ -92,7 +92,7 @@ public class GridController : MonoBehaviour {
         }
     }
 
-    public bool GetPlot(int xIndex, int yIndex, out Plot plot) {
+    public bool GetPlot(uint xIndex, uint yIndex, out Plot plot) {
         var filtered = GetPlots().Where(p => {
             p.GetPosition(out uint plotX, out uint plotY);
             return xIndex == plotX && yIndex == plotY;
@@ -112,7 +112,15 @@ public class GridController : MonoBehaviour {
     }
 
     public void Harvest() {
-        _grid.ResolveHarvesting();
+        _grid.ResolveHarvesting(HarvestOne);
+    }
+
+    public void HarvestOne(uint x, uint y) {
+        // TODO move more logic into this method
+
+        if (GetPlot(x, y, out Plot plot)) {
+            plot.Harvest();
+        }
     }
 
     // Update is called once per frame
