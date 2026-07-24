@@ -75,6 +75,6 @@ public class Lambflower : Plant
 
     public override void Harvest(Func<uint, GridQueryConfig, Func<Plant, bool>, uint> adjacentQueryCallback)
     {
-        throw new NotImplementedException();
+		return;
     }
 }
