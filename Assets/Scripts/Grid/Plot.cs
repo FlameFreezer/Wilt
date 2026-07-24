@@ -16,8 +16,12 @@ public class Plot : MonoBehaviour, IClickable
     {
         
     }
-    public void SetPosition(uint xIndex, uint yIndex)
-    {
+    public void GetPosition(out uint xIndex, out uint yIndex) {
+        xIndex = _xIndex;
+        yIndex = _yIndex;
+    }
+
+    public void SetPosition(uint xIndex, uint yIndex) {
         _xIndex = xIndex;
         _yIndex = yIndex;
     }
