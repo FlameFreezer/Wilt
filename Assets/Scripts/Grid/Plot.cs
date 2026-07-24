@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Plot : MonoBehaviour, IClickable
@@ -5,6 +6,7 @@ public class Plot : MonoBehaviour, IClickable
     private uint _xIndex;
     private uint _yIndex;
     private Grid _parentGrid;
+    private readonly HashSet<Plot> _adjacentPlots = new();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,6 +26,14 @@ public class Plot : MonoBehaviour, IClickable
     public void SetPosition(uint xIndex, uint yIndex) {
         _xIndex = xIndex;
         _yIndex = yIndex;
+    }
+
+    public void AddAdjacentPlot(Plot plot) {
+        _adjacentPlots.Add(plot);
+    }
+
+    public IEnumerable<Plot> GetAdjacentPlots() {
+        return _adjacentPlots;
     }
 
     public void OnClick()
