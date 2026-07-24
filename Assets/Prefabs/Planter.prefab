@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6201ff3ad69d994293df39d7e714209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  width: 0
-  height: 0
-  spacing: 1
+  width: 1
+  height: 1
+  spacing: {x: 1, y: 1.4142}
   plotPrefab: {fileID: 6982671799912548442, guid: d356816451054534782dc30c12d256b9, type: 3}
