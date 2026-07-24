@@ -5,7 +5,7 @@ public class SceneManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        Game.Instance().EventBus().onGlobalTimerExhausted += HandleGlobalTimerExhausted;
     }
 
     // Update is called once per frame
@@ -33,4 +33,8 @@ public class SceneManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("TitleScene");
     }
+
+	public void HandleGlobalTimerExhausted() {
+		UnityEngine.SceneManagement.SceneManager.LoadScene("CreditsScene");
+	}
 }
