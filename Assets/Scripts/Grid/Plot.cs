@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class Plot : MonoBehaviour, IClickable
     private GridController _parentGrid;
     private readonly HashSet<Plot> _adjacentPlots = new();
     public GameObject plantSprite;
-    public PlantTypes.Type plantType = PlantTypes.Type.NULL_PLANT;
+    public Plant plant = null;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,7 +41,7 @@ public class Plot : MonoBehaviour, IClickable
 
     public void OnClick()
     {
-        if (plantType != PlantTypes.Type.NULL_PLANT) return;
+        if (plant != null && plant.type != PlantTypes.Type.NULL_PLANT) return;
         Player player = Game.Instance()._player.GetComponent<Player>();
         if (player.selectedPlant == PlantTypes.Type.NULL_PLANT)
         {
@@ -53,14 +54,18 @@ public class Plot : MonoBehaviour, IClickable
             return;
         }
         _parentGrid.SpawnPlantAtGridPosition(_xIndex, _yIndex, player.selectedPlant);
-        plantType = player.selectedPlant;
         player.money -= plantCost;
         plantSprite.GetComponent<SpriteRenderer>().enabled = true;
     }
 
-    public void Harvest() {
+    public void Harvest(Func<UInt32, GridQueryConfig, Func<Plant, bool>, UInt32> adjacentQueryCallback) {
+        plant?.Harvest(adjacentQueryCallback);
+    }
+
+    public void Remove() {
+        plant?.Payout();
+        plant = null;
         plantSprite.GetComponent<SpriteRenderer>().enabled = false;
-        plantType = PlantTypes.Type.NULL_PLANT;
     }
 
     public void SetParentGrid(GridController parentGrid)

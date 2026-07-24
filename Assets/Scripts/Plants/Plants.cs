@@ -53,7 +53,7 @@ public class EyeWeed : Plant {
 		return;
 
 		bool _Criteria(Plant subject) {
-			return subject.type == PlantTypes.Type.EYE_WEED && subject.ticksUntilHarvest < 1;
+			return subject != null && subject.type == PlantTypes.Type.EYE_WEED && subject.ticksUntilHarvest < 1;
 		}
 	}
 }

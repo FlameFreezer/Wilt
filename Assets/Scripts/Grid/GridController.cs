@@ -10,11 +10,14 @@ public class GridController : MonoBehaviour {
     [SerializeField] private Vector2 spacing = new(1, 1.4142f);
     [SerializeField] private GameObject plotPrefab;
 
-    private Grid _grid = new();
+    private Queue<UInt32>[] _harvestQueues = new Queue<UInt32>[Enum.GetNames(typeof(PlantTypes.Type)).Length];
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start() {
-        _grid.SetSize(width, height);
+        for(int i = 0; i < Enum.GetNames(typeof(PlantTypes.Type)).Length; i++) {
+            _harvestQueues[i] = new Queue<UInt32>();
+        }
+        
         Game.Instance().EventBus().onTick += OnTick;
 
         Initialize();
@@ -26,6 +29,18 @@ public class GridController : MonoBehaviour {
 
     private void GetFlatIndexFromCoord(uint x, uint y, out int index) {
         index = (int)(y * width + x);
+    }
+    
+    private bool Get2DCoord(uint index, out uint x, out uint y) {
+        if (index >= width * height) {
+            x = 0;
+            y = 0;
+            return false;
+        }
+		
+        x = index % width;
+        y = index / width;
+        return true;
     }
 
     private List<Plot> GetAdjacentPlots(Plot[] grid, int xIndex, int yIndex) {
@@ -75,7 +90,7 @@ public class GridController : MonoBehaviour {
                 var plotComponent = newPlot.GetComponent<Plot>();
                 plotComponent.SetPosition(xIdx, yIdx);
                 plotComponent.SetParentGrid(this);
-                plotComponent.Harvest(); // Remove sprite
+                plotComponent.Remove(); // Remove sprite
                 
                 GetFlatIndexFromCoord(xIdx, yIdx, out int index);
                 plots[index] = plotComponent;
@@ -101,7 +116,16 @@ public class GridController : MonoBehaviour {
         }
     }
 
-    public bool GetPlot(uint xIndex, uint yIndex, out Plot plot) {
+    public bool GetPlot1D(uint index, out Plot plot) {
+        if (!Get2DCoord(index, out uint x, out uint y)) {
+            plot = null;
+            return false;
+        }
+        
+        return GetPlot2D(x, y, out plot);
+    }
+
+    public bool GetPlot2D(uint xIndex, uint yIndex, out Plot plot) {
         var filtered = GetPlots().Where(p => {
             p.GetPosition(out uint plotX, out uint plotY);
             return xIndex == plotX && yIndex == plotY;
@@ -119,21 +143,68 @@ public class GridController : MonoBehaviour {
     private Plot[] GetPlots() {
         return transform.GetComponentsInChildren<Plot>();
     }
+    
+    public UInt32 QueryAdjacentTiles(UInt32 sourceId, GridQueryConfig config, Func<Plant, bool> criteria) {
+        GetPlot1D(sourceId, out Plot plot);
 
-    public void Harvest() {
-        _grid.ResolveHarvesting(HarvestOne);
+        UInt32 matches = 0;
+
+        foreach (Plot adjacentPlot in plot.GetAdjacentPlots()) {
+            if(criteria.Invoke(adjacentPlot.plant)) {
+                if(config.matchesRequired - 1 < matches++) { return matches; }
+            }
+        }
+        
+
+        return matches;
     }
 
-    public void HarvestOne(uint x, uint y) {
-        // TODO move more logic into this method
+    public void Harvest() {
+        foreach(Queue<UInt32> queue in _harvestQueues) {
+            if (queue == null) continue;
 
-        if (GetPlot(x, y, out Plot plot)) {
-            plot.Harvest();
+            foreach(UInt32 toHarvest in queue) {
+                if (GetPlot1D(toHarvest, out Plot plot)) {
+                    plot.Harvest(QueryAdjacentTiles);
+                }
+            }
+        }
+
+        foreach(Queue<UInt32> queue in _harvestQueues) {
+            if (queue == null) continue;
+
+            while(queue.TryDequeue(out UInt32 toHarvest)) {
+                if (GetPlot1D(toHarvest, out Plot plot)) {
+                    plot.Remove();
+                }
+            }
         }
     }
 
+    // assumes there's not already a plant at this position.
+    // TODO -- should we handle checking validity at the
+    // input level?
     public void SpawnPlantAtGridPosition(UInt32 x, UInt32 y, PlantTypes.Type type) {
-        _grid.SpawnPlantAtGridPosition(x, y, type);
+        UInt32 plantId = y * width + x;
+
+        Plant newPlant = null;
+
+        switch(type) {
+            case PlantTypes.Type.EYE_WEED:
+                newPlant = new EyeWeed();
+                break;
+            default: return; // TODO - send an error
+        }
+
+        newPlant.AssignId(plantId);
+        GetPlot1D(plantId, out Plot plot);
+        plot.plant = newPlant;
+		
+        newPlant.OnHarvestRequested += index => AddPlantToHarvestQueue(type, index);
+    }
+    
+    private void AddPlantToHarvestQueue(PlantTypes.Type type, UInt32 index) {
+        _harvestQueues[(int)type].Enqueue(index);
     }
 
     // Update is called once per frame
@@ -143,7 +214,20 @@ public class GridController : MonoBehaviour {
 
     private void OnTick() {
         // The plant resolution order is defined here for now
-        _grid.InvokeTick(PlantTypes.Type.EYE_WEED);
+        InvokeTick(PlantTypes.Type.EYE_WEED);
         Harvest();
     }
+
+    private void InvokeTick(PlantTypes.Type type) {
+        foreach(Plant plant in GetPlots().Select(p => p.plant)) {
+            if (plant == null) continue;
+            if(plant.type == type) {
+                plant.Tick();
+            }
+        }
+    }
+}
+
+public struct GridQueryConfig {
+    public UInt32 matchesRequired;
 }
