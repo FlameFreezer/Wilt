@@ -14,14 +14,14 @@ public class Player : MonoBehaviour
     void Update() { }
 
 	public void OnClick(InputAction.CallbackContext context) {
+        if(!context.started)
+        {
+            return;
+        }
         Vector2 mousePos = Mouse.current.position.ReadValue();
-        Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 0.0f));
-		Vector3 cameraPosWorld = Camera.main.transform.position;
-		Vector3 direction = mousePosWorld - cameraPosWorld;
-		direction.Normalize();
-
-		RaycastHit hit;
-		Physics.Raycast(cameraPosWorld, direction, out hit, Mathf.Infinity);
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        RaycastHit hit;
+        Physics.Raycast(ray, out hit, Mathf.Infinity);
 
 		if(hit.transform == null) { return; }
 

@@ -36,6 +36,7 @@ public class GridController : MonoBehaviour {
                 float xOffset = xIdx * spacing - xOrigin;
                 
                 GameObject newPlot = Instantiate(plotPrefab, transform.position + new Vector3(xOffset, 0, yOffset), Quaternion.identity, transform);
+                newPlot.GetComponent<Plot>().SetPosition(xIdx, yIdx);
             }
         }
 

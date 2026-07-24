@@ -1031,6 +1031,7 @@ GameObject:
   - component: {fileID: 527535341}
   - component: {fileID: 527535340}
   - component: {fileID: 527535342}
+  - component: {fileID: 527535343}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1125,71 +1126,56 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1001 &576174946
-PrefabInstance:
+--- !u!114 &527535343
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 145059299924450290, guid: e125cc900e84d014888f3038ee364001, type: 3}
-      propertyPath: width
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 145059299924450290, guid: e125cc900e84d014888f3038ee364001, type: 3}
-      propertyPath: height
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.0990307
-      objectReference: {fileID: 0}
-    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.13084942
-      objectReference: {fileID: 0}
-    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.65173787
-      objectReference: {fileID: 0}
-    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 571243739545052483, guid: e125cc900e84d014888f3038ee364001, type: 3}
-      propertyPath: m_Name
-      value: Planter
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e125cc900e84d014888f3038ee364001, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527535339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 527535340}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5a5eccdd-3669-449b-a9cf-f6d62d82d587
+    m_ActionName: 'Game/Interact[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5c686165-1d25-4c6f-b2bb-aa2ae64a9e8e
+    m_ActionName: 'Game/Pause[/Keyboard/space]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &708898794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,6 +1378,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1387506146
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 145059299924450290, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: width
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 145059299924450290, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: height
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.116284
+      objectReference: {fileID: 0}
+    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.13084918
+      objectReference: {fileID: 0}
+    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.38980877
+      objectReference: {fileID: 0}
+    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 571243739545052483, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_Name
+      value: Planter
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e125cc900e84d014888f3038ee364001, type: 3}
 --- !u!1 &1510613878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1555,4 +1606,4 @@ SceneRoots:
   - {fileID: 527535341}
   - {fileID: 1615348974}
   - {fileID: 8355354}
-  - {fileID: 576174946}
+  - {fileID: 1387506146}
