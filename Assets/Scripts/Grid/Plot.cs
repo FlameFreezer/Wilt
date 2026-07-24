@@ -64,8 +64,8 @@ public class Plot : MonoBehaviour, IClickable
         plantSprite.GetComponent<SpriteRenderer>().sprite = Game.Instance().plantSprites.GetSprite(type);
     }
 
-    public void Harvest(Func<UInt32, GridQueryConfig, Func<Plant, bool>, UInt32> adjacentQueryCallback) {
-        plant?.Harvest(adjacentQueryCallback);
+    public void Harvest() {
+        plant?.Harvest(this);
     }
 
     public void RemovePlant() {

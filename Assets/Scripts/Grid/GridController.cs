@@ -168,6 +168,9 @@ public class GridController : MonoBehaviour {
             case PlantTypes.Type.LAMBFLOWER:
                 newPlant = new Lambflower();
                 break;
+            case PlantTypes.Type.FUSSPOT:
+                newPlant = new Fusspot();
+                break;
             default: return; // TODO - send an error
         }
 
@@ -221,7 +224,7 @@ public class GridController : MonoBehaviour {
                     harvestQueue.Enqueue(adjacentPlot);
                 }
                 // Apply current plot's harvest bonus
-                currentPlot.plant.Harvest(QueryAdjacentTiles);
+                currentPlot.Harvest();
             }
         }
         // Get the payouts and clear out the harvested plants

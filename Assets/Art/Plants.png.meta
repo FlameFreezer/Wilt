@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b7a42e8deb63c54194870a9b432298b
-      internalID: 1688812498
+      spriteID: 859ea807ffa55ba45b904f889fe47e67
+      internalID: -959341329
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30a6beb9b9c1eee46b912d36e15ba034
-      internalID: 869731180
+      spriteID: ddc849a3e5c05d340ba6413b8e983e62
+      internalID: 100584551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fusspot
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 14
+        width: 579
+        height: 579
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1290b13a32afa404bae01841cc8dcc6e
+      internalID: 1788047669
       vertices: []
       indices: 
       edges: []
@@ -158,8 +180,9 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":true,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Eyeweed: 1688812498
-      Lambflower: 869731180
+      Eyeweed: -959341329
+      Fusspot: 1788047669
+      Lambflower: 100584551
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

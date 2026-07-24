@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 public class PlantTypes
 {
     public enum Type : int
     {
 		EYE_WEED,
         LAMBFLOWER,
+        FUSSPOT,
 
         //KEEP AT BOTTOM
         NULL_PLANT,
@@ -18,6 +18,7 @@ public class PlantTypes
         {
             case Type.EYE_WEED: return "Eyeweed";
             case Type.LAMBFLOWER: return "Lambflower";
+            case Type.FUSSPOT: return "Fusspot";
             case Type.NULL_PLANT: return "NULL_PLANT";
         }
         // UNREACHBALE
@@ -28,6 +29,7 @@ public class PlantTypes
     {
         { Type.EYE_WEED, 1 },
         { Type.LAMBFLOWER, 7 },
+        { Type.FUSSPOT, 20 },
     };
 }
 
