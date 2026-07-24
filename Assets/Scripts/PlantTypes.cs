@@ -6,11 +6,13 @@ public class PlantTypes
     {
         NULL_PLANT,
 		EYE_WEED,
+        LAMBFLOWER,
     }
 
     public static Dictionary<Type, uint> costs = new()
     {
-        { Type.EYE_WEED, 2 }
+        { Type.EYE_WEED, 2 },
+        { Type.LAMBFLOWER, 7 },
     };
 }
 
