@@ -1,12 +1,20 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class TickTimer : MonoBehaviour
 {
-    public double _ticksPerSecond;
     private double _timeSinceLastTick = 0.0;
     private bool _isPaused = true;
+    public enum TickRate
+    {
+        SLOW, MEDIUM, FAST
+    }
+    public TickRate tickRate = TickRate.SLOW;
+    public static readonly Dictionary<TickRate, double> ticksPerSecond = new()
+    {
+        {TickRate.SLOW , 1.0}, {TickRate.MEDIUM, 3.0 }, {TickRate.FAST, 5.0}
+    };
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,7 +31,7 @@ public class TickTimer : MonoBehaviour
         if(!_isPaused)
         {
             _timeSinceLastTick += Time.deltaTime;
-            double secondsPerTick = 1.0 / _ticksPerSecond;
+            double secondsPerTick = 1.0 / ticksPerSecond[tickRate];
             if (_timeSinceLastTick >= secondsPerTick)
             {
                 Game.Instance().EventBus().OnTick();
@@ -36,6 +44,24 @@ public class TickTimer : MonoBehaviour
     {
         _isPaused = !_isPaused;
         Game.Instance().EventBus().OnPause(_isPaused);
+    }
+
+    public void IncreaseTickRate()
+    {
+        if (tickRate != TickRate.FAST)
+        {
+            tickRate++;
+            _timeSinceLastTick = 0;
+        }
+    }
+
+    public void DecreaseTickRate()
+    {
+        if (tickRate != TickRate.SLOW)
+        {
+            tickRate--;
+            _timeSinceLastTick = 0;
+        }
     }
 
     public bool IsPaused()
