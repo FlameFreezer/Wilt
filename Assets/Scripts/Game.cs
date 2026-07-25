@@ -23,4 +23,9 @@ public class Game
     {
         return _eventBus;
     }
+
+    public Player Player()
+    {
+        return _player.GetComponent<Player>();
+    }
 }

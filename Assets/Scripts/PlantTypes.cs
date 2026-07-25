@@ -58,7 +58,9 @@ public class PlantTypes
         TOADSTOOL,
 		[PlantTypeMetadata("cthulily", "Cthulily", 45)]
         CTHULILY,
+		[PlantTypeMetadata("fingerling", "Fingerling", 28)]
         FINGERLING,
+		[PlantTypeMetadata("hungeringvoidbeet", "Hungering Voidbeet", 70)]
         HUNGERING_VOIDBEET,
         //KEEP AT BOTTOM
 		[PlantTypeMetadata("nullplant", "Nullplant", uint.MaxValue)]
@@ -82,16 +84,6 @@ public class PlantTypes
         throw new InvalidProgramException();
     }
 
-    public static Dictionary<Type, uint> costs = new()
-    {
-        { Type.EYE_WEED, 1 },
-        { Type.LAMBFLOWER, 7 },
-        { Type.FUSSPOT, 20 },
-        { Type.TOADSTOOL, 16 },
-        { Type.CTHULILY, 45 },
-        { Type.FINGERLING, 28 },
-        { Type.HUNGERING_VOIDBEET, 70 },
-    };
 	public static Type TypeFromString(string str) {
 		string lowerString = str.ToLower();
 
