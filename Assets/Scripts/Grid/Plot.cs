@@ -74,7 +74,7 @@ public class Plot : MonoBehaviour, IClickable
             placedPlant.ticksUntilHarvest--;
         }
         plantSprite.GetComponent<SpriteRenderer>().enabled = true;
-        plantSprite.GetComponent<SpriteRenderer>().sprite = Game.Instance().plantSprites.GetSprite(type);
+        plantSprite.GetComponent<SpriteRenderer>().sprite = PlantTypes.TypeToSprite(type);
         harvestTimeText.GetComponent<MeshRenderer>().enabled = true;
         harvestTimeText.GetComponent<PlantHarvestTimeText>().UpdateText();
 

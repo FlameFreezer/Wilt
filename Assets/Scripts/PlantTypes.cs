@@ -42,6 +42,11 @@ public class PlantTypes
 		return Resources.Load<Sprite>($"PlantPortraits/{TypeToString(type)}");
 	}
 
+	public static Sprite TypeToSprite(Type type) {
+		// TODO - separate from portrait-specific method for animations
+		return TypeToPortrait(type);
+	}
+
     public static Dictionary<Type, uint> costs = new()
     {
         { Type.EYE_WEED, 1 },
