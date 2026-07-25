@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6989678967168332173}
   - component: {fileID: 3381187321692023359}
   - component: {fileID: 1116272447210408347}
-  - component: {fileID: 8018237637255645990}
+  - component: {fileID: 5839384507639939453}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781be8402a0c64a49aa8ea69530440db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  uiClickNoise: {fileID: 8018237637255645990}
+  uiClickNoise: {fileID: 0}
   selectedPlant: 0
   startingMoney: 1000
   onPlantEffect: 4
@@ -94,7 +94,19 @@ MonoBehaviour:
     m_ActionId: 5a5eccdd-3669-449b-a9cf-f6d62d82d587
     m_ActionName: 'Game/Interact[/Mouse/leftButton]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5c686165-1d25-4c6f-b2bb-aa2ae64a9e8e
     m_ActionName: 'Game/Pause[/Keyboard/space]'
   - m_PersistentCalls:
@@ -127,41 +139,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   target: {x: 0, y: 0, z: 0}
-  boundX: 8
-  boundZ: 6
+  upperBoundX: 8
+  upperBoundZ: 6
+  lowerBoundX: -8
+  lowerBoundZ: -6
   moveRadius: 3
-  speed: 2
---- !u!114 &8018237637255645990
-MonoBehaviour:
+  currSpeed: 2
+--- !u!95 &5839384507639939453
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6835799599241045460}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -1091562115
-      Data2: 1319699787
-      Data3: -368247131
-      Data4: 1747569654
-    Path: event:/ClickUI
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  m_Avatar: {fileID: 9000000, guid: 8c650efd28ff54e43a0948fc4dd93867, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6494a86c282d5b241ad1b79d189ed6bd, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &542448862400368907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -441,6 +446,10 @@ PrefabInstance:
     - target: {fileID: 4502539739568090590, guid: 8c650efd28ff54e43a0948fc4dd93867, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 76.71976
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 8c650efd28ff54e43a0948fc4dd93867, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 8c650efd28ff54e43a0948fc4dd93867, type: 3}
       propertyPath: m_Controller

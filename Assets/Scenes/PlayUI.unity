@@ -239,6 +239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cthulily
       objectReference: {fileID: 0}
+    - target: {fileID: 7548029857257197503, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: plantType
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -445,6 +449,10 @@ PrefabInstance:
     - target: {fileID: 7307215100107853137, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
       propertyPath: m_Name
       value: Fusspot
+      objectReference: {fileID: 0}
+    - target: {fileID: 7548029857257197503, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: plantType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -862,6 +870,10 @@ PrefabInstance:
     - target: {fileID: 7307215100107853137, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
       propertyPath: m_Name
       value: Hungering Voidbeet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7548029857257197503, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: plantType
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8848203455133213660, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
       propertyPath: m_fontSize
@@ -1284,7 +1296,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43.75
+  m_fontSize: 44.55
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2185,6 +2197,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shyweed
       objectReference: {fileID: 0}
+    - target: {fileID: 7548029857257197503, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: plantType
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2426,6 +2442,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lambflower
       objectReference: {fileID: 0}
+    - target: {fileID: 7548029857257197503, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: plantType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2630,6 +2650,10 @@ PrefabInstance:
     - target: {fileID: 7307215100107853137, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
       propertyPath: m_Name
       value: Fingerling
+      objectReference: {fileID: 0}
+    - target: {fileID: 7548029857257197503, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: plantType
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2890,7 +2914,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1193812828}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.47361702
+  m_Size: 0.47361708
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3207,6 +3231,10 @@ PrefabInstance:
     - target: {fileID: 7307215100107853137, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
       propertyPath: m_Name
       value: Traveling Toadstool
+      objectReference: {fileID: 0}
+    - target: {fileID: 7548029857257197503, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: plantType
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3537,7 +3565,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2004929232}
   m_HandleRect: {fileID: 2004929231}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3581,6 +3609,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061145965}
   m_CullTransparentMesh: 1
+--- !u!114 &2137698265 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7548029857257197503, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+  m_PrefabInstance: {fileID: 299338622222336747}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 991a131a18e4e3541b833881f08fff86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopButton
 --- !u!1001 &299338622222336747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3589,6 +3628,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 401412376}
     m_Modifications:
+    - target: {fileID: 2797954080081404640, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2797954080081404640, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2797954080081404640, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2137698265}
+    - target: {fileID: 2797954080081404640, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2797954080081404640, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectPlant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2797954080081404640, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShopButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2797954080081404640, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3234509817809674151, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
