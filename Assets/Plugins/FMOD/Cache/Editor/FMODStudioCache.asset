@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/Sound Effects.bank
   Name: Sound Effects
   StudioPath: bank:/Sound Effects
-  lastModified: 639205351439947479
+  lastModified: 639205406567512138
   FileSizes: []
   Exists: 1
 --- !u!114 &-7837419624675989848
@@ -127,8 +127,8 @@ MonoBehaviour:
     Data3: 1776156041
     Data4: 2081028271
   Banks:
-  - {fileID: -9063648978371473705}
   - {fileID: -157335304713887053}
+  - {fileID: -9063648978371473705}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -151,7 +151,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639205351439701453
+  lastModified: 639205404371694142
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -181,13 +181,14 @@ MonoBehaviour:
   - {fileID: 4218805663131516711}
   - {fileID: 7188647529962041685}
   - {fileID: -3354245362753037710}
+  - {fileID: 797582460465208378}
   EditorParameters: []
   MasterBanks:
   - {fileID: -157335304713887053}
   StringsBanks:
   - {fileID: 6099674121338278224}
   cacheVersion: 131860
-  cacheTime: 639205352364869506
+  cacheTime: 639205406567512138
   SerializableEventsDict:
   - key: event:/CoinRattleNoise
     index: 0
@@ -205,6 +206,8 @@ MonoBehaviour:
     index: 6
   - key: event:/Click sound
     index: 7
+  - key: event:/TicSound
+    index: 8
 --- !u!114 &457193638499785660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +235,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 800
+--- !u!114 &797582460465208378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TicSound
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/TicSound
+  Guid:
+    Data1: 1839368256
+    Data2: 1136405989
+    Data3: -965420618
+    Data4: -1059805820
+  Banks:
+  - {fileID: -9063648978371473705}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &3413998560686283822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,10 +358,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639205351439721620
+  lastModified: 639205404371704191
   FileSizes:
   - Name: 
-    Value: 1230
+    Value: 1270
   Exists: 1
 --- !u!114 &7188647529962041685
 MonoBehaviour:

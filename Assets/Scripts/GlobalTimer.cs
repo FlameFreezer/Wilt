@@ -1,9 +1,12 @@
+using FMODUnity;
 using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class GlobalTimer : MonoBehaviour {
+	[SerializeField] StudioEventEmitter ticSound;
+
 	[SerializeField]
 	private int _baseDuration = 75;
 
@@ -83,6 +86,7 @@ public class GlobalTimer : MonoBehaviour {
 	}
 
 	private void UpdateDisplay() {
-		_display.text = $"{_duration - _tickCount}";
+        ticSound.Play();
+        _display.text = $"{_duration - _tickCount}";
 	}
 }
