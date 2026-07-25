@@ -73,6 +73,10 @@ public class Plot : MonoBehaviour, IClickable
         {
             placedPlant.ticksUntilHarvest--;
         }
+        else if (player.onPlantEffect == PlantTypes.Type.FINGERLING)
+        {
+            placedPlant.ticksUntilHarvest++;
+        }
         plantSprite.GetComponent<SpriteRenderer>().enabled = true;
         plantSprite.GetComponent<SpriteRenderer>().sprite = PlantTypes.TypeToSprite(type);
         harvestTimeText.GetComponent<MeshRenderer>().enabled = true;

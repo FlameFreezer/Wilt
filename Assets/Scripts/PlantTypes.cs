@@ -58,6 +58,7 @@ public class PlantTypes
         TOADSTOOL,
 		[PlantTypeMetadata("cthulily", "Cthulily", 45)]
         CTHULILY,
+        FINGERLING,
         //KEEP AT BOTTOM
 		[PlantTypeMetadata("nullplant", "Nullplant", uint.MaxValue)]
         NULL_PLANT,

@@ -114,6 +114,7 @@ public class Fusspot : Plant
 		{
 			if (adjacentPlot.plant == null) continue;
 			Plant adjacentPlant = adjacentPlot.plant;
+			if (adjacentPlant.Complete) continue;
 			if (adjacentPlant.type == PlantTypes.Type.FUSSPOT) continue;
 			if (adjacentPlant.type == PlantTypes.Type.TOADSTOOL && (adjacentPlant as Toadstool).isTraveler) continue;
 			adjacentPlant.ticksUntilHarvest -= 2;
@@ -235,5 +236,41 @@ public class Cthulily : Plant
 		}
 
         Complete = true;
+    }
+}
+
+public class Fingerling : Plant
+{
+
+	public Fingerling()
+	{
+		payout = 40;
+		ticksUntilHarvest = 19;
+		type = PlantTypes.Type.FINGERLING;
+	}
+
+	public override void Payout()
+	{
+		Game.Instance()._player.GetComponent<Player>().money += payout;
+	}
+
+    public override void Harvest(Plot plot)
+    {
+		foreach(Plot adjacentPlot in plot.GetAdjacentPlots())
+		{
+			if (adjacentPlot.plant == null) continue;
+			if (adjacentPlot.plant.type == PlantTypes.Type.FUSSPOT && adjacentPlot.plant.ticksUntilHarvest < 1)
+			{
+				foreach(Plot adj in plot.GetAdjacentPlots())
+				{
+					if(adj.plant != null && adj.plant.ticksUntilHarvest >= 1)
+					{
+						adj.plant.Complete = true;
+						adj.plant.ticksUntilHarvest = 1;
+					}
+				}
+			}
+		}
+		Complete = true;
     }
 }

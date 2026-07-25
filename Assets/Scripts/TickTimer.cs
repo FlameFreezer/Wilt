@@ -35,7 +35,6 @@ public class TickTimer : MonoBehaviour
     void PauseTimer(InputAction.CallbackContext context)
     {
         _isPaused = !_isPaused;
-        _timeSinceLastTick = 0.0;
         Game.Instance().EventBus().OnPause(_isPaused);
     }
 

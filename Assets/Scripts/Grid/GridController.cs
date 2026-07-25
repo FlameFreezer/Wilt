@@ -177,6 +177,9 @@ public class GridController : MonoBehaviour {
             case PlantTypes.Type.CTHULILY:
                 newPlant = new Cthulily();
                 break;
+            case PlantTypes.Type.FINGERLING:
+                newPlant = new Fingerling();
+                break;
             default: throw new ArgumentException(); // TODO - send an error
         }
 
@@ -237,7 +240,7 @@ public class GridController : MonoBehaviour {
         // Get the payouts and clear out the harvested plants
         foreach(Plot plot in _plots)
         {
-            if (plot.plant != null && plot.plant.Complete)
+            if (plot.plant != null && plot.plant.Complete && plot.plant.ticksUntilHarvest < 1)
             {
                 plot.RemovePlant();
             }
