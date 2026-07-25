@@ -95,7 +95,7 @@ public class PlantTypes
 	}
 
 	public static Sprite TypeToPortrait(Type type) {
-		return Resources.Load<Sprite>($"PlantPortraits/{type.GetName()}");
+		return Resources.Load<Sprite>($"PlantPortraits/{TypeToString(type)}");
 	}
 
 	public static Sprite TypeToSprite(Type type) {
