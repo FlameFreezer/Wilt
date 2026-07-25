@@ -40,8 +40,8 @@ public class PlayerMovement : MonoBehaviour
         float targetZ = Random.Range(transform.position.z - moveRadius, transform.position.z + moveRadius);
         
         //ensure character within wander range
-        if (targetX > boundX) {targetX = boundX;} //cant exceed upper bound
-        if (targetX < -boundX) {targetX = -boundX;} //cant exceed lower bound
+        if (targetZ > boundZ) {targetZ = boundZ;} //cant exceed upper bound
+        if (targetZ < -boundZ) { targetZ = -boundZ; } //cant exceed lower bound
 
         Vector3 target = new Vector3(targetX, transform.position.y, targetZ);
         return target;
