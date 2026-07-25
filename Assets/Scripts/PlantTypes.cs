@@ -9,6 +9,7 @@ public class PlantTypes
         FUSSPOT,
         TOADSTOOL,
         CTHULILY,
+        FINGERLING,
         //KEEP AT BOTTOM
         NULL_PLANT,
     }
@@ -22,6 +23,7 @@ public class PlantTypes
             case Type.FUSSPOT: return "Fusspot";
             case Type.TOADSTOOL: return "Traveling Toadstool";
             case Type.CTHULILY: return "Cthulily";
+            case Type.FINGERLING: return "Fingerling";
             case Type.NULL_PLANT: return "NULL_PLANT";
         }
         // UNREACHBALE
@@ -35,6 +37,7 @@ public class PlantTypes
         { Type.FUSSPOT, 20 },
         { Type.TOADSTOOL, 16 },
         { Type.CTHULILY, 45 },
+        { Type.FINGERLING, 28 },
     };
 }
 
