@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781be8402a0c64a49aa8ea69530440db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  uiClickNoise: {fileID: 0}
   selectedPlant: 0
   startingMoney: 1000
   onPlantEffect: 4
@@ -92,13 +93,33 @@ MonoBehaviour:
     m_ActionId: 5a5eccdd-3669-449b-a9cf-f6d62d82d587
     m_ActionName: 'Game/Interact[/Mouse/leftButton]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5c686165-1d25-4c6f-b2bb-aa2ae64a9e8e
     m_ActionName: 'Game/Pause[/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: b9adca25-32aa-401d-97a4-489556a79ba0
     m_ActionName: 'Debug/Mute[/Keyboard/m]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 43f528f3-e8f8-465b-a5a9-cb7060b8a794
+    m_ActionName: 'Game/IncreaseTickRate[/Keyboard/equals,/Keyboard/numpadPlus]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 57a123a1-dd08-453a-9117-7bc7e15600de
+    m_ActionName: 'Game/DecreaseTickRate[/Keyboard/minus,/Keyboard/numpadMinus]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
