@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    
+
     public PlantTypes.Type selectedPlant = PlantTypes.Type.EYE_WEED;
     public UInt32 startingMoney;
     private UInt32 _money;
