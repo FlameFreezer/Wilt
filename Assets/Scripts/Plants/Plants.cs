@@ -197,7 +197,7 @@ public class Cthulily : Plant
 		{
 			if (diagonalPlot.plant != null)
 			{
-				diagonalPlot.plant.payout += (uint)(diagonalPlot.plant.payout * _payoutMultiplier);
+				diagonalPlot.plant.payout += (uint)(diagonalPlot.plant.type.GetPayout() * _payoutMultiplier);
 			}
 		}
 		// Up left
