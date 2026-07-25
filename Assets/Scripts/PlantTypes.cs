@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.UI;
 
 public struct PlantTypeMetadataType {
 	public string name;
@@ -74,7 +75,7 @@ public class PlantTypes
         LAMBFLOWER,
 		[PlantTypeMetadata("fusspot", "Fusspot", 20, 25, 18)]
         FUSSPOT,
-		[PlantTypeMetadata("toadstool", "Traveling Toadstool", 16, 30, 5)]
+		[PlantTypeMetadata("toadstool", "Traveling Toadstool", 16, 18, 10)]
         TOADSTOOL,
 		[PlantTypeMetadata("cthulily", "Cthulily", 45, 0, 20)]
         CTHULILY,
@@ -107,6 +108,11 @@ public class PlantTypes
 	public static Sprite TypeToSprite(Type type) {
 		// TODO - separate from portrait-specific method for animations
 		return TypeToPortrait(type);
+	}
+
+	public static Image TypeToImage(Type type)
+	{
+		return Resources.Load<Image>($"PlantPortraits/{type.GetName()}");
 	}
 }
 

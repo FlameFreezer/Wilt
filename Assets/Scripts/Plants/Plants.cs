@@ -160,7 +160,7 @@ public class Toadstool : Plant
 
 				int index = UnityEngine.Random.Range(0, openPlots.Count);
 				Toadstool traveler = openPlots[index].PlacePlant(PlantTypes.Type.TOADSTOOL) as Toadstool;
-				traveler.payout = 2;
+				traveler.payout = PlantTypes.Type.TOADSTOOL.GetPayout() / 2;
 				traveler.ticksUntilHarvest = 1;
 				traveler.isTraveler = true;
 				break;
