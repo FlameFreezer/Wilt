@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/Sound Effects.bank
   Name: Sound Effects
   StudioPath: bank:/Sound Effects
-  lastModified: 639205076938861747
+  lastModified: 639205027136976121
   FileSizes: []
   Exists: 1
 --- !u!114 &-7837419624675989848
@@ -33,9 +33,54 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639205076938719871
+  lastModified: 639205036258050512
   FileSizes: []
   Exists: 1
+--- !u!114 &-2590769555682768467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/UI.bank
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
+  Path: Assets/FMOD/Desktop/UI.bank
+  Name: UI
+  StudioPath: bank:/UI
+  lastModified: 639205079693447195
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-2201804826912646382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SelectedUI
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SelectedUI
+  Guid:
+    Data1: 541909509
+    Data2: 1196229944
+    Data3: -1380771192
+    Data4: -556659164
+  Banks:
+  - {fileID: -2590769555682768467}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 250
 --- !u!114 &-1085040537726360607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +123,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639205076938543066
+  lastModified: 639205079692606549
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -98,18 +143,21 @@ MonoBehaviour:
   - {fileID: -157335304713887053}
   - {fileID: -7837419624675989848}
   - {fileID: -9063648978371473705}
+  - {fileID: -2590769555682768467}
   EditorEvents:
   - {fileID: -1085040537726360607}
   - {fileID: 3413998560686283822}
   - {fileID: 5497803228157693359}
   - {fileID: 457193638499785660}
+  - {fileID: -2201804826912646382}
+  - {fileID: 4218805663131516711}
   EditorParameters: []
   MasterBanks:
   - {fileID: -157335304713887053}
   StringsBanks:
   - {fileID: 6099674121338278224}
   cacheVersion: 131860
-  cacheTime: 639205076938861747
+  cacheTime: 639205079693447195
   SerializableEventsDict:
   - key: event:/CoinRattleNoise
     index: 0
@@ -119,6 +167,10 @@ MonoBehaviour:
     index: 2
   - key: event:/DirtDig
     index: 3
+  - key: event:/SelectedUI
+    index: 4
+  - key: event:/ClickUI
+    index: 5
 --- !u!114 &457193638499785660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +225,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 51692
+--- !u!114 &4218805663131516711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ClickUI
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/ClickUI
+  Guid:
+    Data1: -1091562115
+    Data2: 1319699787
+    Data3: -368247131
+    Data4: 1747569654
+  Banks:
+  - {fileID: -2590769555682768467}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &5497803228157693359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,8 +294,8 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639205076938613427
+  lastModified: 639205079692621546
   FileSizes:
   - Name: 
-    Value: 1016
+    Value: 1138
   Exists: 1
