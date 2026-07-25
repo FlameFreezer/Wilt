@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 
 public class GlobalTimer : MonoBehaviour {
-	[SerializeField] StudioEventEmitter ticSound;
+	[SerializeField] StudioEventEmitter tickSound;
 
 	[SerializeField]
 	private int _baseDuration = 75;
@@ -86,7 +86,10 @@ public class GlobalTimer : MonoBehaviour {
 	}
 
 	private void UpdateDisplay() {
-        ticSound.Play();
         _display.text = $"{_duration - _tickCount}";
+
+		if(tickSound != null) {
+			tickSound.Play();
+		}
 	}
 }

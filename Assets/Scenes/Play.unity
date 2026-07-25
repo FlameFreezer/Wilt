@@ -311,50 +311,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &72469613
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 72469615}
-  - component: {fileID: 72469614}
-  m_Layer: 0
-  m_Name: PlantSprites
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &72469614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72469613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d14a08c85019544885fee1a221edb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlantSprites
---- !u!4 &72469615
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72469613}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4368.084, y: 0.00001, z: 8810.276}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &76673191
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,73 +672,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132491236}
   m_CullTransparentMesh: 1
---- !u!1 &142791824
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 142791825}
-  - component: {fileID: 142791826}
-  m_Layer: 5
-  m_Name: shop_NOISEMAKER
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &142791825
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142791824}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 466077938}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &142791826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142791824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -1091562115
-      Data2: 1319699787
-      Data3: -368247131
-      Data4: 1747569654
-    Path: event:/ClickUI
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1001 &170785586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -795,10 +684,6 @@ PrefabInstance:
       propertyPath: plantType
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: -4267504158783651036, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
-      propertyPath: selectedNoise
-      value: 
-      objectReference: {fileID: 142791826}
     - target: {fileID: 2776833426480434341, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1241,20 +1126,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1638459095}
     - target: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
-      propertyPath: ticSound
-      value: 
-      objectReference: {fileID: 1703192019}
-    - target: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
       propertyPath: _ticksRemaining
       value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4671857681382492594, guid: 8618b910ad4331855934c88e982e2332, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1703192019}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8618b910ad4331855934c88e982e2332, type: 3}
 --- !u!1 &349018412
 GameObject:
@@ -1770,7 +1648,6 @@ RectTransform:
   - {fileID: 831214671}
   - {fileID: 497538342}
   - {fileID: 1433514980}
-  - {fileID: 142791825}
   m_Father: {fileID: 1615348974}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
@@ -2172,7 +2049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   selectedPlant: 0
-  startingMoney: 1
+  startingMoney: 1000
   onPlantEffect: 4
 --- !u!4 &527535341
 Transform:
@@ -3503,10 +3380,6 @@ PrefabInstance:
       propertyPath: plantType
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -4267504158783651036, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
-      propertyPath: selectedNoise
-      value: 
-      objectReference: {fileID: 142791826}
     - target: {fileID: 2776833426480434341, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4405,42 +4278,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1638459093}
   m_CullTransparentMesh: 1
---- !u!1 &1703192016 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4671857681382492594, guid: 8618b910ad4331855934c88e982e2332, type: 3}
-  m_PrefabInstance: {fileID: 340293446}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1703192019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703192016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1839368256
-      Data2: 1136405989
-      Data3: -965420618
-      Data4: -1059805820
-    Path: event:/TicSound
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1001 &1730048970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4453,10 +4290,6 @@ PrefabInstance:
       propertyPath: plantType
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: -4267504158783651036, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
-      propertyPath: selectedNoise
-      value: 
-      objectReference: {fileID: 142791826}
     - target: {fileID: 2776833426480434341, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4562,7 +4395,6 @@ GameObject:
   - component: {fileID: 1772491381}
   - component: {fileID: 1772491380}
   - component: {fileID: 1772491379}
-  - component: {fileID: 1772491382}
   m_Layer: 5
   m_Name: Cthulily
   m_TagString: Untagged
@@ -4672,28 +4504,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772491377}
   m_CullTransparentMesh: 1
---- !u!95 &1772491382
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772491377}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 886d8a74e2c447740a50de1ce9fa0db7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!224 &1810989757 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2776833426480434341, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
@@ -5067,10 +4877,6 @@ PrefabInstance:
       propertyPath: plantType
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4267504158783651036, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
-      propertyPath: selectedNoise
-      value: 
-      objectReference: {fileID: 142791826}
     - target: {fileID: 2776833426480434341, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5189,7 +4995,6 @@ SceneRoots:
   - {fileID: 1615348974}
   - {fileID: 8355354}
   - {fileID: 1534342705}
-  - {fileID: 72469615}
   - {fileID: 340293446}
   - {fileID: 229233122}
   - {fileID: 1314734968}

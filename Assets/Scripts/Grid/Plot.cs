@@ -84,6 +84,7 @@ public class Plot : MonoBehaviour, IClickable
         }
         plantSprite.GetComponent<SpriteRenderer>().enabled = true;
         plantSprite.GetComponent<SpriteRenderer>().sprite = PlantTypes.TypeToSprite(type);
+		Debug.Log(PlantTypes.TypeToSprite(type));
         harvestTimeText.GetComponent<MeshRenderer>().enabled = true;
         harvestTimeText.GetComponent<PlantHarvestTimeText>().UpdateText();
 

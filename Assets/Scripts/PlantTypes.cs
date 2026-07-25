@@ -54,7 +54,7 @@ public class PlantTypes
         LAMBFLOWER,
 		[PlantTypeMetadata("fusspot", "Fusspot", 20)]
         FUSSPOT,
-		[PlantTypeMetadata("toadstool", "Toadstool", 16)]
+		[PlantTypeMetadata("toadstool", "Traveling Toadstool", 16)]
         TOADSTOOL,
 		[PlantTypeMetadata("cthulily", "Cthulily", 45)]
         CTHULILY,
@@ -65,23 +65,6 @@ public class PlantTypes
         //KEEP AT BOTTOM
 		[PlantTypeMetadata("nullplant", "Nullplant", uint.MaxValue)]
         NULL_PLANT,
-    }
-
-    public static string TypeToString(PlantTypes.Type type)
-    {
-        switch(type)
-        {
-            case Type.EYE_WEED: return "Eyeweed";
-            case Type.LAMBFLOWER: return "Lambflower";
-            case Type.FUSSPOT: return "Fusspot";
-            case Type.TOADSTOOL: return "Traveling Toadstool";
-            case Type.CTHULILY: return "Cthulily";
-            case Type.FINGERLING: return "Fingerling";
-            case Type.HUNGERING_VOIDBEET: return "Hungering Voidbeet";
-            case Type.NULL_PLANT: return "NULL_PLANT";
-        }
-        // UNREACHBALE
-        throw new InvalidProgramException();
     }
 
 	public static Type TypeFromString(string str) {
@@ -95,7 +78,8 @@ public class PlantTypes
 	}
 
 	public static Sprite TypeToPortrait(Type type) {
-		return Resources.Load<Sprite>($"PlantPortraits/{TypeToString(type)}");
+		Debug.Log(type.GetName());
+		return Resources.Load<Sprite>($"PlantPortraits/{type.GetName()}");
 	}
 
 	public static Sprite TypeToSprite(Type type) {

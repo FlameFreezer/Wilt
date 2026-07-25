@@ -22,12 +22,12 @@ public class ShopButton : MonoBehaviour
         {
             cost = (uint)(cost * 0.85);
         }
-        text.text = $"{PlantTypes.TypeToString(plantType)} - ${cost}";
+        text.text = $"{plantType.GetNameCapitalized()} - ${cost}";
     }
 
     public void SelectPlant()
     {
         Game.Instance()._player.GetComponent<Player>().SelectPlant(plantType);
-        selectedNoise.Play();
+        // selectedNoise.Play();
     }
 }
