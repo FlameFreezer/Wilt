@@ -1,7 +1,13 @@
+using FMODUnity;
+using System.Collections;
 using UnityEngine;
 
 public class SceneManager : MonoBehaviour
 {
+    //Audios
+    [SerializeField] StudioEventEmitter playSound;
+    int clipLength;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,7 +22,8 @@ public class SceneManager : MonoBehaviour
 
     public void OnPressStart()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Play");
+        playSound.Play();
+        StartCoroutine(playWait());
     }
 
     public void OnPressSettings()
@@ -37,4 +44,12 @@ public class SceneManager : MonoBehaviour
 	public void HandleGlobalTimerExhausted() {
 		UnityEngine.SceneManagement.SceneManager.LoadScene("CreditsScene");
 	}
+
+
+    IEnumerator playWait()
+    {
+        
+        yield return new WaitForSeconds(3);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Play");
+    }
 }
