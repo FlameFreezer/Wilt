@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public abstract class Plant {
 	public PlantTypes.Type type;
@@ -14,11 +13,18 @@ public abstract class Plant {
     private bool _complete = false;
     public bool Complete { get { return _complete; } set { _complete = value; } }
 
+	public Plant(PlantTypes.Type plantType)
+	{
+		payout = plantType.GetPayout();
+		ticksUntilHarvest = (int)plantType.GetTicksUntilHarvest();
+		type = plantType;
+	}
+
 	public void AssignId(UInt32 id) {
 		_id = id;
 	}
 
-	public void Tick()
+	public virtual void Tick(Plot plot)
 	{
 		ticksUntilHarvest--;
 	}
@@ -39,12 +45,7 @@ public abstract class Plant {
 
 public class EyeWeed : Plant {
 
-	public EyeWeed()
-	{
-		payout = 2;
-		ticksUntilHarvest = 3;
-		type = PlantTypes.Type.EYE_WEED;
-	}
+	public EyeWeed() : base(PlantTypes.Type.EYE_WEED) { }
 
 	public override void Payout()
 	{
@@ -66,12 +67,7 @@ public class EyeWeed : Plant {
 
 public class Lambflower : Plant
 {
-	public Lambflower()
-	{
-		payout = 9;
-		ticksUntilHarvest = 8;
-		type = PlantTypes.Type.LAMBFLOWER;
-	}
+	public Lambflower() : base(PlantTypes.Type.LAMBFLOWER) {}
 
 	public override bool CheckHarvest()
 	{
@@ -100,12 +96,7 @@ public class Fusspot : Plant
 {
 	private UInt32 _payoutPerSynergy = 5;
 
-	public Fusspot()
-	{
-		payout = 25;
-		ticksUntilHarvest = 18;
-		type = PlantTypes.Type.FUSSPOT;
-	}
+	public Fusspot() : base(PlantTypes.Type.FUSSPOT) {}
 
 	public override void Payout()
 	{
@@ -143,12 +134,7 @@ public class Toadstool : Plant
 {
 	public bool isTraveler = false;
 
-	public Toadstool()
-	{
-		payout = 30;
-		ticksUntilHarvest = 5;
-		type = PlantTypes.Type.TOADSTOOL;
-	}
+	public Toadstool() : base(PlantTypes.Type.TOADSTOOL) {}
 
 	public override void Payout()
 	{
@@ -186,13 +172,8 @@ public class Toadstool : Plant
 
 public class Cthulily : Plant
 {
-	private double _payoutMultiplier = 4.0;
-	public Cthulily()
-	{
-		payout = 0;
-		ticksUntilHarvest = 20;
-		type = PlantTypes.Type.CTHULILY;
-	}
+	private double _payoutMultiplier = 3.0;
+	public Cthulily() : base(PlantTypes.Type.CTHULILY) {}
 
 	public override void Payout()
 	{
@@ -216,7 +197,7 @@ public class Cthulily : Plant
 		{
 			if (diagonalPlot.plant != null)
 			{
-				diagonalPlot.plant.payout = (uint)(diagonalPlot.plant.payout * _payoutMultiplier);
+				diagonalPlot.plant.payout += (uint)(diagonalPlot.plant.type.GetPayout() * _payoutMultiplier);
 			}
 		}
 		// Up left
@@ -247,12 +228,7 @@ public class Cthulily : Plant
 public class Fingerling : Plant
 {
 
-	public Fingerling()
-	{
-		payout = 40;
-		ticksUntilHarvest = 19;
-		type = PlantTypes.Type.FINGERLING;
-	}
+	public Fingerling() : base(PlantTypes.Type.FINGERLING) {}
 
 	public override void Payout()
 	{
@@ -268,11 +244,11 @@ public class Fingerling : Plant
 			{
 				foreach(Plot adj in plot.GetAdjacentPlots())
 				{
-					if(adj.plant != null && adj.plant.ticksUntilHarvest >= 1)
-					{
-						adj.plant.Complete = true;
-						adj.plant.ticksUntilHarvest = 1;
-					}
+					if (adj.plant == null) continue;
+					if (adj.plant.type == PlantTypes.Type.FUSSPOT && adj.plant.ticksUntilHarvest < 1) continue;
+
+                    adj.plant.Complete = true;
+                    adj.plant.ticksUntilHarvest = 1;
 				}
 			}
 		}
@@ -284,12 +260,7 @@ public class Voidbeet : Plant
 {
 	private double _multiplierPerSynergy = 1.5;
 	private uint _numSynergies = 0;
-	public Voidbeet()
-	{
-		payout = 20;
-		ticksUntilHarvest = 30;
-		type = PlantTypes.Type.HUNGERING_VOIDBEET;
-	}
+	public Voidbeet() : base(PlantTypes.Type.HUNGERING_VOIDBEET) {}
 
     public override bool CheckHarvest()
     {
@@ -298,7 +269,8 @@ public class Voidbeet : Plant
 
 	public override void Payout()
 	{
-		Game.Instance()._player.GetComponent<Player>().money += (uint)(payout * _multiplierPerSynergy * _numSynergies);
+		if (_numSynergies == 0) Game.Instance().Player().money += payout;
+		else Game.Instance().Player().money += (uint)(payout * _multiplierPerSynergy * _numSynergies);
 	}
 
     public override void Harvest(Plot plot)
@@ -311,5 +283,61 @@ public class Voidbeet : Plant
 			_numSynergies++;
 		}
 		Complete = true;
+    }
+}
+
+public class Shyweed : Plant
+{
+	private bool _beginTicking = false;
+	private double _synergyMultiplier = 1.4;
+	public Shyweed() : base(PlantTypes.Type.SHYWEED) {}
+
+    public override void Payout()
+    {
+		Game.Instance().Player().money += payout;
+    }
+
+    public override void Tick(Plot plot)
+    {
+		if (_beginTicking)
+		{
+            --ticksUntilHarvest;
+		}
+		// Don't start ticking unless an adjacent plant is next to it
+		else
+		{
+			foreach (Plot adjacentPlot in plot.GetAdjacentPlots())
+			{
+				if (adjacentPlot.plant != null)
+				{
+					_beginTicking = true;
+					--ticksUntilHarvest;
+					return;
+				}
+			}
+		}
+    }
+
+    public override void Harvest(Plot plot)
+    {
+		uint numAdjacentEyeweeds = 0;
+		uint numAdjacentShyweeds = 0;
+		foreach(Plot adjacentPlot in plot.GetAdjacentPlots())
+		{
+			if (adjacentPlot.plant == null) continue;
+			if (adjacentPlot.plant.type == PlantTypes.Type.SHYWEED && adjacentPlot.plant.ticksUntilHarvest < 1)
+			{
+				numAdjacentShyweeds++;
+			}
+			else if (adjacentPlot.plant.type == PlantTypes.Type.EYE_WEED && adjacentPlot.plant.ticksUntilHarvest < 1)
+			{
+				numAdjacentEyeweeds++;
+			}
+		}
+		if(numAdjacentShyweeds == 2 || numAdjacentEyeweeds == 2)
+		{
+			payout = (uint)(payout * _synergyMultiplier);
+		}
+        Complete = true;
     }
 }
