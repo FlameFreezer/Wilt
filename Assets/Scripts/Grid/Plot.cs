@@ -54,11 +54,7 @@ public class Plot : MonoBehaviour, IClickable
         {
             return;
         }
-        uint plantCost = PlantTypes.costs[player.selectedPlant];
-        if (player.onPlantEffect == PlantTypes.Type.HUNGERING_VOIDBEET)
-        {
-            plantCost = (uint)(plantCost * 0.85);
-        }
+        uint plantCost = player.selectedPlant.GetCost();
         if(plantCost > player.money)
         {
             Debug.Log($"Selected plant costs ${plantCost} but you only have {player.money}");
@@ -82,7 +78,7 @@ public class Plot : MonoBehaviour, IClickable
             placedPlant.ticksUntilHarvest++;
         }
         plantSprite.GetComponent<SpriteRenderer>().enabled = true;
-        plantSprite.GetComponent<SpriteRenderer>().sprite = Game.Instance().plantSprites.GetSprite(type);
+        plantSprite.GetComponent<SpriteRenderer>().sprite = PlantTypes.TypeToSprite(type);
         harvestTimeText.GetComponent<MeshRenderer>().enabled = true;
         harvestTimeText.GetComponent<PlantHarvestTimeText>().UpdateText();
 

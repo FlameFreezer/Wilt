@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 
     public void SelectPlant(PlantTypes.Type type)
     {
-        Debug.Log($"Selected {PlantTypes.TypeToString(type)}");
+        Debug.Log($"Selected {type.GetNameCapitalized()}");
         selectedPlant = type;
     }
 }
