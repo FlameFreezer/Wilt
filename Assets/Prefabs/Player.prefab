@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6989678967168332173}
   - component: {fileID: 3381187321692023359}
   - component: {fileID: 1116272447210408347}
+  - component: {fileID: 5839384507639939453}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -138,10 +139,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   target: {x: 0, y: 0, z: 0}
-  boundX: 8
-  boundZ: 6
+  upperBoundX: 8
+  upperBoundZ: 6
+  lowerBoundX: -8
+  lowerBoundZ: -6
   moveRadius: 3
-  speed: 2
+  currSpeed: 2
+--- !u!95 &5839384507639939453
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6835799599241045460}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 8c650efd28ff54e43a0948fc4dd93867, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6494a86c282d5b241ad1b79d189ed6bd, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &542448862400368907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -421,6 +446,10 @@ PrefabInstance:
     - target: {fileID: 4502539739568090590, guid: 8c650efd28ff54e43a0948fc4dd93867, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 76.71976
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 8c650efd28ff54e43a0948fc4dd93867, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 8c650efd28ff54e43a0948fc4dd93867, type: 3}
       propertyPath: m_Controller
