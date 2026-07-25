@@ -6,6 +6,7 @@ public class Plot : MonoBehaviour, IClickable
 {
     //AUDIO REFS
     [SerializeField ] StudioEventEmitter digNoise;
+    [SerializeField] StudioEventEmitter cashNoise;
 
 
     //VARS
@@ -55,6 +56,10 @@ public class Plot : MonoBehaviour, IClickable
             return;
         }
         uint plantCost = player.selectedPlant.GetCost();
+        if (player.selectedPlant == PlantTypes.Type.HUNGERING_VOIDBEET)
+        {
+            plantCost = (uint)(plantCost * 0.85);
+        }
         if(plantCost > player.money)
         {
             Debug.Log($"Selected plant costs ${plantCost} but you only have {player.money}");
@@ -88,6 +93,7 @@ public class Plot : MonoBehaviour, IClickable
 
     public void Harvest() {
         plant?.Harvest(this);
+        cashNoise.Play();
     }
 
     public void RemovePlant() {
