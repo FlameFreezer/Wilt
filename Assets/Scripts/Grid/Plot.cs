@@ -70,11 +70,17 @@ public class Plot : MonoBehaviour, IClickable
     {
         digNoise.Play();
         Plant placedPlant = _parentGrid.SpawnPlantAtGridPosition(_xIndex, _yIndex, type);
+        Player player = Game.Instance()._player.GetComponent<Player>();
+        if(player.onPlantEffect == PlantTypes.Type.LAMBFLOWER)
+        {
+            placedPlant.ticksUntilHarvest--;
+        }
         plantSprite.GetComponent<SpriteRenderer>().enabled = true;
         plantSprite.GetComponent<SpriteRenderer>().sprite = Game.Instance().plantSprites.GetSprite(type);
         harvestTimeText.GetComponent<MeshRenderer>().enabled = true;
         harvestTimeText.GetComponent<PlantHarvestTimeText>().UpdateText();
 
+        player.onPlantEffect = type;
         return placedPlant;
     }
 

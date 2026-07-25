@@ -163,8 +163,11 @@ public class Toadstool : Plant
 						openPlots.Add(adj);						
 					}
 				}
+				// If there are no open spots, don't try to place a new toadstool
+				if (openPlots.Count < 1) break;
+
 				int index = UnityEngine.Random.Range(0, openPlots.Count);
-				Toadstool traveler = (Toadstool)openPlots[index].PlacePlant(PlantTypes.Type.TOADSTOOL);
+				Toadstool traveler = openPlots[index].PlacePlant(PlantTypes.Type.TOADSTOOL) as Toadstool;
 				traveler._payout = 2;
 				traveler.ticksUntilHarvest = 1;
 				traveler.isTraveler = true;

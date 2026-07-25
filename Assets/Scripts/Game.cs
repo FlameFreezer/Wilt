@@ -9,6 +9,7 @@ public class Game
     private EventBus _eventBus = new();
     public TickTimer _tickTimer;
     public PlantSprites plantSprites;
+    public GlobalTimer globalTimer;
 
     public static Game Instance()
     {
