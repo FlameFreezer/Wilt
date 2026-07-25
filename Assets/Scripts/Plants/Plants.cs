@@ -18,7 +18,7 @@ public abstract class Plant {
 		_id = id;
 	}
 
-	public void Tick()
+	public virtual void Tick(Plot plot)
 	{
 		ticksUntilHarvest--;
 	}
@@ -268,11 +268,11 @@ public class Fingerling : Plant
 			{
 				foreach(Plot adj in plot.GetAdjacentPlots())
 				{
-					if(adj.plant != null && adj.plant.ticksUntilHarvest >= 1)
-					{
-						adj.plant.Complete = true;
-						adj.plant.ticksUntilHarvest = 1;
-					}
+					if (adj.plant == null) continue;
+					if (adj.plant.type == PlantTypes.Type.FUSSPOT && adj.plant.ticksUntilHarvest < 1) continue;
+
+                    adj.plant.Complete = true;
+                    adj.plant.ticksUntilHarvest = 1;
 				}
 			}
 		}
@@ -311,5 +311,66 @@ public class Voidbeet : Plant
 			_numSynergies++;
 		}
 		Complete = true;
+    }
+}
+
+public class Shyweed : Plant
+{
+	private bool _beginTicking = false;
+	private double _synergyMultiplier = 1.4;
+	public Shyweed()
+	{
+		payout = 17;
+		ticksUntilHarvest = 20;
+		type = PlantTypes.Type.SHYWEED;
+	}
+
+    public override void Payout()
+    {
+		Game.Instance().Player().money += payout;
+    }
+
+    public override void Tick(Plot plot)
+    {
+		if (_beginTicking)
+		{
+            --ticksUntilHarvest;
+		}
+		// Don't start ticking unless an adjacent plant is next to it
+		else
+		{
+			foreach (Plot adjacentPlot in plot.GetAdjacentPlots())
+			{
+				if (adjacentPlot.plant != null)
+				{
+					_beginTicking = true;
+					--ticksUntilHarvest;
+					return;
+				}
+			}
+		}
+    }
+
+    public override void Harvest(Plot plot)
+    {
+		uint numAdjacentEyeweeds = 0;
+		uint numAdjacentShyweeds = 0;
+		foreach(Plot adjacentPlot in plot.GetAdjacentPlots())
+		{
+			if (adjacentPlot.plant == null) continue;
+			if (adjacentPlot.plant.type == PlantTypes.Type.SHYWEED && adjacentPlot.plant.ticksUntilHarvest < 1)
+			{
+				numAdjacentShyweeds++;
+			}
+			else if (adjacentPlot.plant.type == PlantTypes.Type.EYE_WEED && adjacentPlot.plant.ticksUntilHarvest < 1)
+			{
+				numAdjacentEyeweeds++;
+			}
+		}
+		if(numAdjacentShyweeds == 2 || numAdjacentEyeweeds == 2)
+		{
+			payout = (uint)(payout * _synergyMultiplier);
+		}
+        Complete = true;
     }
 }

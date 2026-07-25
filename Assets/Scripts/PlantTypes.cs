@@ -58,6 +58,8 @@ public class PlantTypes
         TOADSTOOL,
 		[PlantTypeMetadata("cthulily", "Cthulily", 45)]
         CTHULILY,
+		[PlantTypeMetadata("shyweed", "Shyweed", 14)]
+		SHYWEED,
 		[PlantTypeMetadata("fingerling", "Fingerling", 28)]
         FINGERLING,
 		[PlantTypeMetadata("hungeringvoidbeet", "Hungering Voidbeet", 70)]

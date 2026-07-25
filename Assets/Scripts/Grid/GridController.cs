@@ -163,6 +163,9 @@ public class GridController : MonoBehaviour {
             case PlantTypes.Type.CTHULILY:
                 newPlant = new Cthulily();
                 break;
+            case PlantTypes.Type.SHYWEED:
+                newPlant = new Shyweed();
+                break;
             case PlantTypes.Type.FINGERLING:
                 newPlant = new Fingerling();
                 break;
@@ -190,7 +193,7 @@ public class GridController : MonoBehaviour {
         {
             if(plot.plant != null)
             {
-                plot.plant.Tick();
+                plot.Tick();
             }
         }
         HarvestPlots();
@@ -199,6 +202,25 @@ public class GridController : MonoBehaviour {
     private void HarvestPlots()
     {
         Queue<Plot> harvestQueue = new();
+        // Fusspots have to be checked before all other harvests have resolved
+        foreach(Plot plot in _plots)
+        {
+            if (plot.plant == null) continue;
+            if (plot.plant.type != PlantTypes.Type.FUSSPOT) continue;
+            if (plot.plant.ticksUntilHarvest >= 1) continue;
+
+            plot.Harvest();
+        }
+        // Fingerlings have to be checked after fusspots but before the rest of the harvests
+        foreach(Plot plot in _plots)
+        {
+            if (plot.plant == null) continue;
+            if (plot.plant.type != PlantTypes.Type.FINGERLING) continue;
+            if (plot.plant.ticksUntilHarvest >= 1) continue;
+
+            plot.Harvest();
+        }
+
         // Scan over every plot in the grid
         foreach(Plot plot in _plots)
         {

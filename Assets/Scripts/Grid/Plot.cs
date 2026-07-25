@@ -113,4 +113,12 @@ public class Plot : MonoBehaviour, IClickable
     {
         return _parentGrid;
     }
+
+    public void Tick()
+    {
+        if (plant != null)
+        {
+            plant.Tick(this);
+        }
+    }
 }
