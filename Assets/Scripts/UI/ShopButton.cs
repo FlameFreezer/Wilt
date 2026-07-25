@@ -7,7 +7,6 @@ public class ShopButton : MonoBehaviour
 {
     public PlantTypes.Type plantType;
     public TextMeshProUGUI plantName;
-    public TextMeshProUGUI plantDescription;
     public TextMeshProUGUI plantCost;
     public Image plantIcon;
     public Color32 colorWhenSelected;
