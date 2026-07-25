@@ -57,18 +57,19 @@ public class Plot : MonoBehaviour, IClickable
         PlacePlant(player.selectedPlant);
     }
 
-    void PlacePlant(PlantTypes.Type type)
+    public Plant PlacePlant(PlantTypes.Type type)
     {
-        _parentGrid.SpawnPlantAtGridPosition(_xIndex, _yIndex, type);
+        Plant placedPlant = _parentGrid.SpawnPlantAtGridPosition(_xIndex, _yIndex, type);
         plantSprite.GetComponent<SpriteRenderer>().enabled = true;
         plantSprite.GetComponent<SpriteRenderer>().sprite = Game.Instance().plantSprites.GetSprite(type);
+        return placedPlant;
     }
 
-    public void Harvest(Func<UInt32, GridQueryConfig, Func<Plant, bool>, UInt32> adjacentQueryCallback) {
-        plant?.Harvest(adjacentQueryCallback);
+    public void Harvest() {
+        plant?.Harvest(this);
     }
 
-    public void Remove() {
+    public void RemovePlant() {
         plant?.Payout();
         plant = null;
         plantSprite.GetComponent<SpriteRenderer>().enabled = false;

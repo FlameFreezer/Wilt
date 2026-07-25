@@ -1,5 +1,6 @@
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class Plant {
 	public PlantTypes.Type type;
@@ -9,6 +10,9 @@ public abstract class Plant {
 
     public event Action<UInt32> OnHarvestRequested;
 
+    private bool _complete = false;
+    public bool Complete { get { return _complete; } set { _complete = value; } }
+
 	public void AssignId(UInt32 id) {
 		_id = id;
 	}
@@ -16,13 +20,14 @@ public abstract class Plant {
 	public void Tick()
 	{
 		ticksUntilHarvest--;
-		if(ticksUntilHarvest < 1)
-		{
-			InvokeOnHarvestRequested();
-		}
 	}
 
-	public abstract void Harvest(Func<UInt32, GridQueryConfig, Func<Plant, bool>, UInt32> adjacentQueryCallback);
+	public abstract void Harvest(Plot plot);
+
+	public virtual bool CheckHarvest()
+	{
+		return !Complete && ticksUntilHarvest < 1;
+	}
 
 	protected void InvokeOnHarvestRequested() {
 		OnHarvestRequested?.Invoke(_id);
@@ -32,7 +37,7 @@ public abstract class Plant {
 }
 
 public class EyeWeed : Plant {
-	private UInt32 _payout = 5;
+	private UInt32 _payout = 2;
 
 	public EyeWeed()
 	{
@@ -45,16 +50,16 @@ public class EyeWeed : Plant {
 		Game.Instance()._player.GetComponent<Player>().money += _payout;
 	}
 
-	public override void Harvest(Func<UInt32, GridQueryConfig, Func<Plant, bool>, UInt32> adjacentQueryCallback) {
-		if(adjacentQueryCallback.Invoke(_id, new() { matchesRequired = 1 }, _Criteria) > 0) {
-			_payout = (UInt32)(_payout * 1.5);
+	public override void Harvest(Plot plot) {
+		foreach(Plot adjacentPlot in plot.GetAdjacentPlots())
+		{
+			if(adjacentPlot.plant != null && adjacentPlot.plant.type == PlantTypes.Type.EYE_WEED && adjacentPlot.plant.ticksUntilHarvest < 1)
+			{
+				_payout = (UInt32)(_payout * 1.5);
+				break;
+			}
 		}
-
-		return;
-
-		bool _Criteria(Plant subject) {
-			return subject != null && subject.type == PlantTypes.Type.EYE_WEED && subject.ticksUntilHarvest < 1;
-		}
+		Complete = true;
 	}
 }
 
@@ -68,13 +73,104 @@ public class Lambflower : Plant
 		type = PlantTypes.Type.LAMBFLOWER;
 	}
 
+	public override bool CheckHarvest()
+	{
+		return !Complete && ticksUntilHarvest <= 3;
+	}
+
 	public override void Payout()
 	{
 		Game.Instance()._player.GetComponent<Player>().money += _payout;
 	}
 
-    public override void Harvest(Func<uint, GridQueryConfig, Func<Plant, bool>, uint> adjacentQueryCallback)
+    public override void Harvest(Plot plot)
     {
-		return;
+		Complete = true;
+		ticksUntilHarvest = 0;
+        return;
     }
+}
+
+public class Fusspot : Plant
+{
+	private UInt32 _payout = 25;
+	private UInt32 _payoutPerSynergy = 5;
+
+	public Fusspot()
+	{
+		ticksUntilHarvest = 18;
+		type = PlantTypes.Type.FUSSPOT;
+	}
+
+	public override void Payout()
+	{
+		Game.Instance()._player.GetComponent<Player>().money += _payout;
+	}
+
+	public override void Harvest(Plot plot)
+	{
+		// Apply time reduction bonus
+		foreach(Plot adjacentPlot in plot.GetAdjacentPlots())
+		{
+			if (adjacentPlot.plant == null) continue;
+			Plant adjacentPlant = adjacentPlot.plant;
+			if (adjacentPlant.type == PlantTypes.Type.FUSSPOT) continue;
+			if (adjacentPlant.type == PlantTypes.Type.TOADSTOOL && (adjacentPlant as Toadstool).isTraveler) continue;
+			adjacentPlant.ticksUntilHarvest -= 2;
+		}
+
+		// Apply synergy
+		foreach(Plot adjacentPlot in plot.GetAdjacentPlots())
+		{
+			if (adjacentPlot.plant == null) continue;
+			if (adjacentPlot.plant.type == PlantTypes.Type.FUSSPOT && adjacentPlot.plant.ticksUntilHarvest < 1)
+			{
+				_payout += _payoutPerSynergy;
+			}
+		}
+
+		Complete = true;
+	}
+}
+
+public class Toadstool : Plant
+{
+	private uint _payout = 30;
+	public bool isTraveler = false;
+
+	public Toadstool()
+	{
+		ticksUntilHarvest = 5;
+		type = PlantTypes.Type.TOADSTOOL;
+	}
+
+	public override void Payout()
+	{
+		Game.Instance()._player.GetComponent<Player>().money += _payout;
+	}
+
+	public override void Harvest(Plot plot)
+	{
+		foreach(Plot adjacentPlot in plot.GetAdjacentPlots())
+		{
+			if (adjacentPlot.plant != null && adjacentPlot.plant.ticksUntilHarvest < 1)
+			{
+				List<Plot> openPlots = new();
+				foreach(Plot adj in plot.GetAdjacentPlots())
+				{
+					if (adj.plant == null)
+					{
+						openPlots.Add(adj);						
+					}
+				}
+				int index = UnityEngine.Random.Range(0, openPlots.Count);
+				Toadstool traveler = (Toadstool)openPlots[index].PlacePlant(PlantTypes.Type.TOADSTOOL);
+				traveler._payout = 2;
+				traveler.ticksUntilHarvest = 1;
+				traveler.isTraveler = true;
+				break;
+			}
+		}
+        Complete = true;
+	}
 }
