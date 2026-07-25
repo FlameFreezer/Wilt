@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class TickTimer : MonoBehaviour
 {
@@ -11,9 +12,15 @@ public class TickTimer : MonoBehaviour
         SLOW, MEDIUM, FAST
     }
     public TickRate tickRate = TickRate.SLOW;
-    public static readonly Dictionary<TickRate, double> ticksPerSecond = new()
+    [SerializeField]
+    private double slowTickRate = 1.0;
+    [SerializeField]
+    private double mediumTickRate = 5.0;
+    [SerializeField]
+    private double fastTickRate = 10.0;
+    private readonly static Dictionary<TickRate, double> ticksPerSecond = new()
     {
-        {TickRate.SLOW , 1.0}, {TickRate.MEDIUM, 3.0 }, {TickRate.FAST, 5.0}
+        {TickRate.SLOW , 0}, {TickRate.MEDIUM, 0.0 }, {TickRate.FAST, 0.0}
     };
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,8 +28,9 @@ public class TickTimer : MonoBehaviour
         _timeSinceLastTick = 0.0;
 
         Game.Instance()._tickTimer = this;
-
-        InputSystem.actions.FindAction("Pause").performed += PauseTimer;
+        ticksPerSecond[TickRate.SLOW] = slowTickRate;
+        ticksPerSecond[TickRate.MEDIUM] = mediumTickRate;
+        ticksPerSecond[TickRate.FAST] = fastTickRate;
     }
 
     // Update is called once per frame
@@ -40,14 +48,22 @@ public class TickTimer : MonoBehaviour
         }
     }
 
-    void PauseTimer(InputAction.CallbackContext context)
+    public void PauseTimer(InputAction.CallbackContext context)
     {
+        if(!context.started)
+        {
+            return;
+        }
         _isPaused = !_isPaused;
         Game.Instance().EventBus().OnPause(_isPaused);
     }
 
-    public void IncreaseTickRate()
+    public void IncreaseTickRate(InputAction.CallbackContext context)
     {
+        if(!context.started)
+        {
+            return;
+        }
         if (tickRate != TickRate.FAST)
         {
             tickRate++;
@@ -55,8 +71,13 @@ public class TickTimer : MonoBehaviour
         }
     }
 
-    public void DecreaseTickRate()
+    public void DecreaseTickRate(InputAction.CallbackContext context)
     {
+        if(!context.started)
+        {
+            return;
+        }
+
         if (tickRate != TickRate.SLOW)
         {
             tickRate--;
