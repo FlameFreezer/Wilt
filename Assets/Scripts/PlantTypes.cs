@@ -75,7 +75,7 @@ public class PlantTypes
         LAMBFLOWER,
 		[PlantTypeMetadata("fusspot", "Fusspot", 20, 25, 18)]
         FUSSPOT,
-		[PlantTypeMetadata("toadstool", "Traveling Toadstool", 16, 30, 5)]
+		[PlantTypeMetadata("toadstool", "Traveling Toadstool", 16, 18, 10)]
         TOADSTOOL,
 		[PlantTypeMetadata("cthulily", "Cthulily", 45, 0, 20)]
         CTHULILY,
