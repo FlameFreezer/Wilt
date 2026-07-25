@@ -12,12 +12,20 @@ public class ShopButton : MonoBehaviour
     public Image plantIcon;
     public Color32 colorWhenSelected;
     private Color32 _colorUnselected;
+    public bool startSelected = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         plantName.text = $"{plantType.GetNameCapitalized()}";
         plantIcon.sprite = PlantTypes.TypeToSprite(plantType);
         _colorUnselected = GetComponent<Image>().color;
+
+        Game.Instance().EventBus().onPlantSelected += ResetColor;
+
+        if(startSelected)
+        {
+            SelectPlant();
+        }
     }
 
     // Update is called once per frame
@@ -28,12 +36,18 @@ public class ShopButton : MonoBehaviour
         {
             cost = (uint)(cost * 0.85);
         }
-        plantCost.text = $"{plantType.GetNameCapitalized()} - ${cost}";
+        plantCost.text = $"${cost}";
     }
 
     public void SelectPlant()
     {
+        Game.Instance().EventBus().OnPlantSelected();
         Game.Instance()._player.GetComponent<Player>().SelectPlant(plantType);
         GetComponent<Image>().color = colorWhenSelected;
+    }
+
+    private void ResetColor()
+    {
+        GetComponent<Image>().color = _colorUnselected;
     }
 }
