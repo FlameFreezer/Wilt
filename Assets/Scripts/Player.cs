@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
 
     public void SelectPlant(PlantTypes.Type type)
     {
-        //uiClickNoise.Play();
+        uiClickNoise.Play();
         Debug.Log($"Selected {type.GetNameCapitalized()}");
         selectedPlant = type;
     }
