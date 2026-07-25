@@ -7,6 +7,8 @@ public struct PlantTypeMetadataType {
 	public string name;
 	public string nameCapitalized;
 	public uint cost;
+	public uint payout;
+	public uint ticksUntilHarvest;
 }
 
 public static class PlantTypeMetadataExtensions {
@@ -30,6 +32,22 @@ public static class PlantTypeMetadataExtensions {
 
 		return attribute.Metadata.cost;
 	}
+
+	public static uint GetPayout(this PlantTypes.Type element)
+	{
+		var attribute = element.GetType().GetField(element.ToString()).GetCustomAttribute<PlantTypes.PlantTypeMetadataAttribute>();
+		if (attribute == null) return uint.MaxValue;
+
+		return attribute.Metadata.payout;
+	}
+	public static uint GetTicksUntilHarvest(this PlantTypes.Type element)
+	{
+		var attribute = element.GetType().GetField(element.ToString()).GetCustomAttribute<PlantTypes.PlantTypeMetadataAttribute>();
+		if (attribute == null) return uint.MaxValue;
+
+		return attribute.Metadata.ticksUntilHarvest;
+	}
+
 }
 
 public class PlantTypes
@@ -38,34 +56,36 @@ public class PlantTypes
 	public class PlantTypeMetadataAttribute : Attribute {
 		public PlantTypeMetadataType Metadata { get; }
 
-		public PlantTypeMetadataAttribute(string name, string nameCapitalized, uint cost) {
+		public PlantTypeMetadataAttribute(string name, string nameCapitalized, uint cost, uint payout, uint ticksUntilHarvest) {
 			Metadata = new() {
 				name = name,
 				nameCapitalized = nameCapitalized,
 				cost = cost,
+				payout = payout,
+				ticksUntilHarvest = ticksUntilHarvest,
 			};
 		}
 	}
 
     public enum Type : int {
-		[PlantTypeMetadata("eyeweed", "Eyeweed", 1)]
+		[PlantTypeMetadata("eyeweed", "Eyeweed", 1, 2, 3)]
 		EYE_WEED,
-		[PlantTypeMetadata("lambflower", "Lambflower", 7)]
+		[PlantTypeMetadata("lambflower", "Lambflower", 7, 9, 8)]
         LAMBFLOWER,
-		[PlantTypeMetadata("fusspot", "Fusspot", 20)]
+		[PlantTypeMetadata("fusspot", "Fusspot", 20, 25, 18)]
         FUSSPOT,
-		[PlantTypeMetadata("toadstool", "Traveling Toadstool", 16)]
+		[PlantTypeMetadata("toadstool", "Traveling Toadstool", 16, 30, 5)]
         TOADSTOOL,
-		[PlantTypeMetadata("cthulily", "Cthulily", 45)]
+		[PlantTypeMetadata("cthulily", "Cthulily", 45, 0, 20)]
         CTHULILY,
-		[PlantTypeMetadata("shyweed", "Shyweed", 14)]
+		[PlantTypeMetadata("shyweed", "Shyweed", 14, 17, 20)]
 		SHYWEED,
-		[PlantTypeMetadata("fingerling", "Fingerling", 28)]
+		[PlantTypeMetadata("fingerling", "Fingerling", 28, 40, 19)]
         FINGERLING,
-		[PlantTypeMetadata("hungeringvoidbeet", "Hungering Voidbeet", 70)]
+		[PlantTypeMetadata("hungeringvoidbeet", "Hungering Voidbeet", 70, 20, 30)]
         HUNGERING_VOIDBEET,
         //KEEP AT BOTTOM
-		[PlantTypeMetadata("nullplant", "Nullplant", uint.MaxValue)]
+		[PlantTypeMetadata("nullplant", "Nullplant", uint.MaxValue, 0, uint.MaxValue)]
         NULL_PLANT,
     }
 
