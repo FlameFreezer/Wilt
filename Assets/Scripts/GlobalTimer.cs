@@ -1,9 +1,18 @@
+using FMODUnity;
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class GlobalTimer : MonoBehaviour {
+	[SerializeField] StudioEventEmitter tickSound;
+
 	[SerializeField]
-	private int _ticksRemaining = 500;
+	private int _baseDuration = 75;
+
+	private int _duration;
+
+	private UInt32 _tickCount = 0;
 
 	[SerializeField]
 	private int _ticksPerClick = 50;
@@ -17,13 +26,17 @@ public class GlobalTimer : MonoBehaviour {
 	[SerializeField]
 	private TextMeshProUGUI _display;
 
+	private Dictionary<UInt32, Queue<Action>> _scheduledEvents = new();
+
 	public double addTimeCostModifier = 1.0;
 
-	void Start() {
-		Game.Instance().globalTimer = this;
-		Game.Instance().EventBus().onTick += DecrementTimer;
+	void OnEnable() {
+		_duration = _baseDuration;
 
-		UpdateDisplay();
+		Game.Instance().globalTimer = this;
+
+		Game.Instance().EventBus().onTick += AdvanceTimer;
+		Game.Instance().EventBus().onEventScheduled += ScheduleEvent;
 	}
 
 	public void AddTime() {
@@ -36,7 +49,7 @@ public class GlobalTimer : MonoBehaviour {
 		}
 		player.money -= addTimeCost;
 
-		_ticksRemaining += _ticksPerClick;
+		_duration += _ticksPerClick;
 		_addTimeCost = (uint)(_addTimeCost * _costMutliplierPerClick);
 		addTimeCostModifier = 1.0;
 
@@ -49,17 +62,34 @@ public class GlobalTimer : MonoBehaviour {
 		return (uint)_addTimeCost;
 	}
 
-	private void DecrementTimer() {
-		_ticksRemaining--;
+	private void ScheduleEvent(UInt32 ticksUntilTrigger, Action callback) {
+		if(!_scheduledEvents.TryGetValue(_tickCount + ticksUntilTrigger, out Queue<Action> eventQueue)) {
+			eventQueue = new();
+			_scheduledEvents[_tickCount + ticksUntilTrigger] = eventQueue;
+		}
+
+		eventQueue.Enqueue(callback);
+	}
+
+	private void AdvanceTimer() {
+		if(_scheduledEvents.TryGetValue(++_tickCount, out Queue<Action> eventQueue)) {
+			while(eventQueue.TryDequeue(out Action queuedAction)) {
+				queuedAction.Invoke();
+			}
+		}
 
 		UpdateDisplay();
 
-		if(_ticksRemaining < 1) {
+		if(_duration - _tickCount < 1) {
 			Game.Instance().EventBus().OnGlobalTimerExhausted();
 		}
 	}
 
 	private void UpdateDisplay() {
-		_display.text = $"{_ticksRemaining}";
+        _display.text = $"{_duration - _tickCount}";
+
+		if(tickSound != null) {
+			tickSound.Play();
+		}
 	}
 }

@@ -311,55 +311,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &72469613
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 72469615}
-  - component: {fileID: 72469614}
-  m_Layer: 0
-  m_Name: PlantSprites
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &72469614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72469613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d14a08c85019544885fee1a221edb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlantSprites
-  sprites:
-  - {fileID: 743750708, guid: b9b75ef87ce4ffa469253af9ea378a46, type: 3}
-  - {fileID: 2055964155, guid: b9b75ef87ce4ffa469253af9ea378a46, type: 3}
-  - {fileID: 1674907253, guid: b9b75ef87ce4ffa469253af9ea378a46, type: 3}
-  - {fileID: 2086714662, guid: b9b75ef87ce4ffa469253af9ea378a46, type: 3}
---- !u!4 &72469615
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72469613}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4368.084, y: 0.00001, z: 8810.276}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &76673191
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,7 +619,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.7
+  m_fontSize: 43.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1901,7 +1852,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1450668730}
   m_HandleRect: {fileID: 1450668729}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2098,7 +2049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   selectedPlant: 0
-  startingMoney: 1
+  startingMoney: 1000
   onPlantEffect: 4
 --- !u!4 &527535341
 Transform:
@@ -2219,6 +2170,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5c686165-1d25-4c6f-b2bb-aa2ae64a9e8e
     m_ActionName: 'Game/Pause[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b9adca25-32aa-401d-97a4-489556a79ba0
+    m_ActionName: 'Debug/Mute[/Keyboard/m]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
@@ -3663,7 +3618,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1581915647}
   m_HandleRect: {fileID: 1581915646}
   m_Direction: 2
-  m_Value: 1.0000013
+  m_Value: 1.0000015
   m_Size: 0.48908064
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5040,7 +4995,6 @@ SceneRoots:
   - {fileID: 1615348974}
   - {fileID: 8355354}
   - {fileID: 1534342705}
-  - {fileID: 72469615}
   - {fileID: 340293446}
   - {fileID: 229233122}
   - {fileID: 1314734968}

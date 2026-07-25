@@ -18,7 +18,7 @@ public abstract class Plant {
 		_id = id;
 	}
 
-	public void Tick()
+	public virtual void Tick(Plot plot)
 	{
 		ticksUntilHarvest--;
 	}
@@ -85,9 +85,14 @@ public class Lambflower : Plant
 
     public override void Harvest(Plot plot)
     {
+		foreach(Plot adjacentPlot in plot.GetAdjacentPlots())
+		{
+			if (adjacentPlot.plant != null && adjacentPlot.plant.ticksUntilHarvest < 1)
+			{
+				ticksUntilHarvest = 0;
+			}
+		}
 		Complete = true;
-		ticksUntilHarvest = 0;
-        return;
     }
 }
 
@@ -114,6 +119,7 @@ public class Fusspot : Plant
 		{
 			if (adjacentPlot.plant == null) continue;
 			Plant adjacentPlant = adjacentPlot.plant;
+			if (adjacentPlant.Complete) continue;
 			if (adjacentPlant.type == PlantTypes.Type.FUSSPOT) continue;
 			if (adjacentPlant.type == PlantTypes.Type.TOADSTOOL && (adjacentPlant as Toadstool).isTraveler) continue;
 			adjacentPlant.ticksUntilHarvest -= 2;
@@ -234,6 +240,137 @@ public class Cthulily : Plant
 			ApplyBonus(diagonalPlot);
 		}
 
+        Complete = true;
+    }
+}
+
+public class Fingerling : Plant
+{
+
+	public Fingerling()
+	{
+		payout = 40;
+		ticksUntilHarvest = 19;
+		type = PlantTypes.Type.FINGERLING;
+	}
+
+	public override void Payout()
+	{
+		Game.Instance()._player.GetComponent<Player>().money += payout;
+	}
+
+    public override void Harvest(Plot plot)
+    {
+		foreach(Plot adjacentPlot in plot.GetAdjacentPlots())
+		{
+			if (adjacentPlot.plant == null) continue;
+			if (adjacentPlot.plant.type == PlantTypes.Type.FUSSPOT && adjacentPlot.plant.ticksUntilHarvest < 1)
+			{
+				foreach(Plot adj in plot.GetAdjacentPlots())
+				{
+					if (adj.plant == null) continue;
+					if (adj.plant.type == PlantTypes.Type.FUSSPOT && adj.plant.ticksUntilHarvest < 1) continue;
+
+                    adj.plant.Complete = true;
+                    adj.plant.ticksUntilHarvest = 1;
+				}
+			}
+		}
+		Complete = true;
+    }
+}
+
+public class Voidbeet : Plant
+{
+	private double _multiplierPerSynergy = 1.5;
+	private uint _numSynergies = 0;
+	public Voidbeet()
+	{
+		payout = 20;
+		ticksUntilHarvest = 30;
+		type = PlantTypes.Type.HUNGERING_VOIDBEET;
+	}
+
+    public override bool CheckHarvest()
+    {
+		return false;
+    }
+
+	public override void Payout()
+	{
+		Game.Instance()._player.GetComponent<Player>().money += (uint)(payout * _multiplierPerSynergy * _numSynergies);
+	}
+
+    public override void Harvest(Plot plot)
+    {
+		foreach(Plot adjacentPlot in plot.GetAdjacentPlots())
+		{
+			if (adjacentPlot.plant == null) continue;
+			if (adjacentPlot.plant.ticksUntilHarvest >= 1) continue;
+			adjacentPlot.plant.payout = 0;
+			_numSynergies++;
+		}
+		Complete = true;
+    }
+}
+
+public class Shyweed : Plant
+{
+	private bool _beginTicking = false;
+	private double _synergyMultiplier = 1.4;
+	public Shyweed()
+	{
+		payout = 17;
+		ticksUntilHarvest = 20;
+		type = PlantTypes.Type.SHYWEED;
+	}
+
+    public override void Payout()
+    {
+		Game.Instance().Player().money += payout;
+    }
+
+    public override void Tick(Plot plot)
+    {
+		if (_beginTicking)
+		{
+            --ticksUntilHarvest;
+		}
+		// Don't start ticking unless an adjacent plant is next to it
+		else
+		{
+			foreach (Plot adjacentPlot in plot.GetAdjacentPlots())
+			{
+				if (adjacentPlot.plant != null)
+				{
+					_beginTicking = true;
+					--ticksUntilHarvest;
+					return;
+				}
+			}
+		}
+    }
+
+    public override void Harvest(Plot plot)
+    {
+		uint numAdjacentEyeweeds = 0;
+		uint numAdjacentShyweeds = 0;
+		foreach(Plot adjacentPlot in plot.GetAdjacentPlots())
+		{
+			if (adjacentPlot.plant == null) continue;
+			if (adjacentPlot.plant.type == PlantTypes.Type.SHYWEED && adjacentPlot.plant.ticksUntilHarvest < 1)
+			{
+				numAdjacentShyweeds++;
+			}
+			else if (adjacentPlot.plant.type == PlantTypes.Type.EYE_WEED && adjacentPlot.plant.ticksUntilHarvest < 1)
+			{
+				numAdjacentEyeweeds++;
+			}
+		}
+		if(numAdjacentShyweeds == 2 || numAdjacentEyeweeds == 2)
+		{
+			payout = (uint)(payout * _synergyMultiplier);
+		}
         Complete = true;
     }
 }

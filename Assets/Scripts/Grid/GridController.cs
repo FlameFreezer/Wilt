@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridController : MonoBehaviour {
@@ -138,21 +139,6 @@ public class GridController : MonoBehaviour {
         return transform.GetComponentsInChildren<Plot>();
     }
     
-    public UInt32 QueryAdjacentTiles(UInt32 sourceId, GridQueryConfig config, Func<Plant, bool> criteria) {
-        GetPlot1D(sourceId, out Plot plot);
-
-        UInt32 matches = 0;
-
-        foreach (Plot adjacentPlot in plot.GetAdjacentPlots()) {
-            if(criteria.Invoke(adjacentPlot.plant)) {
-                if(config.matchesRequired - 1 < matches++) { return matches; }
-            }
-        }
-        
-
-        return matches;
-    }
-
     // assumes there's not already a plant at this position.
     // TODO -- should we handle checking validity at the
     // input level?
@@ -177,6 +163,15 @@ public class GridController : MonoBehaviour {
             case PlantTypes.Type.CTHULILY:
                 newPlant = new Cthulily();
                 break;
+            case PlantTypes.Type.SHYWEED:
+                newPlant = new Shyweed();
+                break;
+            case PlantTypes.Type.FINGERLING:
+                newPlant = new Fingerling();
+                break;
+            case PlantTypes.Type.HUNGERING_VOIDBEET:
+                newPlant = new Voidbeet();
+                break;
             default: throw new ArgumentException(); // TODO - send an error
         }
 
@@ -198,7 +193,7 @@ public class GridController : MonoBehaviour {
         {
             if(plot.plant != null)
             {
-                plot.plant.Tick();
+                plot.Tick();
             }
         }
         HarvestPlots();
@@ -207,6 +202,25 @@ public class GridController : MonoBehaviour {
     private void HarvestPlots()
     {
         Queue<Plot> harvestQueue = new();
+        // Fusspots have to be checked before all other harvests have resolved
+        foreach(Plot plot in _plots)
+        {
+            if (plot.plant == null) continue;
+            if (plot.plant.type != PlantTypes.Type.FUSSPOT) continue;
+            if (plot.plant.ticksUntilHarvest >= 1) continue;
+
+            plot.Harvest();
+        }
+        // Fingerlings have to be checked after fusspots but before the rest of the harvests
+        foreach(Plot plot in _plots)
+        {
+            if (plot.plant == null) continue;
+            if (plot.plant.type != PlantTypes.Type.FINGERLING) continue;
+            if (plot.plant.ticksUntilHarvest >= 1) continue;
+
+            plot.Harvest();
+        }
+
         // Scan over every plot in the grid
         foreach(Plot plot in _plots)
         {
@@ -234,18 +248,22 @@ public class GridController : MonoBehaviour {
                 currentPlot.Harvest();
             }
         }
+        // Voidbeets have to be checked after all other harvests have resolved
+        foreach(Plot plot in _plots)
+        {
+            if (plot.plant == null) continue;
+            if (plot.plant.type != PlantTypes.Type.HUNGERING_VOIDBEET) continue;
+            if (plot.plant.ticksUntilHarvest >= 1) continue;
+
+            plot.Harvest();
+        }
         // Get the payouts and clear out the harvested plants
         foreach(Plot plot in _plots)
         {
-            if (plot.plant != null && plot.plant.Complete)
+            if (plot.plant != null && plot.plant.ticksUntilHarvest < 1)
             {
                 plot.RemovePlant();
             }
         }
     }
-
-}
-
-public struct GridQueryConfig {
-    public UInt32 matchesRequired;
 }

@@ -8,7 +8,6 @@ public class Game
     public GameObject _player;
     private EventBus _eventBus = new();
     public TickTimer _tickTimer;
-    public PlantSprites plantSprites;
     public GlobalTimer globalTimer;
 
     public static Game Instance()
@@ -23,5 +22,10 @@ public class Game
     public EventBus EventBus()
     {
         return _eventBus;
+    }
+
+    public Player Player()
+    {
+        return _player.GetComponent<Player>();
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    
+
     public PlantTypes.Type selectedPlant = PlantTypes.Type.EYE_WEED;
     public UInt32 startingMoney;
     private UInt32 _money;
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour
 
     public void SelectPlant(PlantTypes.Type type)
     {
-        Debug.Log($"Selected {PlantTypes.TypeToString(type)}");
+        Debug.Log($"Selected {type.GetNameCapitalized()}");
         selectedPlant = type;
     }
 }

@@ -6,6 +6,7 @@ public class Plot : MonoBehaviour, IClickable
 {
     //AUDIO REFS
     [SerializeField ] StudioEventEmitter digNoise;
+    [SerializeField] StudioEventEmitter cashNoise;
 
 
     //VARS
@@ -54,7 +55,11 @@ public class Plot : MonoBehaviour, IClickable
         {
             return;
         }
-        uint plantCost = PlantTypes.costs[player.selectedPlant];
+        uint plantCost = player.selectedPlant.GetCost();
+        if (player.selectedPlant == PlantTypes.Type.HUNGERING_VOIDBEET)
+        {
+            plantCost = (uint)(plantCost * 0.85);
+        }
         if(plantCost > player.money)
         {
             Debug.Log($"Selected plant costs ${plantCost} but you only have {player.money}");
@@ -73,8 +78,13 @@ public class Plot : MonoBehaviour, IClickable
         {
             placedPlant.ticksUntilHarvest--;
         }
+        else if (player.onPlantEffect == PlantTypes.Type.FINGERLING)
+        {
+            placedPlant.ticksUntilHarvest++;
+        }
         plantSprite.GetComponent<SpriteRenderer>().enabled = true;
-        plantSprite.GetComponent<SpriteRenderer>().sprite = Game.Instance().plantSprites.GetSprite(type);
+        plantSprite.GetComponent<SpriteRenderer>().sprite = PlantTypes.TypeToSprite(type);
+		Debug.Log(PlantTypes.TypeToSprite(type));
         harvestTimeText.GetComponent<MeshRenderer>().enabled = true;
         harvestTimeText.GetComponent<PlantHarvestTimeText>().UpdateText();
 
@@ -84,6 +94,7 @@ public class Plot : MonoBehaviour, IClickable
 
     public void Harvest() {
         plant?.Harvest(this);
+        cashNoise.Play();
     }
 
     public void RemovePlant() {
@@ -101,5 +112,13 @@ public class Plot : MonoBehaviour, IClickable
     public GridController GetParentGrid()
     {
         return _parentGrid;
+    }
+
+    public void Tick()
+    {
+        if (plant != null)
+        {
+            plant.Tick(this);
+        }
     }
 }
