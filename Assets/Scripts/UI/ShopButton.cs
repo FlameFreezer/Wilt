@@ -14,7 +14,12 @@ public class ShopButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        uint cost = PlantTypes.costs[plantType];
+        if (Game.Instance()._player.GetComponent<Player>().onPlantEffect == PlantTypes.Type.HUNGERING_VOIDBEET)
+        {
+            cost = (uint)(cost * 0.85);
+        }
+        text.text = $"{PlantTypes.TypeToString(plantType)} - ${cost}";
     }
 
     public void SelectPlant()

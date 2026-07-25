@@ -85,9 +85,14 @@ public class Lambflower : Plant
 
     public override void Harvest(Plot plot)
     {
+		foreach(Plot adjacentPlot in plot.GetAdjacentPlots())
+		{
+			if (adjacentPlot.plant != null && adjacentPlot.plant.ticksUntilHarvest < 1)
+			{
+				ticksUntilHarvest = 0;
+			}
+		}
 		Complete = true;
-		ticksUntilHarvest = 0;
-        return;
     }
 }
 
@@ -270,6 +275,40 @@ public class Fingerling : Plant
 					}
 				}
 			}
+		}
+		Complete = true;
+    }
+}
+
+public class Voidbeet : Plant
+{
+	private double _multiplierPerSynergy = 1.5;
+	private uint _numSynergies = 0;
+	public Voidbeet()
+	{
+		payout = 20;
+		ticksUntilHarvest = 30;
+		type = PlantTypes.Type.HUNGERING_VOIDBEET;
+	}
+
+    public override bool CheckHarvest()
+    {
+		return false;
+    }
+
+	public override void Payout()
+	{
+		Game.Instance()._player.GetComponent<Player>().money += (uint)(payout * _multiplierPerSynergy * _numSynergies);
+	}
+
+    public override void Harvest(Plot plot)
+    {
+		foreach(Plot adjacentPlot in plot.GetAdjacentPlots())
+		{
+			if (adjacentPlot.plant == null) continue;
+			if (adjacentPlot.plant.ticksUntilHarvest >= 1) continue;
+			adjacentPlot.plant.payout = 0;
+			_numSynergies++;
 		}
 		Complete = true;
     }

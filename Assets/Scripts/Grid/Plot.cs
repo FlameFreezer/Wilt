@@ -55,6 +55,10 @@ public class Plot : MonoBehaviour, IClickable
             return;
         }
         uint plantCost = PlantTypes.costs[player.selectedPlant];
+        if (player.onPlantEffect == PlantTypes.Type.HUNGERING_VOIDBEET)
+        {
+            plantCost = (uint)(plantCost * 0.85);
+        }
         if(plantCost > player.money)
         {
             Debug.Log($"Selected plant costs ${plantCost} but you only have {player.money}");

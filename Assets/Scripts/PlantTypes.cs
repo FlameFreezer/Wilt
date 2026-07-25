@@ -10,6 +10,7 @@ public class PlantTypes
         TOADSTOOL,
         CTHULILY,
         FINGERLING,
+        HUNGERING_VOIDBEET,
         //KEEP AT BOTTOM
         NULL_PLANT,
     }
@@ -24,6 +25,7 @@ public class PlantTypes
             case Type.TOADSTOOL: return "Traveling Toadstool";
             case Type.CTHULILY: return "Cthulily";
             case Type.FINGERLING: return "Fingerling";
+            case Type.HUNGERING_VOIDBEET: return "Hungering Voidbeet";
             case Type.NULL_PLANT: return "NULL_PLANT";
         }
         // UNREACHBALE
@@ -38,6 +40,7 @@ public class PlantTypes
         { Type.TOADSTOOL, 16 },
         { Type.CTHULILY, 45 },
         { Type.FINGERLING, 28 },
+        { Type.HUNGERING_VOIDBEET, 70 },
     };
 }
 
