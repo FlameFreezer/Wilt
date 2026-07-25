@@ -684,6 +684,10 @@ PrefabInstance:
       propertyPath: plantType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -4267504158783651036, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
+      propertyPath: selectedNoise
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2776833426480434341, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1125,10 +1129,6 @@ PrefabInstance:
       propertyPath: _display
       value: 
       objectReference: {fileID: 1638459095}
-    - target: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
-      propertyPath: _ticksRemaining
-      value: 500
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2029,6 +2029,7 @@ GameObject:
   - component: {fileID: 527535340}
   - component: {fileID: 527535342}
   - component: {fileID: 527535343}
+  - component: {fileID: 527535344}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2048,6 +2049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781be8402a0c64a49aa8ea69530440db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  uiClickNoise: {fileID: 527535344}
   selectedPlant: 0
   startingMoney: 1000
   onPlantEffect: 4
@@ -2179,6 +2181,37 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &527535344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527535339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1091562115
+      Data2: 1319699787
+      Data3: -368247131
+      Data4: 1747569654
+    Path: event:/ClickUI
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &625484579
 GameObject:
   m_ObjectHideFlags: 0
@@ -3380,6 +3413,10 @@ PrefabInstance:
       propertyPath: plantType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4267504158783651036, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
+      propertyPath: selectedNoise
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2776833426480434341, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4290,6 +4327,10 @@ PrefabInstance:
       propertyPath: plantType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -4267504158783651036, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
+      propertyPath: selectedNoise
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2776833426480434341, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4876,6 +4917,10 @@ PrefabInstance:
     - target: {fileID: -4267504158783651036, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
       propertyPath: plantType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4267504158783651036, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
+      propertyPath: selectedNoise
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2776833426480434341, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
       propertyPath: m_Pivot.x
