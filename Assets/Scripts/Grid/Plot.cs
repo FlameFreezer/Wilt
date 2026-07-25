@@ -8,7 +8,6 @@ public class Plot : MonoBehaviour, IClickable
     [SerializeField ] StudioEventEmitter digNoise;
     [SerializeField] StudioEventEmitter cashNoise;
 
-
     //VARS
     private uint _xIndex;
     private uint _yIndex;
@@ -83,13 +82,23 @@ public class Plot : MonoBehaviour, IClickable
             placedPlant.ticksUntilHarvest++;
         }
         plantSprite.GetComponent<SpriteRenderer>().enabled = true;
-        plantSprite.GetComponent<SpriteRenderer>().sprite = PlantTypes.TypeToSprite(type);
-		Debug.Log(PlantTypes.TypeToSprite(type));
         harvestTimeText.GetComponent<MeshRenderer>().enabled = true;
         harvestTimeText.GetComponent<PlantHarvestTimeText>().UpdateText();
+        SetModel(type);
 
         player.onPlantEffect = type;
         return placedPlant;
+    }
+
+    private void SetModel(PlantTypes.Type type) {
+        if (type == PlantTypes.Type.CTHULILY) {
+            // Right now only the Cthulily has animations
+            plantSprite.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>($"Animations/cthulily_idle{Random.Range(1, 4)}");
+            // The animator itself set sprites, no need to set GetComponent<SpriteRenderer>().sprite
+        } else {
+            // Defer to non-animated sprite otherwise
+            plantSprite.GetComponent<SpriteRenderer>().sprite = PlantTypes.TypeToSprite(type);
+        }
     }
 
     public void Harvest() {
