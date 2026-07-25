@@ -99,16 +99,6 @@ public class GridController : MonoBehaviour {
                 }
             }
         }
-
-        if (transform.parent) {
-            Transform modelTransform = transform.parent.Find("Model");
-            if (modelTransform) {
-                var modelScale = modelTransform.localScale;
-                modelScale.x = width * spacing.x;
-                modelScale.z = height * spacing.y;
-                modelTransform.localScale = modelScale;
-            }
-        }
     }
 
     public bool GetPlot1D(uint index, out Plot plot) {
