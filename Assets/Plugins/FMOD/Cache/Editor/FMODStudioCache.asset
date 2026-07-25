@@ -33,7 +33,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639205352364869506
+  lastModified: 639205429471177881
   FileSizes: []
   Exists: 1
 --- !u!114 &-3354245362753037710
@@ -127,8 +127,8 @@ MonoBehaviour:
     Data3: 1776156041
     Data4: 2081028271
   Banks:
-  - {fileID: -157335304713887053}
   - {fileID: -9063648978371473705}
+  - {fileID: -157335304713887053}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -188,7 +188,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 6099674121338278224}
   cacheVersion: 131860
-  cacheTime: 639205406567512138
+  cacheTime: 639205429471177881
   SerializableEventsDict:
   - key: event:/CoinRattleNoise
     index: 0
