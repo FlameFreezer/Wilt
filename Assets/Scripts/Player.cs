@@ -1,9 +1,13 @@
+using FMODUnity;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    //Audio
+    [SerializeField] StudioEventEmitter uiClickNoise;
+
     public PlantTypes.Type selectedPlant = PlantTypes.Type.EYE_WEED;
     public UInt32 startingMoney;
     private UInt32 _money;
@@ -44,6 +48,7 @@ public class Player : MonoBehaviour
 
     public void SelectPlant(PlantTypes.Type type)
     {
+        uiClickNoise.Play();
         Debug.Log($"Selected {type.GetNameCapitalized()}");
         selectedPlant = type;
     }
