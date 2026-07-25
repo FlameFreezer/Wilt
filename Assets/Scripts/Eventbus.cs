@@ -14,6 +14,8 @@ public class EventBus
 
 	public event Action onGlobalTimerExhausted;
 
+    public event Action onGlobalTimeAdded;
+
     public void OnTick()
     {
         onTick?.Invoke();
@@ -39,4 +41,9 @@ public class EventBus
 	public void OnGlobalTimerExhausted() {
 		onGlobalTimerExhausted?.Invoke();
 	}
+
+    public void OnGlobalTimeAdded()
+    {
+        onGlobalTimeAdded?.Invoke();
+    }
 }

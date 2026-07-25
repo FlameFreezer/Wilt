@@ -10,6 +10,7 @@ public class PlantTypes
         LAMBFLOWER,
         FUSSPOT,
         TOADSTOOL,
+        CTHULILY,
         //KEEP AT BOTTOM
         NULL_PLANT,
     }
@@ -22,6 +23,7 @@ public class PlantTypes
             case Type.LAMBFLOWER: return "Lambflower";
             case Type.FUSSPOT: return "Fusspot";
             case Type.TOADSTOOL: return "Traveling Toadstool";
+            case Type.CTHULILY: return "Cthulily";
             case Type.NULL_PLANT: return "NULL_PLANT";
         }
         // UNREACHBALE
@@ -46,6 +48,7 @@ public class PlantTypes
         { Type.LAMBFLOWER, 7 },
         { Type.FUSSPOT, 20 },
         { Type.TOADSTOOL, 16 },
+        { Type.CTHULILY, 45 },
     };
 }
 
