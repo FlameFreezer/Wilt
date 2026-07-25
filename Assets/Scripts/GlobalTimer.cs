@@ -14,12 +14,12 @@ public class GlobalTimer : MonoBehaviour {
 	[SerializeField]
 	private TextMeshProUGUI _display;
 
-	private Dictionary<UInt32, Queue<Action>> _scheduledEvents;
+	private Dictionary<UInt32, Queue<Action>> _scheduledEvents = new();
 
-	void Start() {
+	void OnEnable() {
 		_duration = _baseDuration;
 
-		Game.Instance().EventBus().onTick += DecrementTimer;
+		Game.Instance().EventBus().onTick += AdvanceTimer;
 		Game.Instance().EventBus().onEventScheduled += ScheduleEvent;
 
 		UpdateDisplay();
@@ -40,8 +40,12 @@ public class GlobalTimer : MonoBehaviour {
 		eventQueue.Enqueue(callback);
 	}
 
-	private void DecrementTimer() {
-		_tickCount++;
+	private void AdvanceTimer() {
+		if(_scheduledEvents.TryGetValue(++_tickCount, out Queue<Action> eventQueue)) {
+			while(eventQueue.TryDequeue(out Action queuedAction)) {
+				queuedAction.Invoke();
+			}
+		}
 
 		UpdateDisplay();
 
