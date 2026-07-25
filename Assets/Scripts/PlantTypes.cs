@@ -27,7 +27,7 @@ public class PlantTypes
 
 	public static Type StringToType(string str) {
 		return str.ToLower() switch {
-			"eyeweed" => Type.EYE_WEED,
+			"eye_weed" => Type.EYE_WEED,
 			"lambflower" => Type.LAMBFLOWER,
 			_ => Type.NULL_PLANT
 		};
