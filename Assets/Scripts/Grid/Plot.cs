@@ -6,6 +6,7 @@ public class Plot : MonoBehaviour, IClickable
 {
     //AUDIO REFS
     [SerializeField ] StudioEventEmitter digNoise;
+    [SerializeField] StudioEventEmitter cashNoise;
 
 
     //VARS
@@ -92,6 +93,7 @@ public class Plot : MonoBehaviour, IClickable
 
     public void Harvest() {
         plant?.Harvest(this);
+        cashNoise.Play();
     }
 
     public void RemovePlant() {

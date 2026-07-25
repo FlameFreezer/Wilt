@@ -340,11 +340,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d14a08c85019544885fee1a221edb48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantSprites
-  sprites:
-  - {fileID: 743750708, guid: b9b75ef87ce4ffa469253af9ea378a46, type: 3}
-  - {fileID: 2055964155, guid: b9b75ef87ce4ffa469253af9ea378a46, type: 3}
-  - {fileID: 1674907253, guid: b9b75ef87ce4ffa469253af9ea378a46, type: 3}
-  - {fileID: 2086714662, guid: b9b75ef87ce4ffa469253af9ea378a46, type: 3}
 --- !u!4 &72469615
 Transform:
   m_ObjectHideFlags: 0
@@ -721,6 +716,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132491236}
   m_CullTransparentMesh: 1
+--- !u!1 &142791824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 142791825}
+  - component: {fileID: 142791826}
+  m_Layer: 5
+  m_Name: shop_NOISEMAKER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &142791825
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142791824}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 466077938}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &142791826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142791824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1091562115
+      Data2: 1319699787
+      Data3: -368247131
+      Data4: 1747569654
+    Path: event:/ClickUI
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &170785586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -733,6 +795,10 @@ PrefabInstance:
       propertyPath: plantType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -4267504158783651036, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
+      propertyPath: selectedNoise
+      value: 
+      objectReference: {fileID: 142791826}
     - target: {fileID: 2776833426480434341, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1697,6 +1763,7 @@ RectTransform:
   - {fileID: 831214671}
   - {fileID: 497538342}
   - {fileID: 1433514980}
+  - {fileID: 142791825}
   m_Father: {fileID: 1615348974}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
@@ -2219,6 +2286,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5c686165-1d25-4c6f-b2bb-aa2ae64a9e8e
     m_ActionName: 'Game/Pause[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b9adca25-32aa-401d-97a4-489556a79ba0
+    m_ActionName: 'Debug/Mute[/Keyboard/m]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
@@ -3425,6 +3496,10 @@ PrefabInstance:
       propertyPath: plantType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4267504158783651036, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
+      propertyPath: selectedNoise
+      value: 
+      objectReference: {fileID: 142791826}
     - target: {fileID: 2776833426480434341, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4335,6 +4410,10 @@ PrefabInstance:
       propertyPath: plantType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -4267504158783651036, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
+      propertyPath: selectedNoise
+      value: 
+      objectReference: {fileID: 142791826}
     - target: {fileID: 2776833426480434341, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4945,6 +5024,10 @@ PrefabInstance:
       propertyPath: plantType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4267504158783651036, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
+      propertyPath: selectedNoise
+      value: 
+      objectReference: {fileID: 142791826}
     - target: {fileID: 2776833426480434341, guid: 188d62e5da452a24aa55ad8d0e3271ab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

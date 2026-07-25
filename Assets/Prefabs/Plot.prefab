@@ -389,6 +389,7 @@ GameObject:
   - component: {fileID: -3594512883265149783}
   - component: {fileID: -6078497810899048027}
   - component: {fileID: -2251222241342295826}
+  - component: {fileID: 5894529505574688943}
   m_Layer: 0
   m_Name: Plot
   m_TagString: Untagged
@@ -427,6 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   digNoise: {fileID: -2251222241342295826}
+  cashNoise: {fileID: 5894529505574688943}
   plantSprite: {fileID: 871080362723522979}
   harvestTimeText: {fileID: 699727266527229120}
 --- !u!65 &-3594512883265149783
@@ -497,6 +499,37 @@ MonoBehaviour:
       Data3: -1102690675
       Data4: -829120511
     Path: event:/DirtDig
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &5894529505574688943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6982671799912548442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -638752960
+      Data2: 1313429683
+      Data3: 1776156041
+      Data4: 2081028271
+    Path: event:/CoinRattleNoise
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/Sound Effects.bank
   Name: Sound Effects
   StudioPath: bank:/Sound Effects
-  lastModified: 639205133020000000
+  lastModified: 639205351439947479
   FileSizes: []
   Exists: 1
 --- !u!114 &-7837419624675989848
@@ -33,9 +33,36 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639205133020000000
+  lastModified: 639205352364869506
   FileSizes: []
   Exists: 1
+--- !u!114 &-3354245362753037710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Click sound
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Click sound
+  Guid:
+    Data1: 649643241
+    Data2: 1177135556
+    Data3: 253985720
+    Data4: 1299237248
+  Banks:
+  - {fileID: -2590769555682768467}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2590769555682768467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,7 +78,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 639205133020000000
+  lastModified: 639205351849305689
   FileSizes: []
   Exists: 1
 --- !u!114 &-2201804826912646382
@@ -100,6 +127,7 @@ MonoBehaviour:
     Data3: 1776156041
     Data4: 2081028271
   Banks:
+  - {fileID: -9063648978371473705}
   - {fileID: -157335304713887053}
   IsStream: 0
   Is3D: 0
@@ -123,7 +151,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639205133020000000
+  lastModified: 639205351439701453
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -151,13 +179,15 @@ MonoBehaviour:
   - {fileID: 457193638499785660}
   - {fileID: -2201804826912646382}
   - {fileID: 4218805663131516711}
+  - {fileID: 7188647529962041685}
+  - {fileID: -3354245362753037710}
   EditorParameters: []
   MasterBanks:
   - {fileID: -157335304713887053}
   StringsBanks:
   - {fileID: 6099674121338278224}
   cacheVersion: 131860
-  cacheTime: 639205133020000000
+  cacheTime: 639205352364869506
   SerializableEventsDict:
   - key: event:/CoinRattleNoise
     index: 0
@@ -171,6 +201,10 @@ MonoBehaviour:
     index: 4
   - key: event:/ClickUI
     index: 5
+  - key: event:/PlantGrownUp
+    index: 6
+  - key: event:/Click sound
+    index: 7
 --- !u!114 &457193638499785660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,7 +285,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 1846
 --- !u!114 &5497803228157693359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,8 +328,35 @@ MonoBehaviour:
   Path: Assets/FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639205133020000000
+  lastModified: 639205351439721620
   FileSizes:
   - Name: 
-    Value: 1138
+    Value: 1230
   Exists: 1
+--- !u!114 &7188647529962041685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlantGrownUp
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/PlantGrownUp
+  Guid:
+    Data1: 1022213597
+    Data2: 1310387114
+    Data3: -381274220
+    Data4: -218540332
+  Banks:
+  - {fileID: -9063648978371473705}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
