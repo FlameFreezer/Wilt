@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridController : MonoBehaviour {
@@ -138,21 +139,6 @@ public class GridController : MonoBehaviour {
         return transform.GetComponentsInChildren<Plot>();
     }
     
-    public UInt32 QueryAdjacentTiles(UInt32 sourceId, GridQueryConfig config, Func<Plant, bool> criteria) {
-        GetPlot1D(sourceId, out Plot plot);
-
-        UInt32 matches = 0;
-
-        foreach (Plot adjacentPlot in plot.GetAdjacentPlots()) {
-            if(criteria.Invoke(adjacentPlot.plant)) {
-                if(config.matchesRequired - 1 < matches++) { return matches; }
-            }
-        }
-        
-
-        return matches;
-    }
-
     // assumes there's not already a plant at this position.
     // TODO -- should we handle checking validity at the
     // input level?
@@ -179,6 +165,9 @@ public class GridController : MonoBehaviour {
                 break;
             case PlantTypes.Type.FINGERLING:
                 newPlant = new Fingerling();
+                break;
+            case PlantTypes.Type.HUNGERING_VOIDBEET:
+                newPlant = new Voidbeet();
                 break;
             default: throw new ArgumentException(); // TODO - send an error
         }
@@ -237,18 +226,22 @@ public class GridController : MonoBehaviour {
                 currentPlot.Harvest();
             }
         }
+        // Voidbeets have to be checked after all other harvests have resolved
+        foreach(Plot plot in _plots)
+        {
+            if (plot.plant == null) continue;
+            if (plot.plant.type != PlantTypes.Type.HUNGERING_VOIDBEET) continue;
+            if (plot.plant.ticksUntilHarvest >= 1) continue;
+
+            plot.Harvest();
+        }
         // Get the payouts and clear out the harvested plants
         foreach(Plot plot in _plots)
         {
-            if (plot.plant != null && plot.plant.Complete && plot.plant.ticksUntilHarvest < 1)
+            if (plot.plant != null && plot.plant.ticksUntilHarvest < 1)
             {
                 plot.RemovePlant();
             }
         }
     }
-
-}
-
-public struct GridQueryConfig {
-    public UInt32 matchesRequired;
 }

@@ -58,10 +58,30 @@ public class PlantTypes
         TOADSTOOL,
 		[PlantTypeMetadata("cthulily", "Cthulily", 45)]
         CTHULILY,
+		[PlantTypeMetadata("fingerling", "Fingerling", 28)]
         FINGERLING,
+		[PlantTypeMetadata("hungeringvoidbeet", "Hungering Voidbeet", 70)]
+        HUNGERING_VOIDBEET,
         //KEEP AT BOTTOM
 		[PlantTypeMetadata("nullplant", "Nullplant", uint.MaxValue)]
         NULL_PLANT,
+    }
+
+    public static string TypeToString(PlantTypes.Type type)
+    {
+        switch(type)
+        {
+            case Type.EYE_WEED: return "Eyeweed";
+            case Type.LAMBFLOWER: return "Lambflower";
+            case Type.FUSSPOT: return "Fusspot";
+            case Type.TOADSTOOL: return "Traveling Toadstool";
+            case Type.CTHULILY: return "Cthulily";
+            case Type.FINGERLING: return "Fingerling";
+            case Type.HUNGERING_VOIDBEET: return "Hungering Voidbeet";
+            case Type.NULL_PLANT: return "NULL_PLANT";
+        }
+        // UNREACHBALE
+        throw new InvalidProgramException();
     }
 
 	public static Type TypeFromString(string str) {
@@ -75,7 +95,7 @@ public class PlantTypes
 	}
 
 	public static Sprite TypeToPortrait(Type type) {
-		return Resources.Load<Sprite>($"PlantPortraits/{type.GetName()}");
+		return Resources.Load<Sprite>($"PlantPortraits/{TypeToString(type)}");
 	}
 
 	public static Sprite TypeToSprite(Type type) {
