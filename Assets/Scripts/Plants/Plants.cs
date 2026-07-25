@@ -184,7 +184,7 @@ public class Cthulily : Plant
 	public Cthulily()
 	{
 		payout = 0;
-		ticksUntilHarvest = 5;
+		ticksUntilHarvest = 20;
 		type = PlantTypes.Type.CTHULILY;
 	}
 
