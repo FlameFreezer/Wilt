@@ -37,6 +37,8 @@ public class GlobalTimer : MonoBehaviour {
 
 		Game.Instance().EventBus().onTick += AdvanceTimer;
 		Game.Instance().EventBus().onEventScheduled += ScheduleEvent;
+
+		UpdateDisplay();
 	}
 
 	public void AddTime() {
