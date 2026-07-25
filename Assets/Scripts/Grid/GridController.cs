@@ -174,6 +174,9 @@ public class GridController : MonoBehaviour {
             case PlantTypes.Type.TOADSTOOL:
                 newPlant = new Toadstool();
                 break;
+            case PlantTypes.Type.CTHULILY:
+                newPlant = new Cthulily();
+                break;
             default: throw new ArgumentException(); // TODO - send an error
         }
 

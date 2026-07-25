@@ -1,19 +1,26 @@
-using System;
+using FMODUnity;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Plot : MonoBehaviour, IClickable
 {
+    //AUDIO REFS
+    [SerializeField ] StudioEventEmitter digNoise;
+
+
+    //VARS
     private uint _xIndex;
     private uint _yIndex;
     private GridController _parentGrid;
     private readonly HashSet<Plot> _adjacentPlots = new();
     public GameObject plantSprite;
     public Plant plant = null;
+    public GameObject harvestTimeText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         plantSprite.GetComponent<SpriteRenderer>().enabled = false;
+        harvestTimeText.GetComponent<MeshRenderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -59,9 +66,19 @@ public class Plot : MonoBehaviour, IClickable
 
     public Plant PlacePlant(PlantTypes.Type type)
     {
+        digNoise.Play();
         Plant placedPlant = _parentGrid.SpawnPlantAtGridPosition(_xIndex, _yIndex, type);
+        Player player = Game.Instance()._player.GetComponent<Player>();
+        if(player.onPlantEffect == PlantTypes.Type.LAMBFLOWER)
+        {
+            placedPlant.ticksUntilHarvest--;
+        }
         plantSprite.GetComponent<SpriteRenderer>().enabled = true;
         plantSprite.GetComponent<SpriteRenderer>().sprite = Game.Instance().plantSprites.GetSprite(type);
+        harvestTimeText.GetComponent<MeshRenderer>().enabled = true;
+        harvestTimeText.GetComponent<PlantHarvestTimeText>().UpdateText();
+
+        player.onPlantEffect = type;
         return placedPlant;
     }
 
@@ -73,10 +90,16 @@ public class Plot : MonoBehaviour, IClickable
         plant?.Payout();
         plant = null;
         plantSprite.GetComponent<SpriteRenderer>().enabled = false;
+        harvestTimeText.GetComponent<MeshRenderer>().enabled = false;
     }
 
     public void SetParentGrid(GridController parentGrid)
     {
         _parentGrid = parentGrid;
+    }
+
+    public GridController GetParentGrid()
+    {
+        return _parentGrid;
     }
 }
