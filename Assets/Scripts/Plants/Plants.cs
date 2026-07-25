@@ -6,6 +6,7 @@ public abstract class Plant {
 	public PlantTypes.Type type;
 
 	public int ticksUntilHarvest = 0;
+	public uint payout = 0;
 	protected UInt32 _id = UInt32.MaxValue;
 
     public event Action<UInt32> OnHarvestRequested;
@@ -37,17 +38,17 @@ public abstract class Plant {
 }
 
 public class EyeWeed : Plant {
-	private UInt32 _payout = 2;
 
 	public EyeWeed()
 	{
+		payout = 2;
 		ticksUntilHarvest = 3;
 		type = PlantTypes.Type.EYE_WEED;
 	}
 
 	public override void Payout()
 	{
-		Game.Instance()._player.GetComponent<Player>().money += _payout;
+		Game.Instance()._player.GetComponent<Player>().money += payout;
 	}
 
 	public override void Harvest(Plot plot) {
@@ -55,7 +56,7 @@ public class EyeWeed : Plant {
 		{
 			if(adjacentPlot.plant != null && adjacentPlot.plant.type == PlantTypes.Type.EYE_WEED && adjacentPlot.plant.ticksUntilHarvest < 1)
 			{
-				_payout = (UInt32)(_payout * 1.5);
+				payout = (UInt32)(payout * 1.5);
 				break;
 			}
 		}
@@ -65,10 +66,9 @@ public class EyeWeed : Plant {
 
 public class Lambflower : Plant
 {
-	private UInt32 _payout = 9;
-
 	public Lambflower()
 	{
+		payout = 9;
 		ticksUntilHarvest = 8;
 		type = PlantTypes.Type.LAMBFLOWER;
 	}
@@ -80,7 +80,7 @@ public class Lambflower : Plant
 
 	public override void Payout()
 	{
-		Game.Instance()._player.GetComponent<Player>().money += _payout;
+		Game.Instance()._player.GetComponent<Player>().money += payout;
 	}
 
     public override void Harvest(Plot plot)
@@ -93,18 +93,18 @@ public class Lambflower : Plant
 
 public class Fusspot : Plant
 {
-	private UInt32 _payout = 25;
 	private UInt32 _payoutPerSynergy = 5;
 
 	public Fusspot()
 	{
+		payout = 25;
 		ticksUntilHarvest = 18;
 		type = PlantTypes.Type.FUSSPOT;
 	}
 
 	public override void Payout()
 	{
-		Game.Instance()._player.GetComponent<Player>().money += _payout;
+		Game.Instance()._player.GetComponent<Player>().money += payout;
 	}
 
 	public override void Harvest(Plot plot)
@@ -125,7 +125,7 @@ public class Fusspot : Plant
 			if (adjacentPlot.plant == null) continue;
 			if (adjacentPlot.plant.type == PlantTypes.Type.FUSSPOT && adjacentPlot.plant.ticksUntilHarvest < 1)
 			{
-				_payout += _payoutPerSynergy;
+				payout += _payoutPerSynergy;
 			}
 		}
 
@@ -135,18 +135,18 @@ public class Fusspot : Plant
 
 public class Toadstool : Plant
 {
-	private uint _payout = 30;
 	public bool isTraveler = false;
 
 	public Toadstool()
 	{
+		payout = 30;
 		ticksUntilHarvest = 5;
 		type = PlantTypes.Type.TOADSTOOL;
 	}
 
 	public override void Payout()
 	{
-		Game.Instance()._player.GetComponent<Player>().money += _payout;
+		Game.Instance()._player.GetComponent<Player>().money += payout;
 	}
 
 	public override void Harvest(Plot plot)
@@ -168,7 +168,7 @@ public class Toadstool : Plant
 
 				int index = UnityEngine.Random.Range(0, openPlots.Count);
 				Toadstool traveler = openPlots[index].PlacePlant(PlantTypes.Type.TOADSTOOL) as Toadstool;
-				traveler._payout = 2;
+				traveler.payout = 2;
 				traveler.ticksUntilHarvest = 1;
 				traveler.isTraveler = true;
 				break;
@@ -176,4 +176,64 @@ public class Toadstool : Plant
 		}
         Complete = true;
 	}
+}
+
+public class Cthulily : Plant
+{
+	private double _payoutMultiplier = 4.0;
+	public Cthulily()
+	{
+		payout = 0;
+		ticksUntilHarvest = 5;
+		type = PlantTypes.Type.CTHULILY;
+	}
+
+	public override void Payout()
+	{
+		Game.Instance().globalTimer.addTimeCostModifier *= 0.9;
+	}
+
+    public override void Harvest(Plot plot)
+    {
+		foreach(Plot adjacentPlot in plot.GetAdjacentPlots())
+		{
+			if(adjacentPlot.plant != null && adjacentPlot.plant.type == PlantTypes.Type.CTHULILY)
+			{
+				Complete = true;
+				return;
+			}
+		}
+		plot.GetPosition(out uint xIndex, out uint yIndex);
+		GridController grid = plot.GetParentGrid();
+		Plot diagonalPlot = null;
+		void ApplyBonus(Plot diagonalPlot)
+		{
+			if (diagonalPlot.plant != null)
+			{
+				diagonalPlot.plant.payout = (uint)(diagonalPlot.plant.payout * _payoutMultiplier);
+			}
+		}
+		// Up left
+		if(grid.GetPlot2D(xIndex - 1, yIndex - 1, out diagonalPlot))
+		{
+			ApplyBonus(diagonalPlot);
+		}
+		//Up right
+		if(grid.GetPlot2D(xIndex + 1, yIndex - 1, out diagonalPlot))
+		{
+			ApplyBonus(diagonalPlot);
+		}
+		// Down left
+		if(grid.GetPlot2D(xIndex - 1, yIndex + 1, out diagonalPlot))
+		{
+			ApplyBonus(diagonalPlot);
+		}
+		// Down right
+		if(grid.GetPlot2D(xIndex + 1, yIndex + 1, out diagonalPlot))
+		{
+			ApplyBonus(diagonalPlot);
+		}
+
+        Complete = true;
+    }
 }

@@ -12,12 +12,12 @@ public class AddTimeButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateDisplay(); 
     }
 
     void UpdateDisplay()
     {
         GlobalTimer globalTimer = Game.Instance().globalTimer;
-        GetComponent<TextMeshProUGUI>().text = $"Add Time\n${globalTimer.GetAddTimeCost()}";
+        GetComponent<TextMeshProUGUI>().text = $"Add Time\n${(uint)(globalTimer.GetAddTimeCost() * globalTimer.addTimeCostModifier)}";
     }
 }

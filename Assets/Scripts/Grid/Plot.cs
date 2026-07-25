@@ -1,7 +1,5 @@
 using FMODUnity;
-using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class Plot : MonoBehaviour, IClickable
@@ -98,5 +96,10 @@ public class Plot : MonoBehaviour, IClickable
     public void SetParentGrid(GridController parentGrid)
     {
         _parentGrid = parentGrid;
+    }
+
+    public GridController GetParentGrid()
+    {
+        return _parentGrid;
     }
 }

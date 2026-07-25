@@ -93,6 +93,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -101,7 +114,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 7
-        y: 27
+        y: 633
         width: 643
         height: 579
       alignment: 0
@@ -112,7 +125,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c8959f899e61074c8c0f68e01f807c3
+      spriteID: 18ca7320672b9eb49b9b4dd24ed55106
       internalID: 743750708
       vertices: []
       indices: 
@@ -123,7 +136,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 696
-        y: 24
+        y: 630
         width: 565
         height: 540
       alignment: 0
@@ -134,8 +147,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb5c0b0c2af5db741a1d562834646382
+      spriteID: f82186da7e48c264ba82965847d88461
       internalID: 2055964155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plants_2
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 621
+        width: 579
+        height: 578
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e360fedbe33c154428c37d0f4d838403
+      internalID: 1674907253
       vertices: []
       indices: 
       edges: []
@@ -145,7 +180,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1952
-        y: 8
+        y: 614
         width: 626
         height: 580
       alignment: 0
@@ -156,20 +191,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fc60e8907b5cb740adfb946643cb853
+      spriteID: bc6b40877c3787c4e83a029411cfe642
       internalID: 2086714662
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plants_2
+      name: Plants_4
       rect:
         serializedVersion: 2
-        x: 1333
-        y: 14
-        width: 579
-        height: 579
+        x: 62
+        y: 47
+        width: 525
+        height: 523
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93ff9ab24bddd714c9941b8f879799d8
-      internalID: 1674907253
+      spriteID: bd476c0ed88deb24d94dd499d217cbfd
+      internalID: 1901030310
       vertices: []
       indices: 
       edges: []
@@ -206,6 +241,7 @@ TextureImporter:
       Plants_1: 2055964155
       Plants_2: 1674907253
       Plants_3: 2086714662
+      Plants_4: 1901030310
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
