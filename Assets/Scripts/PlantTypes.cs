@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Xml.Serialization;
+using UnityEngine;
+
 public class PlantTypes
 {
     public enum Type : int
@@ -30,6 +31,10 @@ public class PlantTypes
 			"lambflower" => Type.LAMBFLOWER,
 			_ => Type.NULL_PLANT
 		};
+	}
+
+	public static Sprite TypeToPortrait(Type type) {
+		return Resources.Load<Sprite>($"PlantPortraits/{TypeToString(type)}");
 	}
 
     public static Dictionary<Type, uint> costs = new()
