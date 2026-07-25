@@ -16,7 +16,7 @@ public class DialogueDispatcher : MonoBehaviour {
 		TextAsset[] dialogueAssets = Resources.LoadAll<TextAsset>("PlantDialogue");
 
 		foreach(TextAsset dialogueAsset in dialogueAssets) {
-			PlantTypes.Type correspondingPlantType = PlantTypes.StringToType(dialogueAsset.name);
+			PlantTypes.Type correspondingPlantType = PlantTypes.TypeFromString(dialogueAsset.name);
 			if(correspondingPlantType == PlantTypes.Type.NULL_PLANT) {
 				Debug.LogWarning($"Tried to load plant dialogue for plant type \"{dialogueAsset.name}\", which does not exist.");
 				continue;

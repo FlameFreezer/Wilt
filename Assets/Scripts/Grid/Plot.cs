@@ -54,7 +54,7 @@ public class Plot : MonoBehaviour, IClickable
         {
             return;
         }
-        uint plantCost = PlantTypes.costs[player.selectedPlant];
+        uint plantCost = player.selectedPlant.GetCost();
         if(plantCost > player.money)
         {
             Debug.Log($"Selected plant costs ${plantCost} but you only have {player.money}");
