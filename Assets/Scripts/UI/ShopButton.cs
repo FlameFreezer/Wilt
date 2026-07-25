@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ShopButton : MonoBehaviour
 {
-    //Audio
-    [SerializeField] StudioEventEmitter selectedNoise;
     public PlantTypes.Type plantType;
     public TextMeshProUGUI text;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,6 +26,5 @@ public class ShopButton : MonoBehaviour
     public void SelectPlant()
     {
         Game.Instance()._player.GetComponent<Player>().SelectPlant(plantType);
-        // selectedNoise.Play();
     }
 }
