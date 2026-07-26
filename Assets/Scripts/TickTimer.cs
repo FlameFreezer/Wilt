@@ -37,6 +37,8 @@ public class TickTimer : MonoBehaviour
         ticksPerSecond[TickRate.SLOW] = slowTickRate;
         ticksPerSecond[TickRate.MEDIUM] = mediumTickRate;
         ticksPerSecond[TickRate.FAST] = fastTickRate;
+
+		Game.Instance().EventBus().onPauseRequested += Pause;
     }
 
     // Update is called once per frame
@@ -54,12 +56,18 @@ public class TickTimer : MonoBehaviour
         }
     }
 
-    public void PauseTimer(InputAction.CallbackContext context)
+    public void RequestPause(InputAction.CallbackContext context)
     {
-        if(!context.started)
-        {
-            return;
-        }
+		if(!context.started) { return; }
+
+		Game.Instance().EventBus().OnPauseRequested();
+    }
+
+	private void Pause() {
+        if(Game.Instance().dialogueActive && _isPaused) {
+			return;
+		}
+
         _isPaused = !_isPaused;
         Game.Instance().EventBus().OnPause(_isPaused);
 

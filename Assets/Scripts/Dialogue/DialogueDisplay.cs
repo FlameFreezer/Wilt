@@ -29,6 +29,7 @@ public class DialogueDisplay : MonoBehaviour {
 		_portraitDisplay.sprite = portrait;
 
 		Game.Instance().dialogueActive = true;
+		Game.Instance().EventBus().OnPauseRequested();
 
 		ContinueTyping();
 	}
