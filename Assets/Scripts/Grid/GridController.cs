@@ -11,6 +11,8 @@ public class GridController : MonoBehaviour {
     [SerializeField] private Vector2 spacing = new(1, 1.4142f);
     [SerializeField] private GameObject plotPrefab;
 
+	private Dictionary<PlantTypes.Type, uint> _plantCounts = new();
+
     private Queue<UInt32>[] _harvestQueues = new Queue<UInt32>[Enum.GetNames(typeof(PlantTypes.Type)).Length];
 
     private Plot[] _plots;
@@ -180,6 +182,15 @@ public class GridController : MonoBehaviour {
         plot.plant = newPlant;
 		
         newPlant.OnHarvestRequested += _harvestQueues[(int)type].Enqueue;
+
+		if(!_plantCounts.TryGetValue(type, out uint plantCount)) {
+			Game.Instance().EventBus().OnPlantTypeFirstPlanted(type);
+
+			plantCount = 0;
+		}
+
+		_plantCounts[type] = plantCount + 1;
+
         return newPlant;
     }
 
