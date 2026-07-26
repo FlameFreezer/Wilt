@@ -1411,7 +1411,7 @@ PrefabInstance:
     - target: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
       propertyPath: _display
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1749571430}
     - target: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
       propertyPath: _baseDuration
       value: 500
@@ -3420,7 +3420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3381187321692023359, guid: ba26438ba77bda54c8593d74c39f42cc, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PauseTimer
+      value: RequestPause
       objectReference: {fileID: 0}
     - target: {fileID: 3381187321692023359, guid: ba26438ba77bda54c8593d74c39f42cc, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -3925,6 +3925,7 @@ GameObject:
   - component: {fileID: 1354986696}
   - component: {fileID: 1354986698}
   - component: {fileID: 1354986697}
+  - component: {fileID: 1354986699}
   m_Layer: 5
   m_Name: ControlPanelText
   m_TagString: Untagged
@@ -4051,6 +4052,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354986695}
   m_CullTransparentMesh: 1
+--- !u!114 &1354986699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354986695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 575d6bc1ab50588e986e0575ea604417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueDisplay
+  _portraitDisplay: {fileID: 681517260}
 --- !u!1 &1359873282
 GameObject:
   m_ObjectHideFlags: 0
@@ -4937,6 +4951,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875301049}
   m_CullTransparentMesh: 1
+--- !u!1 &1972386157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1972386159}
+  - component: {fileID: 1972386158}
+  m_Layer: 0
+  m_Name: DialogueDispatcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1972386158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972386157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c37567c1eddd8f10a10241beaf6c071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueDispatcher
+--- !u!4 &1972386159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972386157}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1164.6609, y: -0.00008, z: 397.52396}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1983470502
 GameObject:
   m_ObjectHideFlags: 0
@@ -5303,3 +5361,4 @@ SceneRoots:
   - {fileID: 1181903103}
   - {fileID: 698460960}
   - {fileID: 1983470504}
+  - {fileID: 1972386159}

@@ -7,6 +7,8 @@ public class EventBus
     public event Action onTick;
     public event Action<bool> onPause;
 
+	public event Action onPauseRequested;
+
 	public event Action<UInt32> onPlayerMoneyChanged;
 
 	public event Action<PlantTypes.Type> onPlantTypeFirstPlanted;
@@ -31,6 +33,10 @@ public class EventBus
     {
         onPause?.Invoke(isPaused);
     }
+
+	public void OnPauseRequested() {
+		onPauseRequested?.Invoke();
+	}
 
 	public void OnPlayerMoneyChanged(UInt32 money) {
 		onPlayerMoneyChanged?.Invoke(money);
