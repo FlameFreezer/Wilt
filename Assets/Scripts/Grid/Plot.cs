@@ -20,7 +20,7 @@ public class Plot : MonoBehaviour, IClickable
     void Start()
     {
         plantSprite.GetComponent<SpriteRenderer>().enabled = false;
-        harvestTimeText.GetComponent<MeshRenderer>().enabled = false;
+        harvestTimeText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -83,7 +83,7 @@ public class Plot : MonoBehaviour, IClickable
             placedPlant.ticksUntilHarvest++;
         }
         plantSprite.GetComponent<SpriteRenderer>().enabled = true;
-        harvestTimeText.GetComponent<MeshRenderer>().enabled = true;
+        harvestTimeText.SetActive(true);
         harvestTimeText.GetComponent<PlantHarvestTimeText>().UpdateText();
         SetModel(type);
 
@@ -111,7 +111,7 @@ public class Plot : MonoBehaviour, IClickable
         plant?.Payout();
         plant = null;
         plantSprite.GetComponent<SpriteRenderer>().enabled = false;
-        harvestTimeText.GetComponent<MeshRenderer>().enabled = false;
+        harvestTimeText.SetActive(false);
     }
 
     public void SetParentGrid(GridController parentGrid)
