@@ -49,7 +49,7 @@ public class SceneManager : MonoBehaviour
     IEnumerator playWait()
     {
         
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         UnityEngine.SceneManagement.SceneManager.LoadScene("FinalPlay");
     }
 }
