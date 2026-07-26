@@ -102,6 +102,11 @@ public class Plot : MonoBehaviour, IClickable
         }
     }
 
+    private void ClearModel() {
+        plantSprite.GetComponent<SpriteRenderer>().sprite = null;
+        plantSprite.GetComponent<Animator>().runtimeAnimatorController = null;
+    }
+
     public void Harvest() {
         plant?.Harvest(this);
         cashNoise.Play();
@@ -110,6 +115,7 @@ public class Plot : MonoBehaviour, IClickable
     public void RemovePlant() {
         plant?.Payout();
         plant = null;
+        ClearModel();
         plantSprite.GetComponent<SpriteRenderer>().enabled = false;
         harvestTimeText.SetActive(false);
     }
