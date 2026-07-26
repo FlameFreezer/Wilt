@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EventBus
@@ -6,9 +7,14 @@ public class EventBus
     public event Action onTick;
     public event Action<bool> onPause;
 
+	public event Action onPauseRequested;
+
 	public event Action<UInt32> onPlayerMoneyChanged;
 
-	public event Action<string, Sprite> onDialogueDisplayRequested;
+	public event Action<PlantTypes.Type> onPlantTypeFirstPlanted;
+
+	public event Action<Queue<string>, Sprite> onDialogueDisplayRequested;
+	public event Action onDialogueAdvanceRequested;
 
 	public event Action<UInt32, Action> onEventScheduled;
 
@@ -28,12 +34,24 @@ public class EventBus
         onPause?.Invoke(isPaused);
     }
 
+	public void OnPauseRequested() {
+		onPauseRequested?.Invoke();
+	}
+
 	public void OnPlayerMoneyChanged(UInt32 money) {
 		onPlayerMoneyChanged?.Invoke(money);
 	}
 
-	public void OnDialogueDisplayRequested(string text, Sprite portrait) {
+	public void OnPlantTypeFirstPlanted(PlantTypes.Type plantType) {
+		onPlantTypeFirstPlanted?.Invoke(plantType);
+	}
+
+	public void OnDialogueDisplayRequested(Queue<string> text, Sprite portrait) {
 		onDialogueDisplayRequested?.Invoke(text, portrait);
+	}
+
+	public void OnDialogueAdvanceRequested() {
+		onDialogueAdvanceRequested?.Invoke();
 	}
 
 	public void OnEventScheduled(UInt32 ticksUntilTrigger, Action callback) {

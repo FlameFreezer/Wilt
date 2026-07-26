@@ -71,6 +71,7 @@ public class Plot : MonoBehaviour, IClickable
     public Plant PlacePlant(PlantTypes.Type type)
     {
         digNoise.Play();
+
         Plant placedPlant = _parentGrid.SpawnPlantAtGridPosition(_xIndex, _yIndex, type);
         Player player = Game.Instance()._player.GetComponent<Player>();
         if(player.onPlantEffect == PlantTypes.Type.LAMBFLOWER)

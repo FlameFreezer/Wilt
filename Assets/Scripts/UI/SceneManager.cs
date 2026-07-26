@@ -50,6 +50,6 @@ public class SceneManager : MonoBehaviour
     {
         
         yield return new WaitForSeconds(3);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Play");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("FinalPlay");
     }
 }

@@ -34,6 +34,11 @@ public class Player : MonoBehaviour
         {
             return;
         }
+
+		Game.Instance().EventBus().OnDialogueAdvanceRequested();
+
+		if(Game.Instance().dialogueActive) { return; }
+
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         RaycastHit hit;
@@ -48,7 +53,7 @@ public class Player : MonoBehaviour
 
     public void SelectPlant(PlantTypes.Type type)
     {
-        uiClickNoise.Play();
+        if(uiClickNoise != null) { uiClickNoise.Play(); }
         Debug.Log($"Selected {type.GetNameCapitalized()}");
         selectedPlant = type;
     }

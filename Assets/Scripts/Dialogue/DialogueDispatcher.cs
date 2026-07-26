@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public struct Dialogue {
-	public string text;
-	public UInt32 minTickCount;
-	public UInt32 maxTickCount;
+	public Queue<string> text;
 }
 
 public class DialogueDispatcher : MonoBehaviour {
-	private bool _isTalking = false;
+	private Dictionary<PlantTypes.Type, Dictionary<string, Dialogue>> _dialogueDictionary = new();
 
     void Start() {
 		TextAsset[] dialogueAssets = Resources.LoadAll<TextAsset>("PlantDialogue");
+
+		Game.Instance().EventBus().onPlantTypeFirstPlanted += HandleFirstInstancePlanted;
 
 		foreach(TextAsset dialogueAsset in dialogueAssets) {
 			PlantTypes.Type correspondingPlantType = PlantTypes.TypeFromString(dialogueAsset.name);
@@ -22,26 +22,27 @@ public class DialogueDispatcher : MonoBehaviour {
 				continue;
 			}
 
-			Dictionary<UInt32, Dialogue> deserializedDialogues = JsonConvert.DeserializeObject<Dictionary<UInt32, Dialogue>>(dialogueAsset.text);
+			Dictionary<string, Dialogue> deserializedDialogues = JsonConvert.DeserializeObject<Dictionary<string, Dialogue>>(dialogueAsset.text);
 
-			foreach((UInt32 tickTime, Dialogue dialogue) in deserializedDialogues) {
-				Game.Instance().EventBus().OnEventScheduled(tickTime, () => { TryPerformingDialogue(correspondingPlantType, dialogue); });
-			}
+			_dialogueDictionary[correspondingPlantType] = deserializedDialogues;
 		}
 	}
 
-	void TryPerformingDialogue(PlantTypes.Type speakerType, Dialogue dialogue) {
-		// TODO - check if there's a plant of type speakerType on the board,
-		// if not, fail quietly
+	void HandleFirstInstancePlanted(PlantTypes.Type plantType) {
+		TryPerformingDialogue(plantType, "firstplanted");
+	}
 
-		if(_isTalking) { return; }
+	void TryPerformingDialogue(PlantTypes.Type speakerType, string dialogueIdentifier) {
+		if(!_dialogueDictionary.TryGetValue(speakerType, out Dictionary<string, Dialogue> plantDialogueDictionary)) {
+			Debug.LogWarning($"failed to retrieve plant dialogue dictionary for plant of type \"{speakerType.GetName()}\".");
+			return;
+		}
 
-		_isTalking = true;
+		if(!plantDialogueDictionary.TryGetValue(dialogueIdentifier, out Dialogue dialogue)) {
+			Debug.LogWarning($"failed to retrieve plant dialogue with identifier \"{dialogueIdentifier}\" on plant of type \"{speakerType.GetName()}\".");
+			return;
+		}
 
-		// TODO - figure out min/max tick count logic
 		Game.Instance().EventBus().OnDialogueDisplayRequested(dialogue.text, PlantTypes.TypeToPortrait(speakerType));
-
-		// TODO - type type type
-		_isTalking = false;
 	}
 }
