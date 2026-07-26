@@ -1,6 +1,7 @@
 using FMODUnity;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Plot : MonoBehaviour, IClickable
 {
@@ -96,9 +97,24 @@ public class Plot : MonoBehaviour, IClickable
             // Right now only the Cthulily has animations
             plantSprite.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>($"Animations/cthulily_idle{Random.Range(1, 4)}");
             // The animator itself set sprites, no need to set GetComponent<SpriteRenderer>().sprite
+            plantSprite.transform.localScale = new Vector3(9f, 9f, 9f); // Fix scale
         } else {
             // Defer to non-animated sprite otherwise
             plantSprite.GetComponent<SpriteRenderer>().sprite = PlantTypes.TypeToSprite(type);
+
+            // Fix scale
+            switch (type) {
+                case PlantTypes.Type.EYE_WEED:
+                case PlantTypes.Type.TOADSTOOL:
+                    plantSprite.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
+                    break;
+                case PlantTypes.Type.LAMBFLOWER:
+                    plantSprite.transform.localScale = new Vector3(3.2f, 3.2f, 3.2f);
+                    break;
+                default:
+                    plantSprite.transform.localScale = new Vector3(1f, 1f, 1f);
+                    break;
+            }
         }
     }
 
