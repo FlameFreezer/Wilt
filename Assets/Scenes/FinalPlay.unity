@@ -1556,7 +1556,7 @@ PrefabInstance:
       objectReference: {fileID: 1749571430}
     - target: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
       propertyPath: _addTimeCost
-      value: 1
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
       propertyPath: addTimeSound
@@ -1564,7 +1564,7 @@ PrefabInstance:
       objectReference: {fileID: 2133970595}
     - target: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
       propertyPath: _baseDuration
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
       propertyPath: _ticksRemaining
@@ -4782,7 +4782,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 737994649}
   m_HandleRect: {fileID: 737994648}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9999998
   m_Size: 0.3897369
   m_NumberOfSteps: 0
   m_OnValueChanged:
