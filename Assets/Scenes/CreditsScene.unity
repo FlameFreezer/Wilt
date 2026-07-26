@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0ea696addf26c4e8fd105700633c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneManager
+  _settingsMenu: {fileID: 0}
   playSound: {fileID: 0}
 --- !u!4 &423406342
 Transform:
@@ -1042,8 +1043,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'amory "amory" gloomsfield - Programming, Narrative,  Design
 
-    Eric
-    Welch - Programming
+    Drullkus
+    - Programming
 
     Quincy Hurst - Programming, Design, Narrative
 
@@ -1058,10 +1059,10 @@ MonoBehaviour:
     Michael Wagoner - Design, UI, Animation
 
 
-    Auditors:
+    Playtesters:
 
     Jack
-    Seales'
+    Seales, Max Wagoner'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7b47afba05a34344b8de2ccb166c5148, type: 2}
   m_sharedMaterial: {fileID: 5077358399310839331, guid: 7b47afba05a34344b8de2ccb166c5148, type: 2}
