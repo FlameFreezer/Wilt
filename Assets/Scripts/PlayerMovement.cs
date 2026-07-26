@@ -79,7 +79,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator MoveCooldown(float seconds)
     {
-        Debug.Log("here");
+        int randNum = Random.Range(0, 2);
+        if(randNum == 1) {animator.SetTrigger("Kneel"); animator.speed = 1; yield return new WaitForSeconds(5.5f); animator.speed = 0;}
         yield return new WaitForSeconds(seconds);
         target = GenerateTargetPosition();
         animator.speed = 1;
