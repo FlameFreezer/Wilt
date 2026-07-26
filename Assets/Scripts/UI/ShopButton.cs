@@ -1,9 +1,10 @@
 using FMODUnity;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ShopButton : MonoBehaviour
+public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public PlantTypes.Type plantType;
     public TextMeshProUGUI plantName;
@@ -12,6 +13,18 @@ public class ShopButton : MonoBehaviour
     public Color32 colorWhenSelected;
     private Color32 _colorUnselected;
     public bool startSelected = false;
+
+    private Tooltip _tooltip = null;
+
+    private Tooltip Tooltip {
+        get {
+            if (_tooltip == null) {
+                _tooltip = FindFirstObjectByType<Tooltip>(FindObjectsInactive.Include);
+            }
+            return _tooltip;
+        }
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -48,5 +61,13 @@ public class ShopButton : MonoBehaviour
     private void ResetColor()
     {
         GetComponent<Image>().color = _colorUnselected;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData) {
+        Tooltip?.SetPlant(plantType);
+    }
+
+    public void OnPointerExit(PointerEventData eventData) {
+        Tooltip?.Hide();
     }
 }
