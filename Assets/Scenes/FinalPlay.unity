@@ -1048,6 +1048,7 @@ GameObject:
   - component: {fileID: 219659305}
   - component: {fileID: 219659307}
   - component: {fileID: 219659306}
+  - component: {fileID: 219659308}
   m_Layer: 5
   m_Name: CurrencyText
   m_TagString: Untagged
@@ -1174,6 +1175,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219659304}
   m_CullTransparentMesh: 1
+--- !u!114 &219659308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219659304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33c13b8f108fec25db2e05dad62d04ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoneyDisplay
 --- !u!1 &229233120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,6 +1426,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1749571430}
     - target: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
+      propertyPath: _addTimeCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
+      propertyPath: addTimeSound
+      value: 
+      objectReference: {fileID: 2133970595}
+    - target: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
       propertyPath: _baseDuration
       value: 500
       objectReference: {fileID: 0}
@@ -1423,7 +1444,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4671857681382492594, guid: 8618b910ad4331855934c88e982e2332, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2133970595}
   m_SourcePrefab: {fileID: 100100000, guid: 8618b910ad4331855934c88e982e2332, type: 3}
 --- !u!1 &349018412
 GameObject:
@@ -3870,7 +3894,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 737994649}
   m_HandleRect: {fileID: 737994648}
   m_Direction: 2
-  m_Value: 0.9999998
+  m_Value: 1
   m_Size: 0.3897369
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4349,7 +4373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08627451, g: 0, b: 0.19607845, a: 1}
+  m_Color: {r: 0.12384299, g: 0.12458591, b: 0.21698111, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4384,6 +4408,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1510613880}
   - component: {fileID: 1510613879}
+  - component: {fileID: 1510613882}
+  - component: {fileID: 1510613881}
   m_Layer: 0
   m_Name: Timer
   m_TagString: Untagged
@@ -4403,6 +4429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793f366e0dd7a204584cdd3ff4298801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
+  pauseNoise: {fileID: 1510613882}
+  unpauseNoise: {fileID: 1510613881}
   tickRate: 0
   slowTickRate: 1
   mediumTickRate: 5
@@ -4422,6 +4450,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1510613881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510613878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1101358342
+      Data2: 1200806209
+      Data3: 2000333952
+      Data4: -1259217965
+    Path: event:/Unpause
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1510613882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510613878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1052974215
+      Data2: 1132842513
+      Data3: 642738860
+      Data4: -1183698686
+    Path: event:/Pause
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1534342705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4496,7 +4586,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
   m_PrefabInstance: {fileID: 340293446}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2133970592}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bc7520015cf0588fa89547843589590, type: 3}
@@ -5255,6 +5345,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113868004}
   m_CullTransparentMesh: 1
+--- !u!1 &2133970592 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4671857681382492594, guid: 8618b910ad4331855934c88e982e2332, type: 3}
+  m_PrefabInstance: {fileID: 340293446}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2133970595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133970592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1651995013
+      Data2: 1076380177
+      Data3: 109374381
+      Data4: -595388272
+    Path: event:/AddingTIme
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &4224363298039075399
 PrefabInstance:
   m_ObjectHideFlags: 0

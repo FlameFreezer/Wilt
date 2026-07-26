@@ -1,10 +1,16 @@
+using FMOD.Studio;
+using FMODUnity;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.UIElements;
 
 public class TickTimer : MonoBehaviour
 {
+    [SerializeField] StudioEventEmitter pauseNoise;
+    [SerializeField] StudioEventEmitter unpauseNoise;
+
     private double _timeSinceLastTick = 0.0;
     private bool _isPaused = true;
     public enum TickRate
@@ -64,7 +70,16 @@ public class TickTimer : MonoBehaviour
 
         _isPaused = !_isPaused;
         Game.Instance().EventBus().OnPause(_isPaused);
-	}
+
+        if (_isPaused)
+        {
+            pauseNoise.Play();
+        }
+        else
+        {
+            unpauseNoise.Play();
+        }
+    }
 
     public void IncreaseTickRate(InputAction.CallbackContext context)
     {
