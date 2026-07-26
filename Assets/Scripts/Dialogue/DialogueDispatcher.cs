@@ -8,8 +8,6 @@ public struct Dialogue {
 }
 
 public class DialogueDispatcher : MonoBehaviour {
-	private bool _isTalking = false;
-
 	private Dictionary<PlantTypes.Type, Dictionary<string, Dialogue>> _dialogueDictionary = new();
 
     void Start() {
