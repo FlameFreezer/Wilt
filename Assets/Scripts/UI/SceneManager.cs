@@ -62,12 +62,9 @@ public class SceneManager : MonoBehaviour
 	public void HandleGlobalTimerExhausted() {
 		UnityEngine.SceneManagement.SceneManager.LoadScene("CreditsScene");
 	}
-
-
     IEnumerator playWait()
     {
-        
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         UnityEngine.SceneManagement.SceneManager.LoadScene("FinalPlay");
     }
 }

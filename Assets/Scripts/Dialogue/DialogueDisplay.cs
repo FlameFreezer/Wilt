@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class DialogueDisplay : MonoBehaviour {
 
 	[SerializeField]
 	private Image _portraitDisplay;
+
 
 	private Queue<string> _textQueue;
 
@@ -27,7 +29,6 @@ public class DialogueDisplay : MonoBehaviour {
 	void HandleDialogueDisplayRequested(Queue<string> text, Sprite portrait) {
 		_textQueue = text;
 		_portraitDisplay.sprite = portrait;
-
 		Game.Instance().dialogueActive = true;
 		Game.Instance().EventBus().OnPauseRequested();
 
