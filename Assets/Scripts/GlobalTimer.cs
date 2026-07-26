@@ -44,7 +44,7 @@ public class GlobalTimer : MonoBehaviour {
 
 	public void AddTime() {
 		Player player = Game.Instance()._player.GetComponent<Player>();
-		uint addTimeCost = (uint)(_addTimeCost * addTimeCostModifier);
+		uint addTimeCost = (uint)((double)_addTimeCost * addTimeCostModifier);
 		if(player.money < addTimeCost)
 		{
 			Debug.Log($"{player.money} is not enough to afford cost of {addTimeCost} to add time");
@@ -53,8 +53,10 @@ public class GlobalTimer : MonoBehaviour {
 		player.money -= addTimeCost;
 
 		_duration += _ticksPerClick;
-		_addTimeCost = (uint)(_addTimeCost * _costMutliplierPerClick);
+		_addTimeCost = (uint)((double)_addTimeCost * _costMutliplierPerClick);
 		addTimeCostModifier = 1.0;
+
+		Debug.Log(_addTimeCost);
 
 		Game.Instance().EventBus().OnGlobalTimeAdded();
 		UpdateDisplay();
