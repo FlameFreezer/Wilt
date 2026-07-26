@@ -10,6 +10,8 @@ public class Game
     public TickTimer _tickTimer;
     public GlobalTimer globalTimer;
 
+	public bool dialogueActive = false;
+
     public static Game Instance()
     {
         if (_instance == null)

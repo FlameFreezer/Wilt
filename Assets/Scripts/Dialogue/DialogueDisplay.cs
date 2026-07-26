@@ -12,8 +12,6 @@ public class DialogueDisplay : MonoBehaviour {
 
 	private Queue<string> _textQueue;
 
-	private bool _displaying = false;
-
 	void Start() {
 		if(_portraitDisplay == null) {
 			Debug.LogWarning("No portrait display set for DialogueDisplay!");
@@ -30,18 +28,18 @@ public class DialogueDisplay : MonoBehaviour {
 		_textQueue = text;
 		_portraitDisplay.sprite = portrait;
 
-		_displaying = true;
+		Game.Instance().dialogueActive = true;
 
 		ContinueTyping();
 	}
 
 	void ContinueTyping() {
-		if(!_displaying) {
+		if(!Game.Instance().dialogueActive) {
 			return;
 		}
 
 		if(_textQueue.Count < 1) {
-			_displaying = false;
+			Game.Instance().dialogueActive = false;
 			_textDisplay.text = "";
 			_portraitDisplay.sprite = null; // TODO - default portrait
 

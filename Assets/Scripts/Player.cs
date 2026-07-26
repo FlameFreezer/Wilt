@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
 
 		Game.Instance().EventBus().OnDialogueAdvanceRequested();
 
+		if(Game.Instance().dialogueActive) { return; }
+
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         RaycastHit hit;
