@@ -1413,6 +1413,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1749571430}
     - target: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
+      propertyPath: addTimeSound
+      value: 
+      objectReference: {fileID: 2044332216}
+    - target: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
       propertyPath: _baseDuration
       value: 500
       objectReference: {fileID: 0}
@@ -1423,7 +1427,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4671857681382492594, guid: 8618b910ad4331855934c88e982e2332, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2044332216}
   m_SourcePrefab: {fileID: 100100000, guid: 8618b910ad4331855934c88e982e2332, type: 3}
 --- !u!1 &349018412
 GameObject:
@@ -4536,7 +4543,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6202629037017617689, guid: 8618b910ad4331855934c88e982e2332, type: 3}
   m_PrefabInstance: {fileID: 340293446}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2044332213}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bc7520015cf0588fa89547843589590, type: 3}
@@ -5118,6 +5125,42 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
+--- !u!1 &2044332213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4671857681382492594, guid: 8618b910ad4331855934c88e982e2332, type: 3}
+  m_PrefabInstance: {fileID: 340293446}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2044332216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044332213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1651995013
+      Data2: 1076380177
+      Data3: 109374381
+      Data4: -595388272
+    Path: event:/AddingTIme
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2113868004
 GameObject:
   m_ObjectHideFlags: 0
