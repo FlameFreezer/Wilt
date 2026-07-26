@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class SceneManager : MonoBehaviour
 {
+	[SerializeField]
+	private GameObject _settingsMenu;
+
     //Audios
     [SerializeField] StudioEventEmitter playSound;
     int clipLength;
+
+	private bool _oldDialogueActive = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,8 +33,21 @@ public class SceneManager : MonoBehaviour
 
     public void OnPressSettings()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("SettingsScene");
+		_oldDialogueActive = Game.Instance().dialogueActive;
+		Game.Instance().dialogueActive = true;
+		Game.Instance().clickthroughEnabled = false;
+		Game.Instance().EventBus().OnPauseRequested();
+
+		_settingsMenu.SetActive(true);
     }
+
+	public void OnPressSettingsBack() {
+		Game.Instance().dialogueActive = _oldDialogueActive;
+		Game.Instance().clickthroughEnabled = true;
+		Game.Instance().EventBus().OnPauseRequested();
+
+		_settingsMenu.SetActive(false);
+	}
 
     public void OnPressCredits()
     {

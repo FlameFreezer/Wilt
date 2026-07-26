@@ -1,4 +1,14 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+
+namespace HaltSeverity {
+	public enum Type {
+		UNBLOCKED,
+		PAUSE_TICKS,
+		PAUSE_GAME,
+	}
+}
 
 public class Game
 {
@@ -11,6 +21,9 @@ public class Game
     public GlobalTimer globalTimer;
 
 	public bool dialogueActive = false;
+	public bool clickthroughEnabled = true;
+
+	private Dictionary<Guid, HaltSeverity.Type> _gameplayBlocks = new();
 
     public static Game Instance()
     {
@@ -30,4 +43,22 @@ public class Game
     {
         return _player.GetComponent<Player>();
     }
+
+	public bool IsBlocked(HaltSeverity.Type tolerance) {
+		foreach((var _, HaltSeverity.Type type) in _gameplayBlocks) {
+			if(type > tolerance) { return true; }
+		}
+
+		return false;
+	}
+
+	public void AddBlock(Guid id, HaltSeverity.Type severity) {
+		if(severity == HaltSeverity.Type.UNBLOCKED) { return; }
+
+		_gameplayBlocks.Add(id, severity);
+	}
+
+	public void RemoveBlock(Guid id) {
+		_gameplayBlocks.Remove(id);
+	}
 }
