@@ -69,7 +69,7 @@ public class PlantTypes
 	}
 
     public enum Type : int {
-		[PlantTypeMetadata("eyeweed", "Eyeweed", 1, 2, 3)]
+		[PlantTypeMetadata("eyeweed", "Eyeweed", 1, 2, 5)]
 		EYE_WEED,
 		[PlantTypeMetadata("lambflower", "Lambflower", 7, 9, 8)]
         LAMBFLOWER,
@@ -77,7 +77,7 @@ public class PlantTypes
         FUSSPOT,
 		[PlantTypeMetadata("toadstool", "Traveling Toadstool", 16, 18, 10)]
         TOADSTOOL,
-		[PlantTypeMetadata("cthulily", "Cthulily", 45, 0, 20)]
+		[PlantTypeMetadata("cthulily", "Cthulily", 45, 25, 20)]
         CTHULILY,
 		[PlantTypeMetadata("shyweed", "Shyweed", 14, 17, 20)]
 		SHYWEED,
