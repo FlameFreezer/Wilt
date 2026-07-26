@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlantHarvestTimeText : MonoBehaviour
 {
-
     public Plot plot;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,7 +20,7 @@ public class PlantHarvestTimeText : MonoBehaviour
     {
         if(plot.plant != null)
         {
-            TextMeshPro text = GetComponent<TextMeshPro>();
+            TextMeshPro text = GetComponentInChildren<TextMeshPro>();
             text.text = $"{plot.plant.ticksUntilHarvest}";
         }
     }
