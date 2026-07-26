@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class GlobalTimer : MonoBehaviour {
 	[SerializeField] StudioEventEmitter tickSound;
+	[SerializeField] StudioEventEmitter addTimeSound;
 
 	[SerializeField]
 	private int _baseDuration = 75;
@@ -57,6 +58,7 @@ public class GlobalTimer : MonoBehaviour {
 
 		Game.Instance().EventBus().OnGlobalTimeAdded();
 		UpdateDisplay();
+		addTimeSound.Play();
 	}
 
 	public uint GetAddTimeCost()
