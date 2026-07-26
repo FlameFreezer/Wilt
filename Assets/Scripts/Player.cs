@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     void Update() { }
 
 	public void OnClick(InputAction.CallbackContext context) {
-        if(!context.started)
+        if(!context.started || !Game.Instance().clickthroughEnabled)
         {
             return;
         }
