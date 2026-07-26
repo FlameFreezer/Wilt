@@ -1040,27 +1040,28 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Amory Acosta - Programming, Narrative,  Design
+  m_text: 'amory "amory" gloomsfield - Programming, Narrative,  Design
 
-    Eric Welch - Programming
+    Eric
+    Welch - Programming
 
-    Quincy
-    Hurst - Programming, Design, Narrative
+    Quincy Hurst - Programming, Design, Narrative
 
-    Michael Stager - Programming, Design,
-    Audio
+    Michael
+    Stager - Programming, Design, Audio
 
     Robert Stager - Visual Art, UI, Animation
 
-    Saira Hamid - Visual
-    Art, UI
+    Sai
+    - Visual Art, UI
 
     Michael Wagoner - Design, UI
 
 
     Auditors:
 
-    Jack Seales'
+    Jack
+    Seales'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7b47afba05a34344b8de2ccb166c5148, type: 2}
   m_sharedMaterial: {fileID: 5077358399310839331, guid: 7b47afba05a34344b8de2ccb166c5148, type: 2}
@@ -1087,7 +1088,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 75.85
+  m_fontSize: 68.95
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
