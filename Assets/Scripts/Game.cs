@@ -21,6 +21,7 @@ public class Game
     public GlobalTimer globalTimer;
 
 	public bool dialogueActive = false;
+	public bool clickthroughEnabled = true;
 
 	private Dictionary<Guid, HaltSeverity.Type> _gameplayBlocks = new();
 
