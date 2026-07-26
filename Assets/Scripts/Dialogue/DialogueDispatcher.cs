@@ -7,6 +7,10 @@ public struct Dialogue {
 	public Queue<string> text;
 }
 
+public struct Dialogue2 {
+	public List<string> text;
+}
+
 public class DialogueDispatcher : MonoBehaviour {
 	private Dictionary<PlantTypes.Type, Dictionary<string, Dialogue>> _dialogueDictionary = new();
 
@@ -22,9 +26,14 @@ public class DialogueDispatcher : MonoBehaviour {
 				continue;
 			}
 
-			Dictionary<string, Dialogue> deserializedDialogues = JsonConvert.DeserializeObject<Dictionary<string, Dialogue>>(dialogueAsset.text);
+			Dictionary<string, Dialogue2> deserializedDialogues = JsonConvert.DeserializeObject<Dictionary<string, Dialogue2>>(dialogueAsset.text);
+			Dictionary<string, Dialogue> d = new();
 
-			_dialogueDictionary[correspondingPlantType] = deserializedDialogues;
+			foreach((string s, Dialogue2 d2) in deserializedDialogues) {
+				d.Add(s, new(){ text = new(d2.text), });
+			}
+
+			_dialogueDictionary[correspondingPlantType] = d;
 		}
 	}
 
