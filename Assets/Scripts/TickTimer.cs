@@ -58,7 +58,9 @@ public class TickTimer : MonoBehaviour
     }
 
 	private void Pause() {
-        if(Game.Instance().dialogueActive) { return; }
+        if(Game.Instance().dialogueActive && _isPaused) {
+			return;
+		}
 
         _isPaused = !_isPaused;
         Game.Instance().EventBus().OnPause(_isPaused);
