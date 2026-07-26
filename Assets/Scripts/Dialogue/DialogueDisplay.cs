@@ -28,8 +28,8 @@ public class DialogueDisplay : MonoBehaviour {
 		_textQueue = text;
 		_portraitDisplay.sprite = portrait;
 
-		Game.Instance().EventBus().OnPauseRequested();
 		Game.Instance().dialogueActive = true;
+		Game.Instance().EventBus().OnPauseRequested();
 
 		ContinueTyping();
 	}
