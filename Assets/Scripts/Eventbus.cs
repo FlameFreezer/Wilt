@@ -20,6 +20,8 @@ public class EventBus
 
     public event Action onGlobalTimeAdded;
 
+	public event Action onPlantSelected;
+
     public void OnTick()
     {
         onTick?.Invoke();
@@ -58,4 +60,9 @@ public class EventBus
     {
         onGlobalTimeAdded?.Invoke();
     }
+
+	public void OnPlantSelected()
+	{
+		onPlantSelected?.Invoke();
+	}
 }
