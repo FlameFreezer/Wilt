@@ -29,6 +29,7 @@ public class DialogueDisplay : MonoBehaviour {
 	void HandleDialogueDisplayRequested(Queue<string> text, Sprite portrait) {
 		_textQueue = text;
 		_portraitDisplay.sprite = portrait;
+		_portraitDisplay.enabled = true;
 		Game.Instance().dialogueActive = true;
 		Game.Instance().EventBus().OnPauseRequested();
 
@@ -43,7 +44,7 @@ public class DialogueDisplay : MonoBehaviour {
 		if(_textQueue.Count < 1) {
 			Game.Instance().dialogueActive = false;
 			_textDisplay.text = "";
-			_portraitDisplay.sprite = null; // TODO - default portrait
+			_portraitDisplay.enabled = false;
 
 			return;
 		}
