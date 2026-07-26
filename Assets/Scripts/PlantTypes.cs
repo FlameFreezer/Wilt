@@ -100,7 +100,6 @@ public class PlantTypes
 	}
 
 	public static Sprite TypeToPortrait(Type type) {
-		Debug.Log(type.GetName());
 		return Resources.Load<Sprite>($"PlantPortraits/{type.GetName()}");
 	}
 
