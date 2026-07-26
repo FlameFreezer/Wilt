@@ -5184,6 +5184,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5399123479340069158, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7d2a4b2a9f078c9488a409d9c363dd0e, type: 3}
     - target: {fileID: 7307215100107853137, guid: a117466e7bdcc8a42aecf582e4c074bf, type: 3}
       propertyPath: m_Name
       value: Eyeweed

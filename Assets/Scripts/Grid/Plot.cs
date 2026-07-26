@@ -93,17 +93,32 @@ public class Plot : MonoBehaviour, IClickable
     }
 
     private void SetModel(PlantTypes.Type type) {
-        if (type == PlantTypes.Type.CTHULILY) {
-            // Right now only the Cthulily has animations
+        /*if (type == PlantTypes.Type.CTHULILY) {
             plantSprite.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>($"Animations/cthulily_idle{Random.Range(1, 4)}");
             // The animator itself set sprites, no need to set GetComponent<SpriteRenderer>().sprite
             plantSprite.transform.localScale = new Vector3(9f, 9f, 9f); // Fix scale
-        } else {
+        } 
+        if (type == PlantTypes.Type.LAMBFLOWER) {
+            plantSprite.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>($"Animations/lambflower_idle1");
+            // The animator itself set sprites, no need to set GetComponent<SpriteRenderer>().sprite
+            plantSprite.transform.localScale = new Vector3(9f, 9f, 9f); // Fix scale
+        }
+        if (type == PlantTypes.Type.FUSSPOT) {
+            plantSprite.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>($"Animations/Fusspot_idle1");
+            // The animator itself set sprites, no need to set GetComponent<SpriteRenderer>().sprite
+            plantSprite.transform.localScale = new Vector3(9f, 9f, 9f); // Fix scale
+        }
+        if (type == PlantTypes.Type.EYE_WEED) {
+            plantSprite.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>($"Animations/eyeweed_idle1");
+            // The animator itself set sprites, no need to set GetComponent<SpriteRenderer>().sprite
+            //plantSprite.transform.localScale = new Vector3(9f, 9f, 9f); // Fix scale
+        }*/
+        //else {
             // Defer to non-animated sprite otherwise
             plantSprite.GetComponent<SpriteRenderer>().sprite = PlantTypes.TypeToSprite(type);
 
             // Fix scale
-            switch (type) {
+            /*switch (type) {
                 case PlantTypes.Type.EYE_WEED:
                 case PlantTypes.Type.TOADSTOOL:
                     plantSprite.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
@@ -114,8 +129,8 @@ public class Plot : MonoBehaviour, IClickable
                 default:
                     plantSprite.transform.localScale = new Vector3(1f, 1f, 1f);
                     break;
-            }
-        }
+            }*/
+        //}
     }
 
     private void ClearModel() {

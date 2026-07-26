@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0ea696addf26c4e8fd105700633c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneManager
+  _settingsMenu: {fileID: 0}
   playSound: {fileID: 0}
 --- !u!4 &423406342
 Transform:
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 423406341}
         m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
         m_MethodName: OnPressTitle
         m_Mode: 1
