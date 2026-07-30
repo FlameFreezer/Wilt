@@ -1281,7 +1281,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Temp Stats
+  m_text: ???
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7b47afba05a34344b8de2ccb166c5148, type: 2}
   m_sharedMaterial: {fileID: 5077358399310839331, guid: 7b47afba05a34344b8de2ccb166c5148, type: 2}
@@ -1308,7 +1308,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43.45
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1682,7 +1682,7 @@ Camera:
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 1
-  orthographic size: 5.35
+  orthographic size: 5.66
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2037,8 +2037,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -85.14172, y: -79.827515}
-  m_SizeDelta: {x: 170.2841, y: 194.8336}
+  m_AnchoredPosition: {x: 176.67, y: -58}
+  m_SizeDelta: {x: 159.0706, y: 182.0035}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &507254815
 MonoBehaviour:
@@ -3497,7 +3497,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60.000004
-    OrthographicSize: 5.35
+    OrthographicSize: 5.66
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -5422,8 +5422,20 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5431,7 +5443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5460,6 +5472,10 @@ PrefabInstance:
     - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568958770221865830, guid: e125cc900e84d014888f3038ee364001, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 571243739545052483, guid: e125cc900e84d014888f3038ee364001, type: 3}
       propertyPath: m_Name
