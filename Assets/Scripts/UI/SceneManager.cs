@@ -49,14 +49,9 @@ public class SceneManager : MonoBehaviour
 		_settingsMenu.SetActive(false);
 	}
 
-    public void OnPressCredits()
+    public void ChangeScene(string sceneName)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("CreditsScene");
-    }
-
-    public void OnPressTitle()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("TitleScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 
 	public void HandleGlobalTimerExhausted() {
