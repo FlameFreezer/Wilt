@@ -15,6 +15,6 @@ public class MoneyDisplay : MonoBehaviour {
 	}
 
 	private void _UpdateText(UInt32 amount) {
-		_displayText.text = $"${amount}";
+		_displayText.text = $"{amount}";
 	}
 }
