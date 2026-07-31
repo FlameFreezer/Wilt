@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         if (!atTarget && transform.position == target) //if reached target, generate a new one
         {
             atTarget = true;
-            animator.speed = 0;
+            animator.SetBool("Stop", true);
             IEnumerator cooldownCR = MoveCooldown(Random.Range(0.5f, 2f));
             StartCoroutine(cooldownCR);
         }
@@ -80,10 +80,10 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator MoveCooldown(float seconds)
     {
         int randNum = Random.Range(0, 2);
-        if(randNum == 1) {animator.SetTrigger("Kneel"); animator.speed = 1; yield return new WaitForSeconds(5.5f); animator.speed = 0;}
+        if(randNum == 1) {animator.SetTrigger("Kneel"); yield return new WaitForSeconds(5.5f);}
         yield return new WaitForSeconds(seconds);
         target = GenerateTargetPosition();
-        animator.speed = 1;
+        animator.SetBool("Stop", false);
         atTarget = false;
     }
 }

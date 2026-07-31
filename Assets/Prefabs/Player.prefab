@@ -51,8 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   uiClickNoise: {fileID: -3182399839711170408}
   selectedPlant: 0
-  startingMoney: 1000
-  onPlantEffect: 4
+  startingMoney: 1
+  onPlantEffect: 8
 --- !u!114 &3381187321692023359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,12 +97,12 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+        m_TargetAssemblyTypeName: TickTimer, Assembly-CSharp
+        m_MethodName: RequestPause
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -115,11 +115,35 @@ MonoBehaviour:
     m_ActionId: b9adca25-32aa-401d-97a4-489556a79ba0
     m_ActionName: 'Debug/Mute[/Keyboard/m]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: TickTimer, Assembly-CSharp
+        m_MethodName: IncreaseTickRate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 43f528f3-e8f8-465b-a5a9-cb7060b8a794
     m_ActionName: 'Game/IncreaseTickRate[/Keyboard/equals,/Keyboard/numpadPlus]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: TickTimer, Assembly-CSharp
+        m_MethodName: DecreaseTickRate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 57a123a1-dd08-453a-9117-7bc7e15600de
     m_ActionName: 'Game/DecreaseTickRate[/Keyboard/minus,/Keyboard/numpadMinus]'
   m_NeverAutoSwitchControlSchemes: 0
@@ -140,9 +164,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   target: {x: 0, y: 0, z: 0}
-  upperBoundX: 8
-  upperBoundZ: 6
-  lowerBoundX: -8
+  upperBoundX: 6.5
+  upperBoundZ: 4.5
+  lowerBoundX: -5.5
   lowerBoundZ: -6
   moveRadius: 3
   currSpeed: 2
@@ -402,6 +426,10 @@ PrefabInstance:
     - target: {fileID: 928630626186778045, guid: 8c650efd28ff54e43a0948fc4dd93867, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: 8c650efd28ff54e43a0948fc4dd93867, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2854563699051640978, guid: 8c650efd28ff54e43a0948fc4dd93867, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
